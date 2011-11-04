@@ -14,9 +14,20 @@ insert
       redefine out_in_tagged_out_memory, fill_tagged_out_memory
       end
 
-   STRING_HANDLER
+   COMPARABLE
       redefine out_in_tagged_out_memory, fill_tagged_out_memory
       end
+
+   STRING_HANDLER
+      undefine copy, is_equal
+	  redefine out_in_tagged_out_memory, fill_tagged_out_memory
+      end
+
+feature -- Comparability
+	infix "<" (another: like Current): BOOLEAN is
+		do
+			Result := pointer_to_natural_32(Current)<pointer_to_natural_32 (another)
+		end
 
 feature {ANY}
    is_null: BOOLEAN is

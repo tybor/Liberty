@@ -1,11 +1,11 @@
 -- This file is part of a Liberty Eiffel library.
 -- See the full copyright at the end.
 --
-class INTERNALS_HANDLER
+deferred class INTERNALS_HANDLER
    --
    -- All classes that use INTERNALS must be descendants of INTERNALS_HANDLER.
    --
-
+insert ANY undefine copy, is_equal end
 feature {}
    valid_generating_type_for_internals (type: STRING): BOOLEAN is
       require

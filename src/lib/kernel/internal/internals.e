@@ -23,6 +23,18 @@ deferred class INTERNALS
    -- # If rule 1 is unapplicable, use INTERNALS to build a higher-level abstraction, and use that abstraction
    -- in your application. You really don't want INTERNALS scattered around your application code.
    --
+inherit 
+	COMPARABLE
+	-- INTERNALS comparability is added to allow storing them into an AVL_SET, needed to implement DEEP_COPIER. Comparison is done using the address of the related object
+	INTERNALS_HANDLER
+	-- To access another INTERNALS.object_as_pointer
+
+feature -- Comparability
+	infix "<" (another: like Current): BOOLEAN is
+		do
+			Result := object_as_pointer < another.object_as_pointer
+		end
+
 
 feature {INTERNALS_HANDLER, INTERNALS} -- Getting information about the described object's type
    type_generator: STRING is
