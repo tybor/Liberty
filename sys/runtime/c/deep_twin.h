@@ -32,13 +32,16 @@
   This file is automatically included in the header when `deep_twin' or
   `is_deep_equal' is in the live code of the system.
 */
+#include "base.h"
 
 /* Runtime support for `deep_twin':
  */
-void se_deep_twin_start(void);
-void* se_deep_twin_search(void* object);
-void se_deep_twin_register(void* object, void* deep_twin);
-void* se_deep_twin_trats(void);
+
+typedef struct se_hash_table se_hash_table;
+se_hash_table* se_deep_twin_start(void);
+void* se_deep_twin_search (se_hash_table* table, void* object);
+void se_deep_twin_register(se_hash_table* table, void* object, void* deep_twin);
+void* se_deep_twin_trats(se_hash_table* table);
 
 /* Runtime support for `is_deep_equal':
  */

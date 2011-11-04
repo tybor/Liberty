@@ -42,17 +42,19 @@
 #endif
 #include <assert.h>
 
+#include "deep_twin.h"
+
 typedef struct bucket {
   void* key;
   void* value;
 } bucket;
 
-typedef struct se_hash_table {
+struct se_hash_table {
   bucket *table, *cursor;
   int count;
   int capacity;
   int threshold;
-} se_hash_table;
+};
 
 void se_hash_table_clear (se_hash_table *ht);
 void se_hash_table_insert(se_hash_table *ht, void* key, void* value);
@@ -209,7 +211,7 @@ static int se_deep_twin_start_counter = 0;
  */
 static se_hash_table *se_deep_twin_memory = NULL;
 
-void se_deep_twin_start(void) {
+se_hash_table* se_deep_twin_start(void) {
   if (NULL == se_deep_twin_memory) {
     se_deep_twin_memory = se_hash_table_new();
   }
