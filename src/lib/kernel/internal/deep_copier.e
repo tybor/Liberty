@@ -52,6 +52,7 @@ feature
 				end
 				i := i+1
 			end
+		else Result := copied.fast_at(some_internals)
 		end
 	end
 end -- class DEEP_COPIER
