@@ -76,8 +76,9 @@ se_hash_table* se_hash_table_new() {
   return ht;
 }
 
-int se_hash_table_counter(se_hash_table *table) { return table->counter; };
-void se_hash_table_increase_counter(se_hash_table *table) { table->counter++};
+inline int se_hash_table_counter(se_hash_table *table) { return table->counter; };
+inline void se_hash_table_increase_counter(se_hash_table *table) { table->counter++; };
+inline void se_hash_table_decrease_counter(se_hash_table *table) { table->counter--; };
 
 /*
   http://www.concentric.net/~Ttwang/tech/addrhash.htm
@@ -126,124 +127,73 @@ void* se_hash_table_find(se_hash_table *ht, void* key) {
 /* 
  * Computing a prime tends to be quite a long task, so it may be faster to use
  * a little table of pre-computed primes that may be used. Since each
- * re-allocation is also a costly operation each prime has been chosen to be 
- * at least 1,5 times the previous or roughtly the double.
+ * re-allocation is also a costly operation each prime is in the form 2^n-k as in http://primes.utm.edu/lists/2small/0bit.html so that each is roughtly the double of the previous
  */
-static const int[] primes = {
-        89  /* exponent of 10th Marsenne prime */,
-       127  /* 4th Marsenne prime */,
-       607  /* exponent of 14th Marsenne prime */,
-      1279 /* exponent of 15th Marsenne prime */,
-      3217 /* exponent of 18th Marsenne prime */,
-      8191 /* 5th Marsenne prime */,
-  /* 11213  exponent of 23th Marsenne prime */
-     19937 /* exponent of 24th Marsenne prime */,
-  /* 21,701  exponent of 25th Marsenne prime */,
-  /* 23,209  exponent of 26th Marsenne prime */,
-     44497 /* exponent of 27th Marsenne prime */,
-     86243 /* exponent of 28th Marsenne prime */,
-    131071 /* 6th Marsenne prime */,
-    216091 /* exponent of 31th Marsenne prime */,
-    524287 /* 7th Marsenne prime */,
-    756839 /* exponent of 32th Marsenne prime */,
-    859433 /* exponent of 33th Marsenne prime */,
-   1257787 /* exponent of 34th Marsenne prime */,
-   3331333 /* 24th Palindromic wind prime */,
-   7772777 /* 26th Palindromic wind prime */,
-  10619863 /* the 8th Partition numbers that is prime */,
- 111181111 /* 29th Palindromic wind prime */,
- 777767777 /* 31th Palindromic wind prime */,
-2147483647 /* 8th Marsenne prime, also the biggest fitting into 32-bit integers */
-              | n    | ten least k's for which 2n-k is prime.              |               
-                   |------+-----------------------------------------------------|               
-                   |  8   | 5, 15, 17, 23, 27, 29, 33, 45, 57, 59               |               
-                   |------+-----------------------------------------------------|               
-                   |  9   | 3, 9 13, 21, 25, 33, 45, 49, 51, 55                 |               
-                   |------+-----------------------------------------------------|               
-                   | 10   | 3, 5 11, 15, 27, 33, 41, 47, 53, 57                 |               
-                   |------+-----------------------------------------------------|               
-                   | 11   | 9, 19, 21, 31, 37, 45, 49, 51, 55, 61               |               
-                   |------+-----------------------------------------------------|               
-                   | 12   | 3, 5 17, 23, 39, 45, 47, 69, 75, 77                 |               
-                   |------+-----------------------------------------------------|               
-                   | 13   | 1, 13, 21, 25, 31, 45, 69, 75, 81, 91               |               
-                   |------+-----------------------------------------------------|               
-                   | 14   | 3, 15, 21, 23, 35, 45, 51, 65, 83, 111              |               
-                   |------+-----------------------------------------------------|               
-                   | 15   | 19, 49, 51, 55, 61, 75, 81, 115, 121, 135           |               
-                   |------+-----------------------------------------------------|               
-                   | 16   | 15, 17, 39, 57, 87, 89, 99, 113, 117, 123           |               
-                   |------+-----------------------------------------------------|               
-                   | 17   | 1, 9 13, 31, 49, 61, 63, 85, 91, 99                 |               
-                   |------+-----------------------------------------------------|               
-                   | 18   | 5, 11, 17, 23, 33, 35, 41, 65, 75, 93               |               
-                   |------+-----------------------------------------------------|               
-                   | 19   | 1, 19, 27, 31, 45, 57, 67, 69, 85, 87               |               
-                   |------+-----------------------------------------------------|               
-                   | 20   | 3, 5 17, 27, 59, 69, 129, 143, 153, 185             |               
-                   |------+-----------------------------------------------------|               
-                   | 21   | 9, 19, 21, 55, 61, 69, 105, 111, 121, 129           |               
-                   |------+-----------------------------------------------------|               
-                   | 22   | 3, 17, 27, 33, 57, 87, 105, 113, 117, 123           |               
-                   |------+-----------------------------------------------------|               
-                   | 23   | 15, 21, 27, 37, 61, 69, 135, 147, 157, 159          |               
-                   |------+-----------------------------------------------------|               
-                   | 24   | 3, 17, 33, 63, 75, 77, 89, 95, 117, 167             |               
-                   |------+-----------------------------------------------------|               
-                   | 25   | 39, 49, 61, 85, 91, 115, 141, 159, 165, 183         |               
-                   |------+-----------------------------------------------------|               
-                   | 26   | 5, 27, 45, 87, 101, 107, 111, 117, 125, 135         |               
-                   |------+-----------------------------------------------------|               
-                   | 27   | 39, 79, 111, 115, 135, 187, 199, 219, 231, 235      |               
-                   |------+-----------------------------------------------------|               
-                   | 28   | 57, 89, 95, 119, 125, 143, 165, 183, 213, 273       |               
-                   |------+-----------------------------------------------------|               
-                   | 29   | 3, 33, 43, 63, 73, 75, 93, 99, 121, 133             |               
-                   |------+-----------------------------------------------------|               
-                   | 30   | 35, 41, 83, 101, 105, 107, 135, 153, 161, 173       |               
-                   |------+-----------------------------------------------------|               
-                   | 31   | 1, 19, 61, 69, 85, 99, 105, 151, 159, 171           |               
-                   |------+-----------------------------------------------------|               
+static const int primes[] = {
+    89, /* This was the prime originally used in SmartEiffel */
+    (1<<7)-1,
+    (1<<8)-5,
+    (1<<9)-3,
+    (1<<10)-3,
+    (1<<11)-9,
+    (1<<12)-3,
+    (1<<13)-1,
+    (1<<14)-3,
+    (1<<15)-19,
+    (1<<16)-15,
+    (1<<17)-1,
+    (1<<18)-5,
+    (1<<19)-1,
+    (1<<20)-3,
+    (1<<21)-9,
+    (1<<22)-3,
+    (1<<23)-15,
+    (1<<24)-3,
+    (1<<25)-39,
+    (1<<26)-5,
+    (1<<27)-39,
+    (1<<28)-57,
+    (1<<29)-3,
+    (1<<30)-35
+    /* (1<<31)-1 overflows written this way */
+    /* This table contains the primes which are slightly smaller than a power
+     * of 2, except the first element (89) which is the original size used in
+     * SmartEiffel: I guess it have been chosen as a reasonable value that does
+     * not require table extension in the vast majority of uses. 
+     */
 
 };
+static const unsigned int primes_table_size = sizeof(primes)/sizeof(primes[0]);
 
-int next_prime(int n) {
-  int done = 0;
-  int isprime = 1;
-  int i;
-
-  if (n <= 2) {
-    return 2;
-  }
-
-  while (!done) {
-    /* try the next n */
-    i = 2;
-    while( (i <= n/2) && (isprime) ) {
-      if ( (n % i) == 0 ) {
-	isprime = 0;
-      }
-      else {
-	i++;
-      }
-    }
-
-    if(isprime) {
-      done = 1;
-    }
-    else {
-      n++;
-      isprime = 1;
-    }
-  }
-
-  return n;
+int next_hash_table_size(int n) {
+    /* The first prime number higher than n found in primes table.
+       
+     * This table contains the primes which are slightly smaller than a power
+     * of 2, except the first element 89 which is the original size used in
+     * SmartEiffel: I guess it have been chosen as a reasonable value that does
+     * not require table extension in the vast majority of uses. 
+     
+     * If the prime cannot be found in the pre-computed table it could be
+     * computed with the original algorithm used in SmartEiffel which seems to
+     * me to be an implementation of trial division
+     * (http://en.wikipedia.org/wiki/Trial_division) . This latter part is
+     * currently unimplemented: it is required when deep twin involves copying
+     * more than one billion of reference objects, so it is currently somehow
+     * wise to crash when a simple query requires more than four gigabytes of
+     * main memory..
+     *   Paolo 2011-11-10
+     */
+  int i, result=0;
+  assert (n < primes[primes_table_size-1]);
+  for (i=0; i<primes_table_size && primes[i]<n; ++i) result=primes[i];
+  assert(result>n);
+  return result;
 }
 
 void se_hash_table_rehash(se_hash_table *ht) {
   int oldCount    = ht->count;
   int oldCapacity = ht->capacity;
-  int newCapacity = next_prime( 2 * oldCapacity );
+  int newCapacity = next_hash_table_size (oldCapacity);
   bucket *e, *end, *oldTable = ht->table;
 
   ht->table     = (bucket*)se_malloc(newCapacity * sizeof(bucket));
@@ -295,38 +245,37 @@ void se_hash_table_clear(se_hash_table *ht) {
 /* The memory buffer used to remember and retrieve already `deep_twin'ed objects will be created when se_deep_twin_start is invoked by Eiffel code (with a NULL pointer); further calls to se_deep_twin_start. se_deep_twin_search se_deep_twin_registeri and se_deep_twin_trats will pass around this hash table.
  */
 
-se_hash_table* se_deep_twin_start
-    (se_hash_table* table, 
-     int se_deep_twin_start_counter = 0/* To count level of nested `deep_twin' calls: */
-    ) {
-        se_hash_table* result;
+se_hash_table* se_deep_twin_start (se_hash_table* table) {
+  se_hash_table* result;
   if (table == NULL) {
     result = se_hash_table_new();
   } else { 
-      result = table 
-  };
+      result = table;
+  }
   /* I would have written the above like this:
      if (table==NULL) result = se_hash_table_new() else result = table;
   */
-  se_deep_twin_start_counter++;
+  se_hash_table_increase_counter(table);
 }
 
-void* se_deep_twin_search(void* object) {
-  return se_hash_table_find(se_deep_twin_memory, object);
+void* se_deep_twin_search(se_hash_table* table, void* object) {
+    /* Obsolete function, please use se_has_table_find directly */
+    assert(0);
+  return se_hash_table_find(table, object);
 }
 
-void se_deep_twin_register(void* object, void* deep_twin) {
+void se_deep_twin_register(se_hash_table* table, void* object, void* deep_twin) {
   if (object != NULL) {
-    if (se_deep_twin_search(object) == NULL) {
-      se_hash_table_insert(se_deep_twin_memory, object, deep_twin);
+    if (se_hash_table_find(table,object) == NULL) {
+      se_hash_table_insert(table, object, deep_twin);
     }
   }
 }
 
-void* se_deep_twin_trats(void) {
-  se_deep_twin_start_counter--;
-  if (se_deep_twin_start_counter == 0) {
-    se_hash_table_clear(se_deep_twin_memory);
+void* se_deep_twin_trats(se_hash_table* table) {
+  se_hash_table_decrease_counter(table);
+  if (se_hash_table_counter(table) == 0) {
+    se_hash_table_clear(table);
   }
 }
 
