@@ -38,7 +38,10 @@
  */
 
 typedef struct se_hash_table se_hash_table;
-se_hash_table* se_deep_twin_start(void);
+int se_hash_table_counter(se_hash_table *table);
+void se_hash_table_increase_counter(se_hash_table *table);
+se_hash_table* se_deep_twin_start(se_hash_table* table);
+
 void* se_deep_twin_search (se_hash_table* table, void* object);
 void se_deep_twin_register(se_hash_table* table, void* object, void* deep_twin);
 void* se_deep_twin_trats(se_hash_table* table);

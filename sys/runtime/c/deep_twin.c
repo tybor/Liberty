@@ -54,6 +54,7 @@ struct se_hash_table {
   int count;
   int capacity;
   int threshold;
+  int counter;
 };
 
 void se_hash_table_clear (se_hash_table *ht);
@@ -62,17 +63,21 @@ void se_hash_table_insert(se_hash_table *ht, void* key, void* value);
 #define SE_DEEP_TWIN_BUFFER_SIZE 89
 
 se_hash_table* se_hash_table_new() {
-  se_hash_table* ht = (se_hash_table*)se_malloc( sizeof(se_hash_table) );
+  se_hash_table* ht = (se_hash_table*) se_malloc (sizeof (se_hash_table));
 
   ht->count     = 0;
   ht->capacity  = SE_DEEP_TWIN_BUFFER_SIZE;
   ht->cursor    = NULL;
   ht->threshold = ht->capacity - (ht->capacity >> 2);
   ht->table     = (bucket*)se_malloc(ht->capacity * sizeof(bucket));
+  ht->counter   = 0;
   se_hash_table_clear(ht);
 
   return ht;
 }
+
+int se_hash_table_counter(se_hash_table *table) { return table->counter; };
+void se_hash_table_increase_counter(se_hash_table *table) { table->counter++};
 
 /*
   http://www.concentric.net/~Ttwang/tech/addrhash.htm
@@ -117,6 +122,90 @@ void* se_hash_table_find(se_hash_table *ht, void* key) {
   assert(0);  /* this should never happen */
   return NULL;
 }
+
+/* 
+ * Computing a prime tends to be quite a long task, so it may be faster to use
+ * a little table of pre-computed primes that may be used. Since each
+ * re-allocation is also a costly operation each prime has been chosen to be 
+ * at least 1,5 times the previous or roughtly the double.
+ */
+static const int[] primes = {
+        89  /* exponent of 10th Marsenne prime */,
+       127  /* 4th Marsenne prime */,
+       607  /* exponent of 14th Marsenne prime */,
+      1279 /* exponent of 15th Marsenne prime */,
+      3217 /* exponent of 18th Marsenne prime */,
+      8191 /* 5th Marsenne prime */,
+  /* 11213  exponent of 23th Marsenne prime */
+     19937 /* exponent of 24th Marsenne prime */,
+  /* 21,701  exponent of 25th Marsenne prime */,
+  /* 23,209  exponent of 26th Marsenne prime */,
+     44497 /* exponent of 27th Marsenne prime */,
+     86243 /* exponent of 28th Marsenne prime */,
+    131071 /* 6th Marsenne prime */,
+    216091 /* exponent of 31th Marsenne prime */,
+    524287 /* 7th Marsenne prime */,
+    756839 /* exponent of 32th Marsenne prime */,
+    859433 /* exponent of 33th Marsenne prime */,
+   1257787 /* exponent of 34th Marsenne prime */,
+   3331333 /* 24th Palindromic wind prime */,
+   7772777 /* 26th Palindromic wind prime */,
+  10619863 /* the 8th Partition numbers that is prime */,
+ 111181111 /* 29th Palindromic wind prime */,
+ 777767777 /* 31th Palindromic wind prime */,
+2147483647 /* 8th Marsenne prime, also the biggest fitting into 32-bit integers */
+              | n    | ten least k's for which 2n-k is prime.              |               
+                   |------+-----------------------------------------------------|               
+                   |  8   | 5, 15, 17, 23, 27, 29, 33, 45, 57, 59               |               
+                   |------+-----------------------------------------------------|               
+                   |  9   | 3, 9 13, 21, 25, 33, 45, 49, 51, 55                 |               
+                   |------+-----------------------------------------------------|               
+                   | 10   | 3, 5 11, 15, 27, 33, 41, 47, 53, 57                 |               
+                   |------+-----------------------------------------------------|               
+                   | 11   | 9, 19, 21, 31, 37, 45, 49, 51, 55, 61               |               
+                   |------+-----------------------------------------------------|               
+                   | 12   | 3, 5 17, 23, 39, 45, 47, 69, 75, 77                 |               
+                   |------+-----------------------------------------------------|               
+                   | 13   | 1, 13, 21, 25, 31, 45, 69, 75, 81, 91               |               
+                   |------+-----------------------------------------------------|               
+                   | 14   | 3, 15, 21, 23, 35, 45, 51, 65, 83, 111              |               
+                   |------+-----------------------------------------------------|               
+                   | 15   | 19, 49, 51, 55, 61, 75, 81, 115, 121, 135           |               
+                   |------+-----------------------------------------------------|               
+                   | 16   | 15, 17, 39, 57, 87, 89, 99, 113, 117, 123           |               
+                   |------+-----------------------------------------------------|               
+                   | 17   | 1, 9 13, 31, 49, 61, 63, 85, 91, 99                 |               
+                   |------+-----------------------------------------------------|               
+                   | 18   | 5, 11, 17, 23, 33, 35, 41, 65, 75, 93               |               
+                   |------+-----------------------------------------------------|               
+                   | 19   | 1, 19, 27, 31, 45, 57, 67, 69, 85, 87               |               
+                   |------+-----------------------------------------------------|               
+                   | 20   | 3, 5 17, 27, 59, 69, 129, 143, 153, 185             |               
+                   |------+-----------------------------------------------------|               
+                   | 21   | 9, 19, 21, 55, 61, 69, 105, 111, 121, 129           |               
+                   |------+-----------------------------------------------------|               
+                   | 22   | 3, 17, 27, 33, 57, 87, 105, 113, 117, 123           |               
+                   |------+-----------------------------------------------------|               
+                   | 23   | 15, 21, 27, 37, 61, 69, 135, 147, 157, 159          |               
+                   |------+-----------------------------------------------------|               
+                   | 24   | 3, 17, 33, 63, 75, 77, 89, 95, 117, 167             |               
+                   |------+-----------------------------------------------------|               
+                   | 25   | 39, 49, 61, 85, 91, 115, 141, 159, 165, 183         |               
+                   |------+-----------------------------------------------------|               
+                   | 26   | 5, 27, 45, 87, 101, 107, 111, 117, 125, 135         |               
+                   |------+-----------------------------------------------------|               
+                   | 27   | 39, 79, 111, 115, 135, 187, 199, 219, 231, 235      |               
+                   |------+-----------------------------------------------------|               
+                   | 28   | 57, 89, 95, 119, 125, 143, 165, 183, 213, 273       |               
+                   |------+-----------------------------------------------------|               
+                   | 29   | 3, 33, 43, 63, 73, 75, 93, 99, 121, 133             |               
+                   |------+-----------------------------------------------------|               
+                   | 30   | 35, 41, 83, 101, 105, 107, 135, 153, 161, 173       |               
+                   |------+-----------------------------------------------------|               
+                   | 31   | 1, 19, 61, 69, 85, 99, 105, 151, 159, 171           |               
+                   |------+-----------------------------------------------------|               
+
+};
 
 int next_prime(int n) {
   int done = 0;
@@ -203,18 +292,22 @@ void se_hash_table_clear(se_hash_table *ht) {
 
 /* ---------------------------------------------------------------------- */
 
-/* To count level of nested `deep_twin' calls:
+/* The memory buffer used to remember and retrieve already `deep_twin'ed objects will be created when se_deep_twin_start is invoked by Eiffel code (with a NULL pointer); further calls to se_deep_twin_start. se_deep_twin_search se_deep_twin_registeri and se_deep_twin_trats will pass around this hash table.
  */
-static int se_deep_twin_start_counter = 0;
 
-/* Memory buffer to retrieve already `deep_twin'ed objects:
- */
-static se_hash_table *se_deep_twin_memory = NULL;
-
-se_hash_table* se_deep_twin_start(void) {
-  if (NULL == se_deep_twin_memory) {
-    se_deep_twin_memory = se_hash_table_new();
-  }
+se_hash_table* se_deep_twin_start
+    (se_hash_table* table, 
+     int se_deep_twin_start_counter = 0/* To count level of nested `deep_twin' calls: */
+    ) {
+        se_hash_table* result;
+  if (table == NULL) {
+    result = se_hash_table_new();
+  } else { 
+      result = table 
+  };
+  /* I would have written the above like this:
+     if (table==NULL) result = se_hash_table_new() else result = table;
+  */
   se_deep_twin_start_counter++;
 }
 
