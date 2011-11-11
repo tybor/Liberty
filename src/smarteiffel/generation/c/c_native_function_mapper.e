@@ -1184,12 +1184,13 @@ feature {} -- built-ins
          live_type.at_run_time
       local
          i: INTEGER; wa: ARRAY[RUN_FEATURE_2]; rf2: RUN_FEATURE_2; lt: LIVE_TYPE; tm: TYPE_MARK
-         field_name: STRING; rts: RUN_TIME_SET; internal_c_local: INTERNAL_C_LOCAL
+         field_name: STRING; rts: RUN_TIME_SET; internal_c_local, hash_table: INTERNAL_C_LOCAL
       do
          internal_c_local := cpp.pending_c_function_lock_local(live_type.type, once "deeptwin")
-         function_body.append(once "se_deep_twin_start();%N")
+		 -- hash_table := cpp.pending_c_function_lock_local(
+         function_body.append(once "se_hash_table *table = se_deep_twin_start (NULL);%N")
          if live_type.is_reference then
-            function_body.append(once "R=se_deep_twin_search((void*)C);%N%
+			 function_body.append(once "R=se_hash_table_find (table,(void*)C);%N%
                                       %if(NULL==R){%N")
             cpp.gc_handler.allocation_of(internal_c_local, live_type)
             function_body.append(once "R=")
@@ -1198,7 +1199,7 @@ feature {} -- built-ins
             live_type.id.append_in(function_body)
             function_body.append(once "*)")
             internal_c_local.append_in(function_body)
-            function_body.append(once ")=*C;%Nse_deep_twin_register(((T0*)C),")
+            function_body.append(once ")=*C;%Nse_deep_twin_register(table,((T0*)C),")
             internal_c_local.append_in(function_body)
             function_body.append(once ");%N")
          else

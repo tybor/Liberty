@@ -128,11 +128,29 @@ feature {ANY} -- Duplication:
 
 feature {ANY} -- Deep Duplication:
    frozen deep_twin: like Current is
-         -- Return a new object with the dynamic type of Current.
-         -- The new object structure is recursively duplicated from the one
-         -- attached to `Current'.
-      external "built_in"
-      end
+         -- A new object with the dynamic type of Current, recursively duplicated from Current
+	external "built_in" 
+	-- This:
+	-- do  Result := reentrant_deep_twin (default_pointer)
+	-- has been commented out to further study current deep_twin implementation. 
+	-- A reentrant reimplementation requires to pass around a pointer/reference
+	-- to the hash table used to keep references to already copied objects,
+	-- avoiding infinite loops. I still have to understand 
+
+	-- 1 - how to add a new builtin at generation level. Adding it only in C backend is not the right thing to do.
+
+	-- 2 - how to define the builtin signature; currently I make it accept a pointer, it may not be right
+	end
+
+feature {} -- Deep duplication implementation
+	frozen reentrant_deep_twin (a_table: POINTER): like Current is
+		-- Implementation of deep_twin. `a_table' in Eiffel code will always be
+		-- the default_pointer to tell the runtime to allocate a new internal
+		-- hash table used to account for already copied objects. See
+		-- deep_twin.[ch] files in C runtime for further informations.
+		-- TODO: generalize it for all backends.
+	external "built_in"
+	end
 
 feature {ANY} -- Basic operations:
    frozen default: like Current is
