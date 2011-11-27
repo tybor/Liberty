@@ -92,6 +92,13 @@ feature {CODE_PRINTER}
       end
 
 feature {CODE_PRINTER} -- The good old "assertion-sets-its-own-flag" trick
+	-- 
+	-- Note: the following queries break the command-query separation
+	-- principle, since they change the state of Current. A query shall never
+	-- change Current, at least seen from the external, i.e. there should be an
+	-- implicit "ensure Current.is_equal(old Current)" postcondition in all
+	-- queries; `validate' and `invalidate' clearly breaks this rule.
+	-- Paolo 2011-11-11
    frozen validate: BOOLEAN is
       do
          Result := not valid

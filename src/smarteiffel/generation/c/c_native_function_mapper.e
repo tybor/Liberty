@@ -1184,6 +1184,132 @@ feature {} -- built-ins
          live_type.at_run_time
       local
          i: INTEGER; wa: ARRAY[RUN_FEATURE_2]; rf2: RUN_FEATURE_2; lt: LIVE_TYPE; tm: TYPE_MARK
+         field_name: STRING; rts: RUN_TIME_SET; internal_c_local: INTERNAL_C_LOCAL
+      do
+         internal_c_local := cpp.pending_c_function_lock_local(live_type.type, once "deeptwin")
+         function_body.append(once "se_hash_table *table = se_deep_twin_start (NULL);%N")
+         if live_type.is_reference then
+			 function_body.append(once "R=se_hash_table_find (table,(void*)C);%N%
+                                      %if(NULL==R){%N")
+            cpp.gc_handler.allocation_of(internal_c_local, live_type)
+            function_body.append(once "R=")
+            internal_c_local.append_in(function_body)
+            function_body.append(once ";%N*((T")
+            live_type.id.append_in(function_body)
+            function_body.append(once "*)")
+            internal_c_local.append_in(function_body)
+            function_body.append(once ")=*C;%Nse_deep_twin_register(table,((T0*)C),")
+            internal_c_local.append_in(function_body)
+            function_body.append(once ");%N")
+         else
+            internal_c_local.append_in(function_body)
+            function_body.append(once "=*C;%N")
+         end
+         wa := live_type.writable_attributes
+         if wa /= Void then
+            from
+               i := wa.lower
+            until
+               i > wa.upper
+            loop
+               rf2 := wa.item(i)
+               field_name := rf2.name.to_string
+               tm := rf2.result_type.to_static(live_type.type)
+               if tm.is_reference then
+                  lt := tm.type.live_type
+                  if lt = Void then
+                     rts := Void
+                  else
+                     rts := lt.run_time_set
+                  end
+                  if rts /= Void and then rts.count > 0 then
+                     function_body.append(once "if(")
+                     c_field_access(live_type, internal_c_local, field_name)
+                     function_body.append(once "!=NULL){%N")
+                     c_field_access(live_type, internal_c_local, field_name)
+                     function_body.extend('=')
+                     if rts.count > 1 then
+                        function_body.extend('X')
+                        rts.owner.id.append_in(function_body)
+                     else
+                        function_body.extend('r')
+                        rts.first.id.append_in(function_body)
+                     end
+                     function_body.append(once "deep_twin(")
+                     if ace.no_check then
+                        function_body.append(once "&ds,")
+                        if rts.count > 1 then
+                           function_body.append(once "ds.p,")
+                        end
+                     end
+                     if rts.count = 1 then
+                        function_body.extend('(')
+                        function_body.append(cpp.target_type.for(rts.first.canonical_type_mark))
+                        function_body.extend(')')
+                     end
+                     function_body.extend('(')
+                     c_field_access(live_type, internal_c_local, field_name)
+                     function_body.append(once "));%N}%N")
+                  end
+               elseif tm.is_native_array then
+                  if not live_type.type.has_simple_feature_name(capacity_name) then
+                     error_handler.add_type_mark(tm)
+                     error_handler.add_position(tm.start_position)
+                     error_handler.append(fz_dtideena)
+                     error_handler.print_as_error
+                     error_handler.add_position(rf2.start_position)
+                     error_handler.append(em1)
+                     error_handler.print_as_fatal_error
+                  end
+                  c_field_access(live_type, internal_c_local, field_name)
+                  function_body.append(once "=r")
+                  tm.id.append_in(function_body)
+                  function_body.append(once "deep_twin_from(")
+                  if ace.no_check then
+                     function_body.append(once "&ds,")
+                  end
+                  c_field_access(live_type, internal_c_local, field_name)
+                  function_body.extend(',')
+                  c_field_access(live_type, internal_c_local, as_capacity)
+                  function_body.append(once ");%N")
+               elseif tm.is_empty_expanded then
+               elseif tm.is_user_expanded then
+                  c_field_access(live_type, internal_c_local, field_name)
+                  function_body.append(once "=r")
+                  tm.id.append_in(function_body)
+                  function_body.append(once "deep_twin(")
+                  if ace.no_check then
+                     function_body.append(once "&ds,")
+                  end
+                  function_body.append(once "&(")
+                  c_field_access(live_type, internal_c_local, field_name)
+                  function_body.append(once "));%N")
+               else
+                  check
+                     tm.is_kernel_expanded
+                  end
+               end
+               i := i + 1
+            end
+         end
+         if live_type.is_user_expanded then
+            function_body.append(once "R=")
+            internal_c_local.append_in(function_body)
+            function_body.append(once ";%N")
+         end
+         if live_type.is_reference then
+            function_body.append(once "}%N")
+         end
+         function_body.append(once "se_deep_twin_trats()%N")
+         internal_c_local.unlock
+      end
+
+   c_reentrant_deep_twin_body (live_type: LIVE_TYPE) is
+      require
+         cpp.pending_c_function
+         live_type.at_run_time
+      local
+         i: INTEGER; wa: ARRAY[RUN_FEATURE_2]; rf2: RUN_FEATURE_2; lt: LIVE_TYPE; tm: TYPE_MARK
          field_name: STRING; rts: RUN_TIME_SET; internal_c_local, hash_table: INTERNAL_C_LOCAL
       do
          internal_c_local := cpp.pending_c_function_lock_local(live_type.type, once "deeptwin")
