@@ -1189,7 +1189,7 @@ feature {} -- built-ins
          internal_c_local := cpp.pending_c_function_lock_local(live_type.type, once "deeptwin")
          function_body.append(once "se_hash_table *table = se_deep_twin_start (NULL);%N")
          if live_type.is_reference then
-			 function_body.append(once "R=se_hash_table_find (table,(void*)C);%N%
+			function_body.append(once "R=se_hash_table_find (table,(void*)C);%N%
                                       %if(NULL==R){%N")
             cpp.gc_handler.allocation_of(internal_c_local, live_type)
             function_body.append(once "R=")
@@ -1207,22 +1207,18 @@ feature {} -- built-ins
          end
          wa := live_type.writable_attributes
          if wa /= Void then
-            from
-               i := wa.lower
-            until
-               i > wa.upper
+            from i := wa.lower
+            until i > wa.upper
             loop
                rf2 := wa.item(i)
                field_name := rf2.name.to_string
                tm := rf2.result_type.to_static(live_type.type)
                if tm.is_reference then
                   lt := tm.type.live_type
-                  if lt = Void then
-                     rts := Void
-                  else
-                     rts := lt.run_time_set
+                  if lt = Void then rts := Void
+                  else rts := lt.run_time_set
                   end
-                  if rts /= Void and then rts.count > 0 then
+                  if rts /= Void and then rts.count > 0  then
                      function_body.append(once "if(")
                      c_field_access(live_type, internal_c_local, field_name)
                      function_body.append(once "!=NULL){%N")
@@ -1235,7 +1231,7 @@ feature {} -- built-ins
                         function_body.extend('r')
                         rts.first.id.append_in(function_body)
                      end
-                     function_body.append(once "deep_twin(")
+                     function_body.append(once "reentrant_deep_twin(")
                      if ace.no_check then
                         function_body.append(once "&ds,")
                         if rts.count > 1 then
