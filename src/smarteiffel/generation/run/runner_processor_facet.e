@@ -1,23 +1,27 @@
 -- This file is part of SmartEiffel The GNU Eiffel Compiler Tools and Libraries.
 -- See the Copyright notice at the end of this file.
 --
-expanded class RUNNER_FACET
+expanded class RUNNER_PROCESSOR_FACET
 --
--- role to access parts of the RUNNER framework
+-- an object within the execution space of a RUNNER_PROCESSOR
 --
 
 insert
-   RUNNER_GLOBALS
+   RUNNER_FACET
 
-feature {} -- some utils
-   expand (object: RUNNER_OBJECT): RUNNER_OBJECT is
+feature {RUNNER_PROCESSOR}
+   processor: RUNNER_PROCESSOR
+
+feature {} -- helper
+   current_frame: RUNNER_FRAME is
       do
-         if object /= Void then
-            Result := object.copy_if_expanded
-         end
+         Result := processor.current_frame
       end
 
-end -- class RUNNER_FACET
+invariant
+   processor /= Void
+
+end -- class RUNNER_PROCESSOR_FACET
 --
 -- ------------------------------------------------------------------------------------------------------------------------------
 -- Copyright notice below. Please read.

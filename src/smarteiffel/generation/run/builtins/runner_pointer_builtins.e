@@ -1,13 +1,13 @@
 -- This file is part of SmartEiffel The GNU Eiffel Compiler Tools and Libraries.
 -- See the Copyright notice at the end of this file.
 --
-class RUNNER_NUMERIC_BUILTINS[E_ -> NUMERIC]
+class RUNNER_POINTER_BUILTINS
    --
-   -- a collection of builtins for NUMERIC
+   -- a collection of builtins for POINTER
    --
 
 inherit
-   RUNNER_TYPED_BUILTINS[E_]
+   RUNNER_TYPED_BUILTINS[POINTER]
 
 create {RUNNER_MEMORY}
    make
@@ -25,33 +25,8 @@ feature {}
       do
          inspect
             processor.current_frame.name.to_string
-         when "+", "#+" then
-            if processor.current_frame.name.is_infix_name then
-               builtin_infix_plus(processor)
-               Result := True
-            else
-               check
-                  processor.current_frame.name.is_prefix_name
-               end
-               builtin_prefix_plus(processor)
-               Result := True
-            end
-         when "-", "#-" then
-            if processor.current_frame.name.is_infix_name then
-               builtin_infix_minus(processor)
-               Result := True
-            else
-               check
-                  processor.current_frame.name.is_prefix_name
-               end
-               builtin_prefix_minus(processor)
-               Result := True
-            end
-         when "*", "#*" then
-            builtin_infix_times(processor)
-            Result := True
-         when "/", "#/" then
-            builtin_infix_divide(processor)
+         when "is_not_null" then
+            builtin_is_not_null(processor)
             Result := True
          else
             check
@@ -61,50 +36,23 @@ feature {}
       end
 
 feature {}
-   builtin_infix_plus (processor: RUNNER_PROCESSOR) is
+   builtin_is_not_null (processor: RUNNER_PROCESSOR) is
       do
-         set_return(processor, left(processor).item + right(processor).item)
-      end
-
-   builtin_infix_minus (processor: RUNNER_PROCESSOR) is
-      do
-         set_return(processor, left(processor).item - right(processor).item)
-      end
-
-   builtin_infix_times (processor: RUNNER_PROCESSOR) is
-      do
-         set_return(processor, left(processor).item * right(processor).item)
-      end
-
-   builtin_infix_divide (processor: RUNNER_PROCESSOR) is
-      do
-         sedb_breakpoint --| **** TODO
-      end
-
-   builtin_prefix_plus (processor: RUNNER_PROCESSOR) is
-      do
-         processor.current_frame.set_return(left(processor))
-      end
-
-   builtin_prefix_minus (processor: RUNNER_PROCESSOR) is
-      do
-         set_return(processor, -left(processor).item)
+         processor.current_frame.set_return(processor.new_boolean(left(processor).item.is_not_null))
       end
 
 feature {}
-   make (a_type: like type) is
-      require
-         a_type /= Void
+   make is
       do
-         type := a_type
-      ensure
-         type = a_type
       end
 
 feature {RUNNER_FACET}
-   type: TYPE
+   type: TYPE is
+      do
+         Result := smart_eiffel.type_pointer
+      end
 
-end -- class RUNNER_NUMERIC_BUILTINS
+end -- class RUNNER_POINTER_BUILTINS
 --
 -- ------------------------------------------------------------------------------------------------------------------------------
 -- Copyright notice below. Please read.

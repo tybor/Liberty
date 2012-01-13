@@ -1,23 +1,81 @@
 -- This file is part of SmartEiffel The GNU Eiffel Compiler Tools and Libraries.
 -- See the Copyright notice at the end of this file.
 --
-expanded class RUNNER_FACET
---
--- role to access parts of the RUNNER framework
---
+class RUNNER_AGENT_FRAME
+   -- specific to agent launcher frames
 
-insert
-   RUNNER_GLOBALS
-
-feature {} -- some utils
-   expand (object: RUNNER_OBJECT): RUNNER_OBJECT is
-      do
-         if object /= Void then
-            Result := object.copy_if_expanded
-         end
+inherit
+   RUNNER_FRAME
+      rename
+         make as make_frame
       end
 
-end -- class RUNNER_FACET
+create {RUNNER_FEATURES}
+   make
+
+feature {RUNNER_FEATURES}
+   start_position: POSITION is
+      do
+         Result := launcher.start_position
+      end
+
+feature {RUNNER_FACET}
+   name: FEATURE_NAME is
+      do
+         Result := feature_stamp.name
+      end
+
+   arguments: TRAVERSABLE[RUNNER_OBJECT] is
+      do
+         Result := launcher.arguments
+      end
+
+   type_of_current: TYPE is
+      do
+         Result := launcher.target.type
+      end
+
+   type_of_result: TYPE is
+      do
+         Result := launcher.result_type
+      end
+
+   feature_stamp: FEATURE_STAMP is
+      do
+         Result := launcher.feature_stamp
+      end
+
+   formal_arguments: FORMAL_ARG_LIST is
+      do
+         not_yet_implemented
+      end
+
+feature {}
+   make (a_processor: like processor; a_caller: like caller; a_launcher: like launcher) is
+      require
+         a_processor /= Void
+         a_launcher /= Void
+      do
+         launcher := a_launcher
+         make_frame(a_processor, a_caller, a_launcher.target)
+      ensure
+         processor = a_processor
+         caller = a_caller
+         target = a_launcher.target
+         launcher = a_launcher
+      end
+
+   launcher: RUNNER_AGENT_LAUNCHER
+
+   local_vars: LOCAL_VAR_LIST is
+      do
+         -- always Void
+      end
+
+invariant
+   launcher /= Void
+
+end -- class RUNNER_AGENT_FRAME
 --
 -- ------------------------------------------------------------------------------------------------------------------------------
 -- Copyright notice below. Please read.

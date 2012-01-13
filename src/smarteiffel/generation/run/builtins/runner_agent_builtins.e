@@ -1,13 +1,13 @@
 -- This file is part of SmartEiffel The GNU Eiffel Compiler Tools and Libraries.
 -- See the Copyright notice at the end of this file.
 --
-class RUNNER_NUMERIC_BUILTINS[E_ -> NUMERIC]
+class RUNNER_AGENT_BUILTINS
    --
-   -- a collection of builtins for NUMERIC
+   -- a collection of builtins for all kinds of agents (PROCEDURE and FUNCTION alike)
    --
 
 inherit
-   RUNNER_TYPED_BUILTINS[E_]
+   RUNNER_UNTYPED_BUILTINS
 
 create {RUNNER_MEMORY}
    make
@@ -25,33 +25,11 @@ feature {}
       do
          inspect
             processor.current_frame.name.to_string
-         when "+", "#+" then
-            if processor.current_frame.name.is_infix_name then
-               builtin_infix_plus(processor)
-               Result := True
-            else
-               check
-                  processor.current_frame.name.is_prefix_name
-               end
-               builtin_prefix_plus(processor)
-               Result := True
-            end
-         when "-", "#-" then
-            if processor.current_frame.name.is_infix_name then
-               builtin_infix_minus(processor)
-               Result := True
-            else
-               check
-                  processor.current_frame.name.is_prefix_name
-               end
-               builtin_prefix_minus(processor)
-               Result := True
-            end
-         when "*", "#*" then
-            builtin_infix_times(processor)
+         when "call" then
+            builtin_call(processor)
             Result := True
-         when "/", "#/" then
-            builtin_infix_divide(processor)
+         when "item" then
+            builtin_item(processor)
             Result := True
          else
             check
@@ -61,40 +39,18 @@ feature {}
       end
 
 feature {}
-   builtin_infix_plus (processor: RUNNER_PROCESSOR) is
+   builtin_call (processor: RUNNER_PROCESSOR) is
       do
-         set_return(processor, left(processor).item + right(processor).item)
+         processor.set_exception(exceptions.Routine_failure, "Unexpected call (agent call is normally optimized away)")
       end
 
-   builtin_infix_minus (processor: RUNNER_PROCESSOR) is
+   builtin_item (processor: RUNNER_PROCESSOR) is
       do
-         set_return(processor, left(processor).item - right(processor).item)
-      end
-
-   builtin_infix_times (processor: RUNNER_PROCESSOR) is
-      do
-         set_return(processor, left(processor).item * right(processor).item)
-      end
-
-   builtin_infix_divide (processor: RUNNER_PROCESSOR) is
-      do
-         sedb_breakpoint --| **** TODO
-      end
-
-   builtin_prefix_plus (processor: RUNNER_PROCESSOR) is
-      do
-         processor.current_frame.set_return(left(processor))
-      end
-
-   builtin_prefix_minus (processor: RUNNER_PROCESSOR) is
-      do
-         set_return(processor, -left(processor).item)
+         processor.set_exception(exceptions.Routine_failure, "Unexpected call (agent call is normally optimized away)")
       end
 
 feature {}
    make (a_type: like type) is
-      require
-         a_type /= Void
       do
          type := a_type
       ensure
@@ -104,7 +60,7 @@ feature {}
 feature {RUNNER_FACET}
    type: TYPE
 
-end -- class RUNNER_NUMERIC_BUILTINS
+end -- class RUNNER_AGENT_BUILTINS
 --
 -- ------------------------------------------------------------------------------------------------------------------------------
 -- Copyright notice below. Please read.

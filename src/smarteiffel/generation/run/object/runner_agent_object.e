@@ -1,7 +1,7 @@
 -- This file is part of SmartEiffel The GNU Eiffel Compiler Tools and Libraries.
 -- See the Copyright notice at the end of this file.
 --
-class RUNNER_NATIVE_EXPANDED[E_]
+class RUNNER_AGENT_OBJECT
 
 inherit
    RUNNER_OBJECT
@@ -10,59 +10,105 @@ create {RUNNER_MEMORY}
    make
 
 feature {ANY}
-   builtins: RUNNER_TYPED_BUILTINS[E_]
+   builtins: RUNNER_UNTYPED_BUILTINS
 
    processor: RUNNER_PROCESSOR
    type: TYPE
-   item: E_
+
+   code: CODE
+   target: RUNNER_OBJECT
+
+   feature_stamp: FEATURE_STAMP
 
    out_in_tagged_out_memory is
       do
-         item.out_in_tagged_out_memory
+         tagged_out_memory.append(once "<agent>")
       end
 
    is_equal (other: like Current): BOOLEAN is
       do
-         Result := item = other.item
+         Result := other = Current
       end
 
    to_builtin_pointer: POINTER is
       do
-         processor.set_exception(exceptions.Routine_failure, "to_pointer on expanded type")
+         Result := to_pointer
+      end
+
+   upper: INTEGER is
+      do
+         Result := operands.count
+      end
+
+   operand (a_rank: INTEGER): RUNNER_OBJECT is
+      require
+         a_rank = -1 or else a_rank.in_range(1, upper)
+      do
+         if a_rank = -1 then
+            Result := target
+         else
+            Result := operands.item(a_rank - 1)
+         end
+      ensure
+         a_rank = -1 implies Result = target
+      end
+
+feature {RUNNER_MEMORY}
+   set_operand (a_rank: INTEGER; a_operand: RUNNER_OBJECT) is
+      require
+         a_rank = -1 or else a_rank.in_range(1, upper)
+      do
+         if a_rank = -1 then
+            target := a_operand
+         else
+            operands.put(a_operand, a_rank - 1)
+         end
+      ensure
+         a_rank /= -1 implies operand(a_rank) = a_operand
+         a_rank = -1 implies target = a_operand
       end
 
 feature {RUNNER_FACET}
    copy_if_expanded: like Current is
       do
-         Result := Current -- because native expanded values are flyweights
+         Result := Current
       end
 
    as_foreign_object: FOREIGN_OBJECT is
       do
-         create {FOREIGN_TYPED_OBJECT[E_]} Result.with(item)
+         not_yet_implemented
       end
 
 feature {}
-   make (a_processor: like processor; a_type: like type; a_item: like item; a_builtins: like builtins) is
+   make (a_processor: like processor; a_type: like type; a_code: like code; a_arg_count: INTEGER; a_feature_stamp: like feature_stamp; a_builtins: like builtins) is
       require
          a_processor /= Void
-         a_type.is_kernel_expanded
+         a_type.live_type /= Void
+         a_arg_count >= 0
+         a_feature_stamp /= Void
+         a_builtins /= Void
       do
          processor := a_processor
          type := a_type
-         item := a_item
+         code := a_code
+         feature_stamp := a_feature_stamp
          builtins := a_builtins
+         create operands.make(a_arg_count)
       ensure
          processor = a_processor
          type = a_type
-         item = a_item
+         code = a_code
+         feature_stamp = a_feature_stamp
          builtins = a_builtins
       end
 
-invariant
-   item_is_expanded: item /= Void
+   operands: FAST_ARRAY[RUNNER_OBJECT]
 
-end -- class RUNNER_NATIVE_EXPANDED
+invariant
+   type.live_type /= Void
+   operands.count > 0
+
+end -- class RUNNER_AGENT_OBJECT
 --
 -- ------------------------------------------------------------------------------------------------------------------------------
 -- Copyright notice below. Please read.

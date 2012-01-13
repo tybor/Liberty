@@ -1,23 +1,69 @@
 -- This file is part of SmartEiffel The GNU Eiffel Compiler Tools and Libraries.
 -- See the Copyright notice at the end of this file.
 --
-expanded class RUNNER_FACET
---
--- role to access parts of the RUNNER framework
---
+class RUNNER_OPEN_OPERAND
 
-insert
-   RUNNER_GLOBALS
+inherit
+   RUNNER_OBJECT
 
-feature {} -- some utils
-   expand (object: RUNNER_OBJECT): RUNNER_OBJECT is
+create {RUNNER_MEMORY}
+   make
+
+feature {ANY}
+   builtins: RUNNER_UNTYPED_BUILTINS
+
+   processor: RUNNER_PROCESSOR is
       do
-         if object /= Void then
-            Result := object.copy_if_expanded
-         end
+         Result := agent_object.processor
       end
 
-end -- class RUNNER_FACET
+   type: TYPE
+
+   out_in_tagged_out_memory is
+      do
+         not_yet_implemented
+      end
+
+   is_equal (other: like Current): BOOLEAN is
+      do
+         not_yet_implemented
+      end
+
+   to_builtin_pointer: POINTER is
+      do
+         Result := to_pointer
+      end
+
+feature {RUNNER_FACET}
+   copy_if_expanded: like Current is
+      do
+         Result := Current
+      end
+
+   as_foreign_object: FOREIGN_OBJECT is
+      do
+         not_yet_implemented
+      end
+
+feature {}
+   make (a_agent_object: like agent_object; a_type: like type) is
+      require
+         a_agent_object /= Void
+         a_type.live_type /= Void
+      do
+         agent_object := a_agent_object
+         type := a_type
+      ensure
+         agent_object = a_agent_object
+         type = a_type
+      end
+
+   agent_object: RUNNER_AGENT_OBJECT
+
+invariant
+   type.live_type /= Void
+
+end -- class RUNNER_OPEN_OPERAND
 --
 -- ------------------------------------------------------------------------------------------------------------------------------
 -- Copyright notice below. Please read.
