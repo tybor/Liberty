@@ -22,7 +22,22 @@ feature {ANY}
       deferred
       end
 
-   to_builtin_pointer: POINTER is
+feature {RUNNER_UNTYPED_BUILTINS}
+   builtin_to_pointer: POINTER is
+      deferred
+      end
+
+   builtin_copy (other: RUNNER_OBJECT) is
+      require
+         other /= Void
+         other.type = type
+         other.processor = processor
+      deferred
+      end
+
+   builtin_is_equal (other: RUNNER_OBJECT): BOOLEAN is
+      require
+         other /= Void
       deferred
       end
 

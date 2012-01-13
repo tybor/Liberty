@@ -70,9 +70,41 @@ feature {ANY}
          end
       end
 
-   to_builtin_pointer: POINTER is
+feature {RUNNER_UNTYPED_BUILTINS}
+   builtin_to_pointer: POINTER is
       do
          Result := to_pointer
+      end
+
+   builtin_copy (other: RUNNER_OBJECT) is
+      local
+         o: like Current
+      do
+         o ::= expand(other)
+         o.fields.do_all(agent (object: RUNNER_OBJECT; name: FIXED_STRING) is
+                         do
+                            fields.put(expand(object), name)
+                         end)
+      end
+
+   builtin_is_equal (other: RUNNER_OBJECT): BOOLEAN is
+      local
+         o: like Current
+      do
+         if other.type = type then
+            o ::= other
+            if o.fields.count = fields.count then
+               Result := o.fields.for_all(agent (object: RUNNER_OBJECT; name: FIXED_STRING): BOOLEAN is
+                                          local
+                                             my_object: RUNNER_OBJECT
+                                          do
+                                             if fields.has(name) then
+                                                my_object := fields.at(name)
+                                                Result := my_object = object or else (my_object /= Void and then my_object.eq(object))
+                                             end
+                                          end)
+            end
+         end
       end
 
 feature {RUNNER_FACET}
@@ -82,6 +114,9 @@ feature {RUNNER_FACET}
             Result := Current
          else
             create Result.copy_expanded(Current)
+         end
+         if not Result.is_equal(Current) then
+            break
          end
       end
 
@@ -98,7 +133,7 @@ feature {}
          make(model.processor, model.type, model.builtins)
          model.fields.do_all(agent (field_value: RUNNER_OBJECT; field_name: FIXED_STRING) is
                              do
-                                fields.add(expand(field_value), field_name)
+                                fields.put(expand(field_value), field_name)
                              end)
       end
 

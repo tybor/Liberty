@@ -9,33 +9,6 @@ insert
 create {RUNNER}
    make
 
-feature {}
-   add_new_open_operand (processor: RUNNER_PROCESSOR; a_new_agent: RUNNER_AGENT_OBJECT; a_open_operand: OPEN_OPERAND) is
-      local
-         arg: RUNNER_OPEN_OPERAND
-      do
-         debug ("run.data")
-            std_output.put_line(once "AGENT: open ##(1)" # a_open_operand.rank.out)
-         end
-         create arg.make(a_new_agent, a_open_operand.resolve_in(processor.current_frame.target.type))
-         a_new_agent.set_operand(a_open_operand.rank, arg)
-      end
-
-   add_new_closed_operand (processor: RUNNER_PROCESSOR; a_new_agent: RUNNER_AGENT_OBJECT; a_closed_operand: CLOSED_OPERAND) is
-      local
-         exp: EXPRESSION; arg: RUNNER_OBJECT
-      do
-         exp := a_closed_operand.capture_memory.at(processor.current_frame.target.type)
-         arg := processor.expressions.eval(exp)
-         debug ("run.data")
-            std_output.put_line(once "AGENT: closed ##(1) = #(2)" # a_closed_operand.rank.out # arg.out)
-         end
-         if arg = Void then
-            sedb_breakpoint
-         end
-         a_new_agent.set_operand(a_closed_operand.rank, arg)
-      end
-
 feature {RUNNER_PROCESSOR}
    new_object (processor: RUNNER_PROCESSOR; type: TYPE): RUNNER_OBJECT is
       require
@@ -78,6 +51,8 @@ feature {RUNNER_PROCESSOR}
          if Result.target = Void then
             Result.set_operand(-1, processor.current_frame.target)
          end
+      ensure
+         Result.target /= Void
       end
 
    new_boolean (processor: RUNNER_PROCESSOR; boolean: BOOLEAN): RUNNER_NATIVE_EXPANDED[BOOLEAN] is
@@ -161,10 +136,65 @@ feature {RUNNER_PROCESSOR}
          create Result.make(processor, smart_eiffel.type_real_extended, real_extended, real_extended_builtins)
       end
 
+feature {RUNNER_FACET}
+   is_gc_started: BOOLEAN is
+      do
+         Result := gc.collecting
+      end
+
+   start_gc is
+      do
+         gc.collection_on
+      end
+
+   stop_gc is
+      do
+         gc.collection_off
+      end
+
+   run_gc is
+      do
+         gc.full_collect
+      end
+
+   gc_count: INTEGER is
+      do
+         Result := gc.collector_counter
+      end
+
+feature {}
+   add_new_open_operand (processor: RUNNER_PROCESSOR; a_new_agent: RUNNER_AGENT_OBJECT; a_open_operand: OPEN_OPERAND) is
+      local
+         arg: RUNNER_OPEN_OPERAND
+      do
+         debug ("run.data")
+            std_output.put_line(once "AGENT: open ##(1)" # a_open_operand.rank.out)
+         end
+         create arg.make(a_new_agent, a_open_operand.resolve_in(processor.current_frame.target.type))
+         a_new_agent.set_operand(a_open_operand.rank, arg)
+      end
+
+   add_new_closed_operand (processor: RUNNER_PROCESSOR; a_new_agent: RUNNER_AGENT_OBJECT; a_closed_operand: CLOSED_OPERAND) is
+      local
+         exp: EXPRESSION; arg: RUNNER_OBJECT
+      do
+         exp := a_closed_operand.capture_memory.at(processor.current_frame.target.type)
+         arg := processor.expressions.eval(exp)
+         debug ("run.data")
+            std_output.put_line(once "AGENT: closed ##(1) = #(2)" # a_closed_operand.rank.out # arg.out)
+         end
+         if arg = Void then
+            break
+         end
+         a_new_agent.set_operand(a_closed_operand.rank, arg)
+      end
+
 feature {}
    make is
       do
       end
+
+   gc: MEMORY
 
    builtins_map: HASHED_DICTIONARY[RUNNER_UNTYPED_BUILTINS, TYPE] is
       once
@@ -194,32 +224,34 @@ feature {}
                Result := any_builtins(type)
             else
                inspect
-                  type.name.to_string
+                  type.name.to_string --| **** TODO: also check the cluster
                when "ARGUMENTS" then
                   create {RUNNER_ARGUMENTS_BUILTINS} Result.make(type)
+               when "MEMORY" then
+                  create {RUNNER_MEMORY_BUILTINS} Result.make(type)
                when "NATIVE_ARRAY[BOOLEAN]" then
-                  create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[BOOLEAN, RUNNER_NATIVE_EXPANDED[BOOLEAN]]} Result.make(type,
+                  create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[BOOLEAN, RUNNER_NATIVE_EXPANDED[BOOLEAN]]} Result.make(type, smart_eiffel.type_boolean,
                                                                                                                     agent new_boolean,
                                                                                                                     agent {RUNNER_NATIVE_EXPANDED[BOOLEAN]}.item)
                when "NATIVE_ARRAY[INTEGER_8]" then
-                  create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[INTEGER_8, RUNNER_NATIVE_EXPANDED[INTEGER_64]]} Result.make(type,
+                  create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[INTEGER_8, RUNNER_NATIVE_EXPANDED[INTEGER_64]]} Result.make(type, smart_eiffel.type_integer_8,
                                                                                                                          agent retrieve_integer_8,
                                                                                                                          agent set_integer_8)
                when "NATIVE_ARRAY[INTEGER_16]" then
-                  create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[INTEGER_16, RUNNER_NATIVE_EXPANDED[INTEGER_64]]} Result.make(type,
+                  create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[INTEGER_16, RUNNER_NATIVE_EXPANDED[INTEGER_64]]} Result.make(type, smart_eiffel.type_integer_16,
                                                                                                                           agent retrieve_integer_16,
                                                                                                                           agent set_integer_16)
                when "NATIVE_ARRAY[INTEGER]", "NATIVE_ARRAY[INTEGER_32]" then
-                  create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[INTEGER_32, RUNNER_NATIVE_EXPANDED[INTEGER_64]]} Result.make(type,
+                  create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[INTEGER_32, RUNNER_NATIVE_EXPANDED[INTEGER_64]]} Result.make(type, smart_eiffel.type_integer_32,
                                                                                                                           agent retrieve_integer_32,
                                                                                                                           agent set_integer_32)
                when "NATIVE_ARRAY[INTEGER_64]" then
-                  create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[INTEGER_64, RUNNER_NATIVE_EXPANDED[INTEGER_64]]} Result.make(type,
+                  create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[INTEGER_64, RUNNER_NATIVE_EXPANDED[INTEGER_64]]} Result.make(type, smart_eiffel.type_integer_64,
                                                                                                                           agent retrieve_integer_64,
                                                                                                                           agent set_integer_64)
                else
                   if type.name.to_string.has_prefix(once "NATIVE_ARRAY[") then
-                     create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[RUNNER_STRUCTURED_OBJECT, RUNNER_STRUCTURED_OBJECT]} Result.make(type,
+                     create {RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[RUNNER_STRUCTURED_OBJECT, RUNNER_STRUCTURED_OBJECT]} Result.make(type, type.private_generic_list.first,
                                                                                                                                  agent trivial_retrieve,
                                                                                                                                  agent trivial_set)
                   else
@@ -344,7 +376,8 @@ feature {}
 
    native_array_character_builtins: RUNNER_TYPED_NATIVE_ARRAY_BUILTINS[CHARACTER, RUNNER_NATIVE_EXPANDED[CHARACTER]] is
       once
-         create Result.make(smart_eiffel.type_native_array_character, agent new_character, agent {RUNNER_NATIVE_EXPANDED[CHARACTER]}.item,)
+         create Result.make(smart_eiffel.type_native_array_character, smart_eiffel.type_character,
+                            agent new_character, agent {RUNNER_NATIVE_EXPANDED[CHARACTER]}.item,)
          Result.add_parent(any_builtins(smart_eiffel.type_native_array_character))
       end
 

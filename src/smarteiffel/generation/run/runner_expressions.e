@@ -38,7 +38,7 @@ feature {ADDRESS_OF}
    visit_address_of (visited: ADDRESS_OF) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {AGENT_CREATION}
@@ -57,7 +57,7 @@ feature {ASSERTION}
    visit_assertion (visited: ASSERTION) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {ASSIGNMENT_TEST}
@@ -98,43 +98,41 @@ feature {CREATE_EXPRESSION}
 feature {CREATE_WRITABLE}
    visit_create_writable (visited: CREATE_WRITABLE) is
       do
-         std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         visited.writable.accept(Current)
       end
 
 feature {E_OLD}
    visit_e_old (visited: E_OLD) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {EXPRESSION_WITH_COMMENT}
    visit_expression_with_comment (visited: EXPRESSION_WITH_COMMENT) is
       do
-         std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         visited.expression.accept(Current)
       end
 
 feature {FAKE_ARGUMENT}
    visit_fake_argument (visited: FAKE_ARGUMENT) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {FAKE_TARGET}
    visit_fake_target (visited: FAKE_TARGET) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {FAKE_TUPLE}
    visit_fake_tuple (visited: FAKE_TUPLE) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {CALL_PREFIX_MINUS}
@@ -296,8 +294,7 @@ feature {FUNCTION_CALL_N}
 feature {GENERATOR_GENERATING_TYPE}
    visit_generator_generating_type (visited: GENERATOR_GENERATING_TYPE) is
       do
-         std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         return := processor.new_manifest_string(visited.target_type.name.to_string, True)
       end
 
 feature {IMPLICIT_CAST}
@@ -325,7 +322,7 @@ feature {LOOP_VARIANT}
    visit_loop_variant (visited: LOOP_VARIANT) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {E_FALSE}
@@ -374,7 +371,7 @@ feature {REAL_CONSTANT}
    visit_real_constant (visited: REAL_CONSTANT) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {E_VOID}
@@ -399,14 +396,14 @@ feature {MANIFEST_TUPLE}
    visit_manifest_tuple (visited: MANIFEST_TUPLE) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {OLD_MANIFEST_ARRAY}
    visit_old_manifest_array (visited: OLD_MANIFEST_ARRAY) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {OPEN_OPERAND}
@@ -426,7 +423,7 @@ feature {PRECURSOR_EXPRESSION}
    visit_precursor_expression (visited: PRECURSOR_EXPRESSION) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {RESULT}
@@ -439,7 +436,7 @@ feature {WRITABLE_ATTRIBUTE_NAME}
    visit_writable_attribute_name (visited: WRITABLE_ATTRIBUTE_NAME) is
       do
          std_output.put_line(once "%N%N**** TODO ****%N%N")
-         sedb_breakpoint --| **** TODO
+         break --| **** TODO
       end
 
 feature {NO_DISPATCH}
@@ -476,10 +473,12 @@ feature {DYNAMIC_DISPATCH_TEMPORARY1_ID}
          visited.dynamic_dispatch_temporary1.accept(Current)
          if return /= Void then
             id := return.type.id
+            debug ("run.data")
+               std_output.put_line(once "ID=#(1)" # id.out)
+            end
             return := processor.new_integer_32(id)
          else
-            sedb_breakpoint --| **** ????
-            return := processor.new_integer_32(0)
+            return := processor.new_integer_32(0) -- not a valid id
          end
       end
 

@@ -36,7 +36,7 @@ feature {RUNNER_FACET} -- Exceptions
    set_exception (a_exception: INTEGER; a_message: ABSTRACT_STRING) is
       do
          create exception.make(a_exception, a_message.intern, Current, exception)
-         sedb_breakpoint --| **** useful breakpoint for debug.
+         break --| **** useful breakpoint for debug.
       ensure
          exception.message = a_message.intern
       end
@@ -201,7 +201,11 @@ feature {RUNNER_FACET}
       require
          alive: type.live_type /= Void
       do
-         Result := memory.new_object(Current, type)
+         if type.is_expanded then
+            Result := default_expanded(type)
+         else
+            Result := memory.new_object(Current, type)
+         end
       ensure
          exists: Result /= Void
          good_type: Result.type = type
@@ -218,7 +222,7 @@ feature {RUNNER_FACET}
          if default_value /= Void then
             Result := default_value.item([])
          else
-            Result := new_object(type)
+            Result := memory.new_object(Current, type)
          end
       ensure
          Result /= Void
