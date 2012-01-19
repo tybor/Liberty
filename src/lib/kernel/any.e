@@ -127,16 +127,13 @@ feature {ANY} -- Duplication:
       end
 
 feature {ANY} -- Deep Duplication:
-	frozen deep_twin: like Current is
-		-- Return a new object with the dynamic type of Current.
-		-- The new object structure is recursively duplicated from the one
-		-- attached to `Current'.
-	local copier: DEEP_COPIER[like Current]
+   frozen deep_twin: like Current is
+         -- A new object with the dynamic type of Current, recursively duplicated from Current
+	 local internals: like to_internals
 	do
-		 Result := copier.deep_copy(Current)
-	--external "built_in"
-	end
-
+		internals ::= to_internals.deeply_twinned
+ 	end
+ 
 feature {ANY} -- Basic operations:
    frozen default: like Current is
          -- Default value of entities declared with the `Current' type.

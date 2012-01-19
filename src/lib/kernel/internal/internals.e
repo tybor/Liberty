@@ -23,19 +23,96 @@ deferred class INTERNALS
    -- # If rule 1 is unapplicable, use INTERNALS to build a higher-level abstraction, and use that abstraction
    -- in your application. You really don't want INTERNALS scattered around your application code.
    --
-inherit 
-	COMPARABLE
-	-- INTERNALS comparability is added to allow storing them into an AVL_SET, needed to implement DEEP_COPIER. Comparison is done using the address of the related object
-	INTERNALS_HANDLER
-	-- To access another INTERNALS.object_as_pointer
+feature {INTERNALS, INTERNALS_HANDLER}
+	make_blank is 
+		-- Attach `Current' to a blank object: all attributes of the object have their default value
+		-- (references are Void, INTEGERS are 0, BOOLEANs are False...)
+	require
+		not type_generator.is_equal(once "NATIVE_ARRAY")
+	deferred 
+	ensure
+		object_can_be_modified
+	end
 
-feature -- Comparability
-	infix "<" (another: like Current): BOOLEAN is
+feature {ANY} 
+	deeply_twinned: like Current is
+		local already_copied: HASHED_DICTIONARY[INTERNALS,POINTER]
 		do
-			Result := object_as_pointer < another.object_as_pointer
+			create already_copied.make
+			Result ::= reentrant_deep_twin(already_copied)
 		end
 
+	reentrant_deep_twin (some_copied: HASHED_DICTIONARY[INTERNALS,POINTER]): like Current is
+		-- The INTERNALS of a new object with the dynamic type of object bound
+		-- to a recursively duplicated copy of Current INTERNALS.
+	do
+		Result ::= some_copied.reference_at(to_pointer)
+		-- We know for sure that the reference obtained is either Void or an
+		-- INTERNALS whose actual type is exactly the same of Current: we
+		-- created it here.
+		if Result=Void then 
+			-- Object and its internals shall be copied
+			Result := twin
+			Result.make_blank
+			some_copied.add(Result,Result.to_pointer)
+			not_yet_implemented
+		end
+	end
+--feature {} -- Deep twin implementation
+--		frozen reentrant_deep_twin (copied_table: HASHED_DICTIONARY[POINTER,POINTER]): like Current is
+-- 		-- Implementation of deep_twin. `a_table' in Eiffel code will always be
+-- 		-- the default_pointer to tell the runtime to allocate a new internal
+-- 		-- hash table used to account for already copied objects. See
+-- 		-- deep_twin.[ch] files in C runtime for further informations.
+-- 		-- TODO: generalize it for all backends.
+--	do
+--		-- local p: POINTER; internals: TYPED_INTERNALS[like Current]; i: INTEGER; attribute_internals: TYPED_INTERNALS[ANY]; an_attribute: ANY
+--		not_yet_implemented	
+--		-- 	do
+--		--  Result := twin
+--		--     internals := to_internals
+--		-- 	if not internals.type_is_expanded then
+--		-- 		-- Preliminary adding void with the address of Current as key in `copied_table'; this avoids infinite recursion
+--		-- 		p := internals.object_as_pointer
+--		-- 		copied_table.add(Void,p) 
+--		-- 		-- Note that the address of the object cannot be obtained using
+--		-- 		-- neither "to_pointer" feature or "$" operator. Using the former
+--		-- 		-- emits a warning when deep_twin is used on an expanded class and
+--		-- 		-- "$" operator cannot be used on Current.
+--		-- 	end
+--		-- 	-- For each non expanded attribute
+--		-- 	from i:=1 until i<=internals.type_attribute_count loop
+--		-- 		if not internals.type_attribute_is_expanded(i) then
+--		-- 			attribute_internals ::= internals.object_attribute(i)
+--		-- 		end
+--		-- 		i := i+1
+--		-- 	end
+--		-- 	-- TODO: Previous loop could be written using agents and intervals...
+--	end
 
+	self_inspect is
+		-- Recursively print on standard output the actual structure of the object referred by object
+
+		-- Warning: this feature enters an infite loops when object are even indirectly cross referenced.
+		local attr_int: INTERNALS; i: INTEGER;
+	do
+		("Internals of #(1)%N" # type_generating_type).print_on(std_output)
+		from i:=1 until i>type_attribute_count loop
+			("Attribute ##(1) '#(2)': #(3) (#(4), expanded: #(5))%N" 
+			# &i # type_attribute_name(i) 
+			# type_attribute_generator(i) 
+			# type_attribute_generating_type(i)
+			# &type_attribute_is_expanded(i)
+			).print_on(std_output)
+			
+			attr_int := object_attribute(i)
+			if attr_int/=Void then 
+				attr_int.self_inspect
+			end
+			i := i+1
+		end
+ 	end
+ 
 feature {INTERNALS_HANDLER, INTERNALS} -- Getting information about the described object's type
    type_generator: STRING is
          -- Name of the base class of the type described by `Current'. For instance, if `Current' is a

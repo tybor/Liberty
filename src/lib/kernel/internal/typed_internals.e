@@ -62,14 +62,10 @@ feature {INTERNALS_HANDLER}
          object = object_
       end
 
+feature 
    make_blank is
-         -- Attach `Current' to a blank object: all attributes of the object have their default value
-         -- (references are Void, INTEGERS are 0, BOOLEANs are False...)
-      require
-         not type_generator.is_equal(once "NATIVE_ARRAY")
+	   -- Original definition with preconditions and postconditions moved into INTERNALS
       external "built_in"
-      ensure
-         object_can_be_modified
       end
 
 feature {INTERNALS_HANDLER} -- Getting information about the type's attributes
