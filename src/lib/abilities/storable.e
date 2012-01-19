@@ -10,8 +10,8 @@ deferred class STORABLE
    -- facility.
    --
 
-insert
-   ANY
+inherit ANY
+	-- Note: previously (2012-01-18) STORABLE did not inherited from ANY but inserted it. This break any
 
 end -- class STORABLE
 --
