@@ -129,9 +129,13 @@ feature {ANY} -- Duplication:
 feature {ANY} -- Deep Duplication:
    frozen deep_twin: like Current is
          -- A new object with the dynamic type of Current, recursively duplicated from Current
-	 local internals: like to_internals
+	 local internals, result_internals: like to_internals
 	do
-		internals ::= to_internals.deeply_twinned
+		internals := to_internals
+		-- if internals.type_is_expanded
+		result_internals ::= internals.deeply_twinned
+		Result ::= result_internals.object_as_pointer.to_any
+		-- Note this fails when a class inserts ANY instead of inheriting from it.... 
  	end
  
 feature {ANY} -- Basic operations:

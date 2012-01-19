@@ -85,7 +85,7 @@ feature {INTERNALS, INTERNALS_HANDLER} -- Getting information about the type's a
       external "built_in"
       end
 
-feature {INTERNALS_HANDLER}
+feature {ANY, INTERNALS_HANDLER}
    object_as_pointer: POINTER is
       external "built_in"
       end

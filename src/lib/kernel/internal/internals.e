@@ -40,6 +40,7 @@ feature {ANY}
 		do
 			create already_copied.make
 			Result ::= reentrant_deep_twin(already_copied)
+			already_copied.clear_count_and_capacity
 		end
 
 	reentrant_deep_twin (some_copied: HASHED_DICTIONARY[INTERNALS,POINTER]): like Current is
@@ -167,7 +168,7 @@ feature {INTERNALS, INTERNALS_HANDLER} -- Getting information about the type's a
          Result /= Void
       end
 
-feature {INTERNALS_HANDLER} -- Accessing the object
+feature {ANY} -- Accessing the object
    object_as_pointer: POINTER is
          -- Pointer to the object currently attached to `Current'.
       require
