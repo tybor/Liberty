@@ -66,7 +66,7 @@ feature {INTERNALS_HANDLER}
          capacity = capacity_
       end
 
-feature {INTERNALS_HANDLER} -- Getting information about the type's attributes
+feature {INTERNALS, INTERNALS_HANDLER} -- Getting information about the type's attributes
    type_attribute_count: INTEGER is
       external "built_in"
       ensure
@@ -101,7 +101,7 @@ feature {INTERNALS_HANDLER} -- Getting information about the type's attributes
       external "built_in"
       end
 
-feature {INTERNALS_HANDLER} -- Accessing the object's attributes
+feature {INTERNALS, INTERNALS_HANDLER} -- Accessing the object's attributes
    object_attribute (i: INTEGER): INTERNALS is
       external "built_in"
       end

@@ -13,7 +13,7 @@ feature
 		list.add_last( create {REFERENCE[INTEGER_32]}.set_item(12))
 		list.add_last( create {REFERENCE[REAL_64]}.set_item(3.14)) 
 		--any := list
-		--x := integer.deep_twin
+		x := integer.deep_twin
 		to_internals.self_inspect 
 		another := list.deep_twin
 		-- Currently builton is_deep_equal is not compiled in anymore because the built in deep_twin is not used. So avoid using it for a while

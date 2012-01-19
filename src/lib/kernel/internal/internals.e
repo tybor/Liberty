@@ -45,7 +45,9 @@ feature {ANY}
 	reentrant_deep_twin (some_copied: HASHED_DICTIONARY[INTERNALS,POINTER]): like Current is
 		-- The INTERNALS of a new object with the dynamic type of object bound
 		-- to a recursively duplicated copy of Current INTERNALS.
+	local ith_attribute: INTERNALS; i: INTEGER
 	do
+		("#(1).reentrant_deep_twin(#(2)) " # type_generating_type # & some_copied.to_pointer).print_on(std_output)
 		Result ::= some_copied.reference_at(to_pointer)
 		-- We know for sure that the reference obtained is either Void or an
 		-- INTERNALS whose actual type is exactly the same of Current: we
@@ -53,42 +55,20 @@ feature {ANY}
 		if Result=Void then 
 			-- Object and its internals shall be copied
 			Result := twin
+			Result.set_object_can_be_modified
 			Result.make_blank
 			some_copied.add(Result,Result.to_pointer)
-			not_yet_implemented
+			from i:=1 until i>type_attribute_count loop
+				ith_attribute := object_attribute(i)
+				if ith_attribute/=Void then
+					Result.set_object_attribute
+					(ith_attribute.reentrant_deep_twin(some_copied), i)
+				end
+				i:=i+1
+			end
+		else ("#(1) already copied, " # & Result).print_on(std_output);
 		end
 	end
---feature {} -- Deep twin implementation
---		frozen reentrant_deep_twin (copied_table: HASHED_DICTIONARY[POINTER,POINTER]): like Current is
--- 		-- Implementation of deep_twin. `a_table' in Eiffel code will always be
--- 		-- the default_pointer to tell the runtime to allocate a new internal
--- 		-- hash table used to account for already copied objects. See
--- 		-- deep_twin.[ch] files in C runtime for further informations.
--- 		-- TODO: generalize it for all backends.
---	do
---		-- local p: POINTER; internals: TYPED_INTERNALS[like Current]; i: INTEGER; attribute_internals: TYPED_INTERNALS[ANY]; an_attribute: ANY
---		not_yet_implemented	
---		-- 	do
---		--  Result := twin
---		--     internals := to_internals
---		-- 	if not internals.type_is_expanded then
---		-- 		-- Preliminary adding void with the address of Current as key in `copied_table'; this avoids infinite recursion
---		-- 		p := internals.object_as_pointer
---		-- 		copied_table.add(Void,p) 
---		-- 		-- Note that the address of the object cannot be obtained using
---		-- 		-- neither "to_pointer" feature or "$" operator. Using the former
---		-- 		-- emits a warning when deep_twin is used on an expanded class and
---		-- 		-- "$" operator cannot be used on Current.
---		-- 	end
---		-- 	-- For each non expanded attribute
---		-- 	from i:=1 until i<=internals.type_attribute_count loop
---		-- 		if not internals.type_attribute_is_expanded(i) then
---		-- 			attribute_internals ::= internals.object_attribute(i)
---		-- 		end
---		-- 		i := i+1
---		-- 	end
---		-- 	-- TODO: Previous loop could be written using agents and intervals...
---	end
 
 	self_inspect is
 		-- Recursively print on standard output the actual structure of the object referred by object
@@ -154,7 +134,7 @@ feature {INTERNALS_HANDLER, INTERNALS} -- Getting information about the describe
          other = Void implies Result = not type_attribute_is_expanded(i)
       end
 
-feature {INTERNALS_HANDLER} -- Getting information about the type's attributes
+feature {INTERNALS, INTERNALS_HANDLER} -- Getting information about the type's attributes
    type_attribute_count: INTEGER is
          -- Number of attributes of the type described by `Current'
       deferred
@@ -197,7 +177,7 @@ feature {INTERNALS_HANDLER} -- Accessing the object
          Result.is_not_null
       end
 
-feature {INTERNALS_HANDLER} -- Accessing the object's attributes
+feature {INTERNALS, INTERNALS_HANDLER} -- Accessing the object's attributes
    object_attribute (i: INTEGER): INTERNALS is
          -- Read the `i'th attribute of the type described by `Current' (also see `type_attribute'). If this
          -- attribute is attached to an object, then `Result' is also attached to that object
@@ -231,6 +211,14 @@ feature {INTERNALS_HANDLER} -- Accessing the object's attributes
       ensure
          Result = not object_can_be_retrieved
       end
+
+   set_object_can_be_modified is
+         -- Forbid further modification of the object through `set_object_attribute', so that it can safely be
+         -- released into the system.
+         -- Note that the embedded object is notified via its `internals_can_be_retrieved' feature.
+	 deferred
+	 end
+ 
 
    set_object_can_be_retrieved is
          -- Forbid further modification of the object through `set_object_attribute', so that it can safely be
