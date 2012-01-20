@@ -35,12 +35,49 @@ feature {INTERNALS, INTERNALS_HANDLER}
 	end
 
 feature {ANY} 
+	are_deeply_equals (another: like Current): BOOLEAN is
+		-- Are the object bound to Current and those bound to `another' recursively equal?
+		local already_compared: HASHED_DICTIONARY[INTERNALS,POINTER]
+		do
+			create already_compared.make
+			Result := reentrant_compare(another, already_compared)
+			already_compared.clear_count_and_capacity
+		end
+
 	deeply_twinned: like Current is
 		local already_copied: HASHED_DICTIONARY[INTERNALS,POINTER]
 		do
 			create already_copied.make
 			Result ::= reentrant_deep_twin(already_copied)
 			already_copied.clear_count_and_capacity
+		end
+
+	self_inspect is
+		-- Recursively print on standard output the actual structure of the object referred by object
+
+		-- Warning: this feature enters an infite loops when object are even indirectly cross referenced.
+		local attr_int: INTERNALS; i: INTEGER;
+	do
+		("Internals of #(1) %N" # type_generating_type).print_on(std_output)
+		from i:=1 until i>type_attribute_count loop
+			("Attribute ##(1) '#(2)': #(3) (#(4), expanded: #(5))%N" 
+			# &i # type_attribute_name(i) 
+			# type_attribute_generator(i) 
+			# type_attribute_generating_type(i)
+			# &type_attribute_is_expanded(i)
+			).print_on(std_output)
+			
+			attr_int := object_attribute(i)
+			if attr_int/=Void then 
+				attr_int.self_inspect
+			end
+			i := i+1
+		end
+ 	end
+ 
+feature {INTERNALS} -- Implementation
+	reentrant_compare (another: like Current; some_compared: HASHED_DICTIONARY[INTERNALS,POINTER]): BOOLEAN is
+		deferred
 		end
 
 	reentrant_deep_twin (some_copied: HASHED_DICTIONARY[INTERNALS,POINTER]): like Current is
@@ -75,29 +112,6 @@ feature {ANY}
 		end
 	end
 
-	self_inspect is
-		-- Recursively print on standard output the actual structure of the object referred by object
-
-		-- Warning: this feature enters an infite loops when object are even indirectly cross referenced.
-		local attr_int: INTERNALS; i: INTEGER;
-	do
-		("Internals of #(1) %N" # type_generating_type).print_on(std_output)
-		from i:=1 until i>type_attribute_count loop
-			("Attribute ##(1) '#(2)': #(3) (#(4), expanded: #(5))%N" 
-			# &i # type_attribute_name(i) 
-			# type_attribute_generator(i) 
-			# type_attribute_generating_type(i)
-			# &type_attribute_is_expanded(i)
-			).print_on(std_output)
-			
-			attr_int := object_attribute(i)
-			if attr_int/=Void then 
-				attr_int.self_inspect
-			end
-			i := i+1
-		end
- 	end
- 
 feature {INTERNALS_HANDLER, INTERNALS} -- Getting information about the described object's type
    type_generator: STRING is
          -- Name of the base class of the type described by `Current'. For instance, if `Current' is a

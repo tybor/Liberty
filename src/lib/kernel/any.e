@@ -81,7 +81,7 @@ feature {ANY} -- Deep Comparison:
          -- Is `Current' recursively isomorph with `other' ?
       require
          other_not_void: other /= Void
-      external "built_in"
+	  do
       end
 
 feature {ANY} -- Duplication:

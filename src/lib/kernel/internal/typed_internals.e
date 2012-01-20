@@ -47,6 +47,22 @@ feature {INTERNALS_HANDLER, INTERNALS} -- Getting information about the describe
       external "built_in"
       end
 
+feature {INTERNALS} -- Deep comparison implementation
+	reentrant_compare (another: like Current; some_compared: HASHED_DICTIONARY[INTERNALS,POINTER]): BOOLEAN is
+		local ith_attribute: INTERNALS; i: INTEGER
+		do
+			if type_is_expanded then 
+				Result := object.is_equal(another.object)
+			else
+				not_yet_implemented
+				-- Result := True
+				-- from i:=1 until not Result and then i>type_attribute_count loop
+				-- 	Result := object_attribute(i).reentrant_compare(another.object_attribute(i), )
+				-- 	i:=i+1
+				-- end
+			end
+		end
+
 feature {INTERNALS_HANDLER}
    for_object (object_: like object_memory) is
          -- Attach `Current' to `object_'
