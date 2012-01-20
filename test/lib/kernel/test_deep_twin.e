@@ -17,10 +17,11 @@ feature
 		-- to_internals.self_inspect 
 		another := list.deep_twin
 		assert(another/=Void)
-		-- Currently builton is_deep_equal is not compiled in anymore because the built in deep_twin is not used. So avoid using it for a while
-		assert(list.is_equal(another)) -- TODO: should be is_deep_equal
+		assert(list /= another)
+		assert(list.is_equal(another)) -- TODO: should be is_deep_equal but currently the builtin is_deep_equal is not compiled in anymore because the built in deep_twin is not used. So avoid using it for a while		
 		assert(list.first.is_equal(another.first))
-		assert(list.last.is_equal(another.last))
+		-- assert(list.last.is_equal(another.last))
+		-- print_run_time_stack
 	end
 
 	any: ANY
