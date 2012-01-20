@@ -10,8 +10,8 @@ feature
 		create foo
 		string := "Foo bar"
 		create {LINKED_LIST[ANY]} list.make
-		list.add_last( create {REFERENCE[INTEGER_32]}.set_item(12))
-		list.add_last( create {REFERENCE[REAL_64]}.set_item(3.14)) 
+		create ir.set_item(12); create rr.set_item(3.14)
+		list.add_last(ir); list.add_last(rr)
 		--any := list
 		-- x := integer.deep_twin
 		-- to_internals.self_inspect 
@@ -20,13 +20,17 @@ feature
 		assert(list /= another)
 		assert(list.is_equal(another)) -- TODO: should be is_deep_equal but currently the builtin is_deep_equal is not compiled in anymore because the built in deep_twin is not used. So avoid using it for a while		
 		assert(list.first.is_equal(another.first))
-		-- assert(list.last.is_equal(another.last))
+		assert(another.first.is_equal(ir))
+		assert(another.last.is_equal(rr))
+		assert(list.last.is_equal(another.last))
 		-- print_run_time_stack
 	end
 
 	any: ANY
 	integer: INTEGER
 	list, another: COLLECTION[ANY]
+	ir:REFERENCE[INTEGER_32]
+	rr: REFERENCE[REAL_64]
 	string: STRING
 	foo: FOO
 end
