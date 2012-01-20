@@ -48,25 +48,29 @@ feature {ANY}
 		-- to a recursively duplicated copy of Current INTERNALS.
 	local ith_attribute: INTERNALS; i: INTEGER
 	do
-		("#(1).reentrant_deep_twin(#(2)) " # type_generating_type # & some_copied.to_pointer).print_on(std_output)
+		("%N#(1).reentrant_deep_twin(#(2)) " # type_generating_type # & some_copied.to_pointer).print_on(std_output)
 		Result ::= some_copied.reference_at(to_pointer)
-		-- We know for sure that the reference obtained is either Void or an
-		-- INTERNALS whose actual type is exactly the same of Current: we
-		-- created it here.
+		-- The reference obtained is either Void or an INTERNALS whose actual
+		-- type is exactly the same of Current since it has been created here.
 		if Result=Void then 
 			-- Object and its internals shall be copied
 			Result := twin
 			Result.set_object_can_be_modified
-			Result.make_blank
+			if not type_is_expanded then 
+				Result.make_blank
+			end
 			some_copied.add(Result,Result.to_pointer)
 			from i:=1 until i>type_attribute_count loop
 				ith_attribute := object_attribute(i)
 				if ith_attribute/=Void then
+					(" copying '#(1)' " # type_attribute_name(i)).print_on(std_output)
 					Result.set_object_attribute
 					(ith_attribute.reentrant_deep_twin(some_copied), i)
+				else (" skipping '#(1)': void attribute" # type_attribute_name(i)).print_on(std_output)
 				end
 				i:=i+1
 			end
+			Result.set_object_can_be_retrieved
 		else ("#(1) already copied, " # & Result).print_on(std_output);
 		end
 	end
@@ -77,7 +81,7 @@ feature {ANY}
 		-- Warning: this feature enters an infite loops when object are even indirectly cross referenced.
 		local attr_int: INTERNALS; i: INTEGER;
 	do
-		("Internals of #(1)%N" # type_generating_type).print_on(std_output)
+		("Internals of #(1) %N" # type_generating_type).print_on(std_output)
 		from i:=1 until i>type_attribute_count loop
 			("Attribute ##(1) '#(2)': #(3) (#(4), expanded: #(5))%N" 
 			# &i # type_attribute_name(i) 
