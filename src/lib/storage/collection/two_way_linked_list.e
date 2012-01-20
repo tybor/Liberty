@@ -9,12 +9,14 @@ class TWO_WAY_LINKED_LIST[E_]
 
 inherit
    COLLECTION[E_]
+	   redefine default_create end
 
 insert
    LINKED_COLLECTION[E_]
+	   redefine default_create end
 
 creation {ANY}
-   make, from_collection, manifest_creation
+   default_create, make, from_collection, manifest_creation
 
 feature {TWO_WAY_LINKED_LIST, ITERATOR_ON_TWO_WAY_LINKED_LIST}
    first_link: TWO_WAY_LINKED_LIST_NODE[E_]
@@ -34,7 +36,13 @@ feature {TWO_WAY_LINKED_LIST}
          -- `mem_lnk' and `mem_idx' is 0
 
 feature {ANY}
-   make is
+   default_create is
+	   -- Creates an empty list
+   do
+	   make
+   end
+
+  make is
       do
          if free_nodes = Void then
             -- It is a brand new one:

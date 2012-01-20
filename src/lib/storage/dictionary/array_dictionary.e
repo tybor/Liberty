@@ -13,8 +13,8 @@ inherit
          new_iterator_on_items
       end
 
-create {ANY}
-   make, with_capacity
+creation {ANY}
+   default_create, make, with_capacity
 
 feature {ANY} -- Basic access:
    has (k: K_): BOOLEAN is

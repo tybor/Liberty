@@ -22,6 +22,8 @@ insert
          item_memory as key_memory
       export
          {ITERATOR_ON_AVL_DICTIONARY_ITEMS, ITERATOR_ON_AVL_DICTIONARY_KEYS} root
+      undefine
+	     default_create
       end
 
 feature {ANY}

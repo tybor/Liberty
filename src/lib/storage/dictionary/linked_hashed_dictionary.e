@@ -12,7 +12,7 @@ inherit
    ABSTRACT_LINKED_HASHED_DICTIONARY[V_, K_]
 
 creation {ANY}
-   make, with_capacity, manifest_creation
+   default_create, make, with_capacity, manifest_creation
 
 feature {}
    hash_code (k: K_): INTEGER is

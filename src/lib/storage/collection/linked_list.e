@@ -14,12 +14,14 @@ class LINKED_LIST[E_]
 
 inherit
    COLLECTION[E_]
+	   redefine default_create end
 
 insert
    LINKED_COLLECTION[E_]
+	   redefine default_create end
 
 creation {ANY}
-   make, from_collection, manifest_creation
+   default_create, make, from_collection, manifest_creation
 
 feature {LINKED_LIST, ITERATOR_ON_LINKED_LIST}
    first_link: LINKED_LIST_NODE[E_]
@@ -37,6 +39,12 @@ feature {LINKED_LIST}
          -- When list is empty, `first_link' is Void as well as `mem_lnk' and `mem_idx' is 0
 
 feature {ANY}
+   default_create is
+	   -- Creates an empty list
+   do
+	   make
+   end
+
    make is
       do
          if free_nodes = Void then

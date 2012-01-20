@@ -14,6 +14,7 @@ deferred class DICTIONARY[V_, K_]
 
 inherit
    MAP[V_, K_]
+	   redefine default_create end
 
 feature {ANY} -- Adding:
    put (v: V_; k: K_) is
@@ -145,6 +146,15 @@ feature {ANY}
       end
 
 feature {}
+	default_create is
+		-- Creates an empty dictionary.
+	do
+		make
+	ensure
+		is_empty
+	end
+
+
    make is
          -- Creates an empty dictionary.
       deferred

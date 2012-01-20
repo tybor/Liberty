@@ -15,7 +15,7 @@ inherit
 
 insert
    HASH_TABLE_SIZE
-      undefine out_in_tagged_out_memory
+      undefine out_in_tagged_out_memory, default_create
       end
 
 feature {HASHED_DICTIONARY}
