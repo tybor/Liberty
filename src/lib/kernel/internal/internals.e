@@ -23,6 +23,7 @@ deferred class INTERNALS
    -- # If rule 1 is unapplicable, use INTERNALS to build a higher-level abstraction, and use that abstraction
    -- in your application. You really don't want INTERNALS scattered around your application code.
    --
+
 feature {INTERNALS, INTERNALS_HANDLER}
 	make_blank is 
 		-- Attach `Current' to a blank object: all attributes of the object have their default value
@@ -36,10 +37,11 @@ feature {INTERNALS, INTERNALS_HANDLER}
 
 feature {ANY} 
 	are_deeply_equals (another: like Current): BOOLEAN is
-		-- Are the object bound to Current and those bound to `another' recursively equal?
-		local already_compared: HASHED_DICTIONARY[INTERNALS,POINTER]
+		-- Are the objects bound to Current and to `another' recursively equal?
+	require another/=Void
+		local already_compared: EXT_HASHED_SET[INTERNALS]
 		do
-			create already_compared.make
+			create already_compared.make(agent internals_hash_code)
 			Result := reentrant_compare(another, already_compared)
 			already_compared.clear_count_and_capacity
 		end
@@ -76,7 +78,12 @@ feature {ANY}
  	end
  
 feature {INTERNALS} -- Implementation
-	reentrant_compare (another: like Current; some_compared: HASHED_DICTIONARY[INTERNALS,POINTER]): BOOLEAN is
+	internals_hash_code (an_internals: INTERNALS): INTEGER is
+		do
+			Result:=an_internals.to_pointer.hash_code
+		end
+
+	reentrant_compare (another: like Current; some_compared: EXT_HASHED_SET[INTERNALS]): BOOLEAN is
 		deferred
 		end
 

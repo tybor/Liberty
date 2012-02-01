@@ -48,19 +48,35 @@ feature {INTERNALS_HANDLER, INTERNALS} -- Getting information about the describe
       end
 
 feature {INTERNALS} -- Deep comparison implementation
-	reentrant_compare (another: like Current; some_compared: HASHED_DICTIONARY[INTERNALS,POINTER]): BOOLEAN is
+	reentrant_compare (another: like Current; some_compared: EXT_HASHED_SET[INTERNALS]): BOOLEAN is
 		local ith_attribute: INTERNALS; i: INTEGER
 		do
+			("Comparing #(1)...%N" # &Current).print_on(std_error)
 			if type_is_expanded then 
 				Result := object.is_equal(another.object)
 			else
-				not_yet_implemented
-				-- Result := True
-				-- from i:=1 until not Result and then i>type_attribute_count loop
-				-- 	Result := object_attribute(i).reentrant_compare(another.object_attribute(i), )
-				-- 	i:=i+1
-				-- end
+				if not some_compared.has(Current) then
+					Result := True
+					some_compared.add(Current)
+					if another=Void then Result:=False
+					else
+						from i:=1 until not Result or i>type_attribute_count loop
+							ith_attribute := object_attribute(i)
+							("comparing #(1)th attribute%N" # &i).print_on(std_error)
+							if ith_attribute/=Void then 
+								Result := ith_attribute.reentrant_compare(another.object_attribute(i), some_compared)
+							else
+								Result := another.object_attribute(i)=Void
+							end
+							-- Perhaps it may be wiser to use SAFE_EQUAL[INTERNALS] or SAFE_EQUAL[TYPED_INTERNALS[E_]]
+							i:=i+1
+						end
+					end
+				else
+					("#(1) already compared%N" # &Current).print_on(std_error)
+				end
 			end
+		ensure reference_added_to_compared: not type_is_expanded implies some_compared.has(Current)
 		end
 
 feature {INTERNALS_HANDLER}

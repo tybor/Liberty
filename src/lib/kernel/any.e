@@ -82,6 +82,8 @@ feature {ANY} -- Deep Comparison:
       require
          other_not_void: other /= Void
 	  do
+		  Result := is_equal(other) or else 
+		  to_internals.are_deeply_equals(other.to_internals)
       end
 
 feature {ANY} -- Duplication:
@@ -474,7 +476,7 @@ feature {} -- Implementation of ANY (do not use directly):
          std_output.flush
       end
 
-feature {INTERNALS_HANDLER}
+feature {ANY}
    frozen to_internals: INTERNALS is
          -- The effect of this built_in is
          --   create {TYPED_INTERNALS[like Current]} Result.for_object(Current)

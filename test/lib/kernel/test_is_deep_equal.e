@@ -13,10 +13,13 @@ feature
 		list.add_last(realref)
 
 		create another
-		another.add_last(intref)
-		another.add_last(realref)
+		another.add_last(create {REFERENCE[INTEGER_32]}.set_item(12))
+		another.add_last(create {REFERENCE[REAL_64]}.set_item(3.14))
 
-		assert (list.is_equal(another))
+		assert (list.is_deep_equal(another))
+
+		another.remove_first
+		assert (not list.is_deep_equal(another))
 
 		create f.make(12,43,7) 
 		create g.make(12,43,7)
