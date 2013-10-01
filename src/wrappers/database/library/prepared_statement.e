@@ -8,7 +8,7 @@ indexing
 deferred class PREPARED_STATEMENT
 
 feature {} -- Creation
-	make (a_database: DATABASE; some_sql: STRING) is
+	make (a_database: DATABASE; some_sql: ABSTRACT_STRING) is
 			-- Makes a prepared command from `some_sql'
 		require
 			database_not_void: a_database /= Void 
@@ -31,14 +31,14 @@ feature	{ANY}
 		deferred
 		end
 
-	are_valid_parameters (some_parameters: TRAVERSABLE[ANY]): BOOLEAN is
+	are_valid_parameters (some_parameters: TRAVERSABLE[VARIANT]): BOOLEAN is
 			-- Are `some_parameters' valid for the current statement?
 		require
 			state: is_prepared
 		deferred
 		end
 
-	is_valid_parameter (a_parameter: ANY; an_index: INTEGER): BOOLEAN is
+	is_valid_parameter (a_parameter: VARIANT; an_index: INTEGER): BOOLEAN is
 			-- Is `a_parameter' placeble in statement's `an_index'-th parameter?
 		require 
 			parameter_not_void: a_parameter /= Void
@@ -47,7 +47,7 @@ feature	{ANY}
 		deferred 
 		end
 
-	execute (some_parameters: TRAVERSABLE[ANY]) is
+	execute (some_parameters: TRAVERSABLE[VARIANT]) is
 			-- Execute the current SQL statment with `some_parameters'
 			-- and set last_exec_success
 		require 

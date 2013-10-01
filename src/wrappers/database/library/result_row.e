@@ -11,6 +11,8 @@ inherit
 	TRAVERSABLE [ANY] 
 
 feature {ANY} -- Type queries
+	-- Note: these queries could be not useful with a proper usage of VARIANT or some of its specialized heirs
+
 	is_integer (a_column: INTEGER): BOOLEAN is
 			-- Is the type in `a_column' an INTEGER?
 		require
@@ -40,6 +42,8 @@ feature {ANY} -- Type queries
 		end
 
 feature {ANY} -- Column queries 
+	-- Note: these queries could be not useful with a proper usage of VARIANT or some of its specialized heirs
+
 	integer_item (a_column: INTEGER): INTEGER is
 		require
 			valid_column: valid_index (a_column)

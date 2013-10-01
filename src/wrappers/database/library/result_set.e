@@ -7,7 +7,7 @@ indexing
 
 	-- TODO: review this class
 	
-deferred class RESULT_SET [ROW_-> RESULT_ROW_] 
+deferred class RESULT_SET [ROW_-> RESULT_ROW] 
 inherit
 	TRAVERSABLE [ROW_]
 		undefine
