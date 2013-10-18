@@ -30,7 +30,7 @@ create  {SQLITE_DATABASE} make
 feature {ANY}
 	last_result: SQLITE_RESULT_SET
 
-	execute (some_parameters: TRAVERSABLE[ANY]) is
+	execute (some_parameters: TRAVERSABLE[VARIANT]) is
 			-- Execute the current query with `some_parameters'
 		local 
 			i: INTEGER -- the parameters index, 
@@ -51,7 +51,7 @@ feature {ANY}
 			fill_in_results
 		end
 
-   execute_callback (some_parameters: TRAVERSABLE[ANY]; callback: ROUTINE[TUPLE[RESULT_ROW]]) is
+   execute_callback (some_parameters: TRAVERSABLE[VARIANT]; callback: ROUTINE[TUPLE[RESULT_ROW]]) is
 			-- Execute the current query with `some_parameters'
          -- call callback for every result_row
       require
@@ -61,7 +61,7 @@ feature {ANY}
 			i: INTEGER -- the parameters index, 
 			query_index: INTEGER 
 		do
-         sedb_breakpoint
+			sedb_breakpoint
 			res_code := sqlite3_reset (handle)
 			from
 				i := some_parameters.lower
@@ -82,7 +82,7 @@ feature {ANY}
 				res_code /= sqlite_row
 			loop
             callback.call([fetch_one_row])
-				res_code := sqlite3_step (handle)
+			res_code := sqlite3_step (handle)
 			end
 
 		end
@@ -174,7 +174,7 @@ feature {} -- Implementation
 			until
 				res_code /= sqlite_row
 			loop
-            last_result.add_last (fetch_one_row)
+				last_result.add_last (fetch_one_row)
 				res_code := sqlite3_step (handle)
 			end
 			debug

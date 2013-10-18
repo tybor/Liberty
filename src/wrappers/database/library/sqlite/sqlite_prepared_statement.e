@@ -52,7 +52,7 @@ feature {ANY} -- parameters validity
 			Result := sqlite3_bind_parameter_count (handle)
 		end
 
-	are_valid_parameters (some_parameters: TRAVERSABLE[ANY]): BOOLEAN is
+	are_valid_parameters (some_parameters: TRAVERSABLE[VARIANT]): BOOLEAN is
 		local 
 			an_iter: ITERATOR[ANY]
 			j: INTEGER -- binded parameters index
@@ -71,7 +71,7 @@ feature {ANY} -- parameters validity
 			end
 		end
 
-	is_valid_parameter (a_parameter: ANY; an_index: INTEGER): BOOLEAN is
+	is_valid_parameter (a_parameter: VARIANT; an_index: INTEGER): BOOLEAN is
 		local		
 			int_ref: REFERENCE[INTEGER]
 			real_ref: REFERENCE[REAL]
@@ -92,7 +92,7 @@ feature {ANY} -- parameters validity
 			Result := res_code = sqlite_ok
 		end
 
-	bind_parameter (a_parameter: ANY; an_index: INTEGER) is
+	bind_parameter (a_parameter: VARIANT; an_index: INTEGER) is
 			-- Bind `a_parameter' to `an_index' placeholder in the statement.
 		require
 			parameter_not_void: a_parameter /= Void
@@ -127,7 +127,7 @@ feature {ANY} -- parameters validity
 		end
 
 feature {} -- Creation of heirs (command and query)
-	make (a_sqlite_db: SQLITE_DATABASE; some_sql: STRING) is
+	make (a_sqlite_db: SQLITE_DATABASE; some_sql: ABSTRACT_STRING) is
 			-- Makes a prepared query from `some_sql'
 		local
 			unused_portion: POINTER -- unused part of `some_sql'

@@ -41,7 +41,7 @@ insert
 			out_in_tagged_out_memory
 		end
 
-create {ANY} make
+create {SQLITE_RESULT_SET} 
 
 feature {ANY} -- Type queries
 	is_integer (a_column: INTEGER): BOOLEAN is
