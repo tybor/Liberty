@@ -8,4 +8,4 @@ feature {ANY}
 		end
 end
 		
-	
+-- Copyright (C) 2012 Paolo Redaelli	

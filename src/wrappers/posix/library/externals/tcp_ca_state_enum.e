@@ -5,72 +5,72 @@ expanded class TCP_CA_STATE_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := ((a_value = tcp_ca_cwr_low_level)  or else
-				(a_value = tcp_ca_disorder_low_level)  or else
-				(a_value = tcp_ca_loss_low_level)  or else
-				(a_value = tcp_ca_open_low_level)  or else
-				(a_value = tcp_ca_recovery_low_level) )
+            Result := ((a_value = cwr_low_level)  or else
+				(a_value = disorder_low_level)  or else
+				(a_value = loss_low_level)  or else
+				(a_value = open_low_level)  or else
+				(a_value = recovery_low_level) )
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_tcp_ca_cwr is
+	set_cwr is
 		do
-			value := tcp_ca_cwr_low_level
+			value := cwr_low_level
 		end
 
-	set_tcp_ca_disorder is
+	set_disorder is
 		do
-			value := tcp_ca_disorder_low_level
+			value := disorder_low_level
 		end
 
-	set_tcp_ca_loss is
+	set_loss is
 		do
-			value := tcp_ca_loss_low_level
+			value := loss_low_level
 		end
 
-	set_tcp_ca_open is
+	set_open is
 		do
-			value := tcp_ca_open_low_level
+			value := open_low_level
 		end
 
-	set_tcp_ca_recovery is
+	set_recovery is
 		do
-			value := tcp_ca_recovery_low_level
+			value := recovery_low_level
 		end
 
-feature -- Queries
-	is_tcp_ca_cwr: BOOLEAN is
+feature {ANY} -- Queries
+	is_cwr: BOOLEAN is
 		do
-			Result := (value=tcp_ca_cwr_low_level)
+			Result := (value=cwr_low_level)
 		end
 
-	is_tcp_ca_disorder: BOOLEAN is
+	is_disorder: BOOLEAN is
 		do
-			Result := (value=tcp_ca_disorder_low_level)
+			Result := (value=disorder_low_level)
 		end
 
-	is_tcp_ca_loss: BOOLEAN is
+	is_loss: BOOLEAN is
 		do
-			Result := (value=tcp_ca_loss_low_level)
+			Result := (value=loss_low_level)
 		end
 
-	is_tcp_ca_open: BOOLEAN is
+	is_open: BOOLEAN is
 		do
-			Result := (value=tcp_ca_open_low_level)
+			Result := (value=open_low_level)
 		end
 
-	is_tcp_ca_recovery: BOOLEAN is
+	is_recovery: BOOLEAN is
 		do
-			Result := (value=tcp_ca_recovery_low_level)
+			Result := (value=recovery_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	tcp_ca_cwr_low_level: INTEGER is
+	cwr_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -79,7 +79,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	tcp_ca_disorder_low_level: INTEGER is
+	disorder_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -88,7 +88,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	tcp_ca_loss_low_level: INTEGER is
+	loss_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -97,7 +97,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	tcp_ca_open_low_level: INTEGER is
+	open_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -106,7 +106,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	tcp_ca_recovery_low_level: INTEGER is
+	recovery_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
