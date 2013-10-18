@@ -6,7 +6,7 @@ deferred class GARRAY_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_array_append_vals (an_array: POINTER; a_data: POINTER; a_len: NATURAL): POINTER is

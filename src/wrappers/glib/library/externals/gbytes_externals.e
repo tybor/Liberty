@@ -6,7 +6,7 @@ deferred class GBYTES_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_bytes_compare (a_bytes1: POINTER; a_bytes2: POINTER): INTEGER is

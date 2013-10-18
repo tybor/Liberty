@@ -6,7 +6,7 @@ deferred class GMESSAGES_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_assert_warning (a_log_domain: POINTER; a_file: POINTER; a_line: INTEGER; a_pretty_function: POINTER; an_expression: POINTER) is

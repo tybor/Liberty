@@ -6,7 +6,7 @@ deferred class GVARIANT_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_variant_builder_add (a_builder: POINTER; a_format_string: POINTER) is

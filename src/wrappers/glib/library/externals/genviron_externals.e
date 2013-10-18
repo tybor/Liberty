@@ -6,7 +6,7 @@ deferred class GENVIRON_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_environ_getenv (an_envp: POINTER; a_variable: POINTER): POINTER is

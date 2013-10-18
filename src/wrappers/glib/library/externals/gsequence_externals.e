@@ -6,7 +6,7 @@ deferred class GSEQUENCE_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_sequence_append (a_seq: POINTER; a_data: POINTER): POINTER is

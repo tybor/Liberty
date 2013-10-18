@@ -6,7 +6,7 @@ deferred class GSTRFUNCS_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_ascii_digit_value (a_c: CHARACTER): INTEGER is

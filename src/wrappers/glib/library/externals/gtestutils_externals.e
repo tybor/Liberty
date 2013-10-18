@@ -6,7 +6,7 @@ deferred class GTESTUTILS_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_assertion_message (a_domain: POINTER; a_file: POINTER; a_line: INTEGER; a_func: POINTER; a_message: POINTER) is

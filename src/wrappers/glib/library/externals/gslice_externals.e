@@ -6,7 +6,7 @@ deferred class GSLICE_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_slice_alloc (a_block_size: NATURAL): POINTER is

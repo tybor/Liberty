@@ -6,7 +6,7 @@ deferred class GURIFUNCS_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_uri_escape_string (an_unescaped: POINTER; a_reserved_chars_allowed: POINTER; an_allow_utf8: INTEGER): POINTER is

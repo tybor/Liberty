@@ -6,7 +6,7 @@ deferred class GTHREADPOOL_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_thread_pool_free (a_pool: POINTER; an_immediate: INTEGER; a_wait: INTEGER) is

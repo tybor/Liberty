@@ -6,7 +6,7 @@ deferred class GMARKUP_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_markup_collect_attributes (an_element_name: POINTER; an_attribute_names: POINTER; an_attribute_values: POINTER; an_error: POINTER; a_first_type: INTEGER; a_first_attr: POINTER): INTEGER is

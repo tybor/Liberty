@@ -6,7 +6,7 @@ deferred class GIOCHANNEL_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_io_add_watch (a_channel: POINTER; a_condition: INTEGER; a_func: POINTER; an_user_data: POINTER): NATURAL is

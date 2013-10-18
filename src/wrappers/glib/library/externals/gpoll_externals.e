@@ -6,7 +6,7 @@ deferred class GPOLL_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_poll (a_fds: POINTER; a_nfds: NATURAL; a_timeout: INTEGER): INTEGER is

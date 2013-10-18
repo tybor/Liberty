@@ -6,7 +6,7 @@ deferred class GVERSION_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	glib_binary_age: NATURAL is

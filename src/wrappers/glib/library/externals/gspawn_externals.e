@@ -6,7 +6,7 @@ deferred class GSPAWN_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_spawn_async (a_working_directory: POINTER; an_argv: POINTER; an_envp: POINTER; a_flags: INTEGER; a_child_setup: POINTER; an_user_data: POINTER; a_child_pid: POINTER; an_error: POINTER): INTEGER is

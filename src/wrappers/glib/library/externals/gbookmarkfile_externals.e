@@ -6,7 +6,7 @@ deferred class GBOOKMARKFILE_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_bookmark_file_add_application (a_bookmark: POINTER; an_uri: POINTER; a_name: POINTER; an_exec: POINTER) is

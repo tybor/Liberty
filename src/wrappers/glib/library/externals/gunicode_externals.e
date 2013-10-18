@@ -6,7 +6,7 @@ deferred class GUNICODE_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_ucs4_to_utf16 (a_str: POINTER; a_len: like long; an_items_read: POINTER; an_items_written: POINTER; an_error: POINTER): POINTER is

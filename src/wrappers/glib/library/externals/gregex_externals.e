@@ -6,7 +6,7 @@ deferred class GREGEX_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_match_info_expand_references (a_match_info: POINTER; a_string_to_expand: POINTER; an_error: POINTER): POINTER is

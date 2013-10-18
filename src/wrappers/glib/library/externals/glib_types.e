@@ -6,7 +6,9 @@ deferred class GLIB_TYPES
 
 insert ANY undefine is_equal, copy end
 
-feature -- C type definitions (typedefs)
+	STANDARD_C_LIBRARY_TYPES
+
+feature {ANY} -- C type definitions (typedefs)
 	ghash_func: POINTER is
 		-- typedef GHashFunc
 		-- Empty by design, used for anchored declarations.

@@ -6,7 +6,7 @@ deferred class GQSORT_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_qsort_with_data (a_pbase: POINTER; a_total_elems: INTEGER; a_size: NATURAL; a_compare_func: POINTER; an_user_data: POINTER) is

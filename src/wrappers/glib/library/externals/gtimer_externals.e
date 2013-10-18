@@ -6,7 +6,7 @@ deferred class GTIMER_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_time_val_add (a_time: POINTER; a_microseconds: like long) is

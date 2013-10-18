@@ -6,7 +6,7 @@ deferred class GHMAC_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_compute_hmac_for_data (a_digest_type: INTEGER; a_key: POINTER; a_key_len: NATURAL; a_data: POINTER; a_length: NATURAL): POINTER is

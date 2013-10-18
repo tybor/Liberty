@@ -6,7 +6,7 @@ deferred class GHASH_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_direct_equal (a_v1: POINTER; a_v2: POINTER): INTEGER is

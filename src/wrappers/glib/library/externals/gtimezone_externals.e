@@ -6,7 +6,7 @@ deferred class GTIMEZONE_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_time_zone_adjust_time (a_tz: POINTER; a_type: INTEGER; a_time: POINTER): INTEGER is

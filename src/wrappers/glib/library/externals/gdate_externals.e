@@ -6,7 +6,7 @@ deferred class GDATE_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_date_add_days (a_date: POINTER; a_n_days: NATURAL) is

@@ -6,7 +6,7 @@ deferred class GMAPPEDFILE_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_mapped_file_free (a_file: POINTER) is

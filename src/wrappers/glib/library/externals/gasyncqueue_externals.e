@@ -6,7 +6,7 @@ deferred class GASYNCQUEUE_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_async_queue_length (a_queue: POINTER): INTEGER is

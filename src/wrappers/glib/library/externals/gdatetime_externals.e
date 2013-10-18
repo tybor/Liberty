@@ -6,7 +6,7 @@ deferred class GDATETIME_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_date_time_add (a_datetime: POINTER; a_timespan: INTEGER_64): POINTER is

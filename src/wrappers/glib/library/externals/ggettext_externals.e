@@ -6,7 +6,7 @@ deferred class GGETTEXT_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_dcgettext (a_domain: POINTER; a_msgid: POINTER; a_category: INTEGER): POINTER is

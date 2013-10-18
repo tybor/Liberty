@@ -6,7 +6,7 @@ deferred class GCONVERT_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_convert (a_str: POINTER; a_len: INTEGER; a_to_codeset: POINTER; a_from_codeset: POINTER; a_bytes_read: POINTER; a_bytes_written: POINTER; an_error: POINTER): POINTER is

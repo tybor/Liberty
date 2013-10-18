@@ -6,7 +6,7 @@ deferred class GPATTERN_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_pattern_match (a_pspec: POINTER; a_string_length: NATURAL; a_string: POINTER; a_string_reversed: POINTER): INTEGER is

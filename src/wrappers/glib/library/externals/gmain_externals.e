@@ -6,7 +6,7 @@ deferred class GMAIN_EXTERNALS
 
 insert ANY undefine is_equal, copy end
 
-		-- TODO: insert typedefs class
+		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
 	g_child_watch_add (a_pid: INTEGER; a_function: POINTER; a_data: POINTER): NATURAL is
