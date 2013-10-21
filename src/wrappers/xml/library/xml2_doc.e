@@ -27,7 +27,8 @@ inherit
 		EIFFEL_OWNED redefine free end
 
 insert 
-	LIBXML2_EXTERNALS
+	TREE_EXTERNALS	
+	XML_DOC_STRUCT
 	SHARED_XML2_NODE_CACHE	
 
 create {ANY} from_external_pointer
@@ -44,8 +45,4 @@ feature {} -- Implementation
 			xml_free (p)
 		end
 
-	struct_size: INTEGER is
-		external "C use <libxml/tree.h>"
-		alias "size_of (xmlDoc)"
-		end
 end -- class XML2_DOC

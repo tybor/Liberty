@@ -39,7 +39,7 @@ feature {} -- External calls
 		}"
 		end
 
-	readline (an_argument_l1016_c7: POINTER): POINTER is
+	readline (an_argument_l1122_c7: POINTER): POINTER is
  		-- readline
 		external "plug_in"
 		alias "{
@@ -49,7 +49,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_abort (an_argument_l2693_c7: INTEGER; an_argument_l2694_c7: INTEGER): INTEGER is
+	rl_abort (an_argument_l2694_c7: INTEGER; an_argument_l2695_c7: INTEGER): INTEGER is
  		-- rl_abort
 		external "plug_in"
 		alias "{
@@ -69,7 +69,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_add_funmap_entry (an_argument_l2926_c7: POINTER; an_argument_l2927_c7: POINTER): INTEGER is
+	rl_add_funmap_entry (an_argument_l322_c7: POINTER; an_argument_l323_c7: POINTER): INTEGER is
  		-- rl_add_funmap_entry
 		external "plug_in"
 		alias "{
@@ -79,7 +79,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_add_undo (an_argument_l623_c7: INTEGER; an_argument_l624_c7: INTEGER; an_argument_l625_c7: INTEGER; an_argument_l626_c7: POINTER) is
+	rl_add_undo (an_argument_l615_c7: INTEGER; an_argument_l616_c7: INTEGER; an_argument_l617_c7: INTEGER; an_argument_l618_c7: POINTER) is
  		-- rl_add_undo
 		external "plug_in"
 		alias "{
@@ -89,7 +89,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_alphabetic (an_argument_l1322_c7: INTEGER): INTEGER is
+	rl_alphabetic (an_argument_l1314_c7: INTEGER): INTEGER is
  		-- rl_alphabetic
 		external "plug_in"
 		alias "{
@@ -129,7 +129,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_arrow_keys (an_argument_l1256_c7: INTEGER; an_argument_l1257_c7: INTEGER): INTEGER is
+	rl_arrow_keys (an_argument_l1248_c7: INTEGER; an_argument_l1249_c7: INTEGER): INTEGER is
  		-- rl_arrow_keys
 		external "plug_in"
 		alias "{
@@ -199,7 +199,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_backward (an_argument_l2645_c7: INTEGER; an_argument_l2646_c7: INTEGER): INTEGER is
+	rl_backward (an_argument_l2311_c7: INTEGER; an_argument_l2312_c7: INTEGER): INTEGER is
  		-- rl_backward
 		external "plug_in"
 		alias "{
@@ -209,7 +209,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_backward_byte (an_argument_l1487_c7: INTEGER; an_argument_l1488_c7: INTEGER): INTEGER is
+	rl_backward_byte (an_argument_l1479_c7: INTEGER; an_argument_l1480_c7: INTEGER): INTEGER is
  		-- rl_backward_byte
 		external "plug_in"
 		alias "{
@@ -219,7 +219,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_backward_char (an_argument_l320_c7: INTEGER; an_argument_l321_c7: INTEGER): INTEGER is
+	rl_backward_char (an_argument_l308_c7: INTEGER; an_argument_l309_c7: INTEGER): INTEGER is
  		-- rl_backward_char
 		external "plug_in"
 		alias "{
@@ -229,7 +229,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_backward_char_search (an_argument_l561_c7: INTEGER; an_argument_l562_c7: INTEGER): INTEGER is
+	rl_backward_char_search (an_argument_l556_c7: INTEGER; an_argument_l557_c7: INTEGER): INTEGER is
  		-- rl_backward_char_search
 		external "plug_in"
 		alias "{
@@ -239,7 +239,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_backward_kill_line (an_argument_l817_c7: INTEGER; an_argument_l818_c7: INTEGER): INTEGER is
+	rl_backward_kill_line (an_argument_l819_c7: INTEGER; an_argument_l820_c7: INTEGER): INTEGER is
  		-- rl_backward_kill_line
 		external "plug_in"
 		alias "{
@@ -249,7 +249,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_backward_kill_word (an_argument_l834_c7: INTEGER; an_argument_l835_c7: INTEGER): INTEGER is
+	rl_backward_kill_word (an_argument_l836_c7: INTEGER; an_argument_l837_c7: INTEGER): INTEGER is
  		-- rl_backward_kill_word
 		external "plug_in"
 		alias "{
@@ -259,7 +259,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_backward_menu_complete (an_argument_l1710_c7: INTEGER; an_argument_l1711_c7: INTEGER): INTEGER is
+	rl_backward_menu_complete (an_argument_l1703_c7: INTEGER; an_argument_l1704_c7: INTEGER): INTEGER is
  		-- rl_backward_menu_complete
 		external "plug_in"
 		alias "{
@@ -269,7 +269,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_backward_word (an_argument_l330_c7: INTEGER; an_argument_l331_c7: INTEGER): INTEGER is
+	rl_backward_word (an_argument_l751_c7: INTEGER; an_argument_l752_c7: INTEGER): INTEGER is
  		-- rl_backward_word
 		external "plug_in"
 		alias "{
@@ -339,7 +339,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_beg_of_line (an_argument_l2097_c7: INTEGER; an_argument_l2098_c7: INTEGER): INTEGER is
+	rl_beg_of_line (an_argument_l2086_c7: INTEGER; an_argument_l2087_c7: INTEGER): INTEGER is
  		-- rl_beg_of_line
 		external "plug_in"
 		alias "{
@@ -359,7 +359,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_beginning_of_history (an_argument_l2312_c7: INTEGER; an_argument_l2313_c7: INTEGER): INTEGER is
+	rl_beginning_of_history (an_argument_l2307_c7: INTEGER; an_argument_l2308_c7: INTEGER): INTEGER is
  		-- rl_beginning_of_history
 		external "plug_in"
 		alias "{
@@ -369,7 +369,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_bind_key (an_argument_l1218_c7: INTEGER; an_argument_l1219_c7: POINTER): INTEGER is
+	rl_bind_key (an_argument_l1216_c7: INTEGER; an_argument_l1217_c7: POINTER): INTEGER is
  		-- rl_bind_key
 		external "plug_in"
 		alias "{
@@ -379,7 +379,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_bind_key_if_unbound (an_argument_l540_c7: INTEGER; an_argument_l541_c7: POINTER): INTEGER is
+	rl_bind_key_if_unbound (an_argument_l535_c7: INTEGER; an_argument_l536_c7: POINTER): INTEGER is
  		-- rl_bind_key_if_unbound
 		external "plug_in"
 		alias "{
@@ -389,7 +389,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_bind_key_if_unbound_in_map (an_argument_l2438_c7: INTEGER; an_argument_l2439_c7: POINTER; an_argument_l2440_c7: POINTER): INTEGER is
+	rl_bind_key_if_unbound_in_map (an_argument_l2437_c7: INTEGER; an_argument_l2438_c7: POINTER; an_argument_l2439_c7: POINTER): INTEGER is
  		-- rl_bind_key_if_unbound_in_map
 		external "plug_in"
 		alias "{
@@ -399,7 +399,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_bind_key_in_map (an_argument_l1198_c7: INTEGER; an_argument_l1199_c7: POINTER; an_argument_l1200_c7: POINTER): INTEGER is
+	rl_bind_key_in_map (an_argument_l1196_c7: INTEGER; an_argument_l1197_c7: POINTER; an_argument_l1198_c7: POINTER): INTEGER is
  		-- rl_bind_key_in_map
 		external "plug_in"
 		alias "{
@@ -409,7 +409,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_bind_keyseq (an_argument_l1893_c7: POINTER; an_argument_l1894_c7: POINTER): INTEGER is
+	rl_bind_keyseq (an_argument_l1886_c7: POINTER; an_argument_l1887_c7: POINTER): INTEGER is
  		-- rl_bind_keyseq
 		external "plug_in"
 		alias "{
@@ -419,7 +419,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_bind_keyseq_if_unbound (an_argument_l670_c7: POINTER; an_argument_l671_c7: POINTER): INTEGER is
+	rl_bind_keyseq_if_unbound (an_argument_l662_c7: POINTER; an_argument_l663_c7: POINTER): INTEGER is
  		-- rl_bind_keyseq_if_unbound
 		external "plug_in"
 		alias "{
@@ -429,7 +429,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_bind_keyseq_if_unbound_in_map (an_argument_l494_c7: POINTER; an_argument_l495_c7: POINTER; an_argument_l496_c7: POINTER): INTEGER is
+	rl_bind_keyseq_if_unbound_in_map (an_argument_l489_c7: POINTER; an_argument_l490_c7: POINTER; an_argument_l491_c7: POINTER): INTEGER is
  		-- rl_bind_keyseq_if_unbound_in_map
 		external "plug_in"
 		alias "{
@@ -439,7 +439,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_bind_keyseq_in_map (an_argument_l2723_c7: POINTER; an_argument_l2724_c7: POINTER; an_argument_l2725_c7: POINTER): INTEGER is
+	rl_bind_keyseq_in_map (an_argument_l2724_c7: POINTER; an_argument_l2725_c7: POINTER; an_argument_l2726_c7: POINTER): INTEGER is
  		-- rl_bind_keyseq_in_map
 		external "plug_in"
 		alias "{
@@ -479,7 +479,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_call_last_kbd_macro (an_argument_l1760_c7: INTEGER; an_argument_l1761_c7: INTEGER): INTEGER is
+	rl_call_last_kbd_macro (an_argument_l1752_c7: INTEGER; an_argument_l1753_c7: INTEGER): INTEGER is
  		-- rl_call_last_kbd_macro
 		external "plug_in"
 		alias "{
@@ -489,7 +489,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_callback_handler_install (an_argument_l2142_c7: POINTER; an_argument_l2143_c7: POINTER) is
+	rl_callback_handler_install (an_argument_l2132_c7: POINTER; an_argument_l2133_c7: POINTER) is
  		-- rl_callback_handler_install
 		external "plug_in"
 		alias "{
@@ -519,7 +519,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_capitalize_word (an_argument_l1191_c7: INTEGER; an_argument_l1192_c7: INTEGER): INTEGER is
+	rl_capitalize_word (an_argument_l1189_c7: INTEGER; an_argument_l1190_c7: INTEGER): INTEGER is
  		-- rl_capitalize_word
 		external "plug_in"
 		alias "{
@@ -619,7 +619,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_char_search (an_argument_l1663_c7: INTEGER; an_argument_l1664_c7: INTEGER): INTEGER is
+	rl_char_search (an_argument_l1656_c7: INTEGER; an_argument_l1657_c7: INTEGER): INTEGER is
  		-- rl_char_search
 		external "plug_in"
 		alias "{
@@ -629,7 +629,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_character_len (an_argument_l941_c7: INTEGER; an_argument_l942_c7: INTEGER): INTEGER is
+	rl_character_len (an_argument_l942_c7: INTEGER; an_argument_l943_c7: INTEGER): INTEGER is
  		-- rl_character_len
 		external "plug_in"
 		alias "{
@@ -669,7 +669,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_clear_screen (an_argument_l648_c7: INTEGER; an_argument_l649_c7: INTEGER): INTEGER is
+	rl_clear_screen (an_argument_l640_c7: INTEGER; an_argument_l641_c7: INTEGER): INTEGER is
  		-- rl_clear_screen
 		external "plug_in"
 		alias "{
@@ -689,7 +689,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_complete (an_argument_l1962_c7: INTEGER; an_argument_l1963_c7: INTEGER): INTEGER is
+	rl_complete (an_argument_l1954_c7: INTEGER; an_argument_l1955_c7: INTEGER): INTEGER is
  		-- rl_complete
 		external "plug_in"
 		alias "{
@@ -699,7 +699,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_complete_internal (an_argument_l2356_c7: INTEGER): INTEGER is
+	rl_complete_internal (an_argument_l2355_c7: INTEGER): INTEGER is
  		-- rl_complete_internal
 		external "plug_in"
 		alias "{
@@ -949,7 +949,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_completion_matches (an_argument_l39_c7: POINTER; an_argument_l40_c7: POINTER): POINTER is
+	rl_completion_matches (an_argument_l38_c7: POINTER; an_argument_l39_c7: POINTER): POINTER is
  		-- rl_completion_matches
 		external "plug_in"
 		alias "{
@@ -959,7 +959,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_completion_mode (an_argument_l1086_c7: POINTER): INTEGER is
+	rl_completion_mode (an_argument_l1075_c7: POINTER): INTEGER is
  		-- rl_completion_mode
 		external "plug_in"
 		alias "{
@@ -1149,7 +1149,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_copy_backward_word (an_argument_l2559_c7: INTEGER; an_argument_l2560_c7: INTEGER): INTEGER is
+	rl_copy_backward_word (an_argument_l2565_c7: INTEGER; an_argument_l2566_c7: INTEGER): INTEGER is
  		-- rl_copy_backward_word
 		external "plug_in"
 		alias "{
@@ -1159,7 +1159,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_copy_forward_word (an_argument_l2910_c7: INTEGER; an_argument_l2911_c7: INTEGER): INTEGER is
+	rl_copy_forward_word (an_argument_l2916_c7: INTEGER; an_argument_l2917_c7: INTEGER): INTEGER is
  		-- rl_copy_forward_word
 		external "plug_in"
 		alias "{
@@ -1169,7 +1169,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_copy_keymap (an_argument_l2572_c7: POINTER): POINTER is
+	rl_copy_keymap (an_argument_l2578_c7: POINTER): POINTER is
  		-- rl_copy_keymap
 		external "plug_in"
 		alias "{
@@ -1179,7 +1179,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_copy_region_to_kill (an_argument_l177_c7: INTEGER; an_argument_l178_c7: INTEGER): INTEGER is
+	rl_copy_region_to_kill (an_argument_l166_c7: INTEGER; an_argument_l167_c7: INTEGER): INTEGER is
  		-- rl_copy_region_to_kill
 		external "plug_in"
 		alias "{
@@ -1189,7 +1189,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_copy_text (an_argument_l1798_c7: INTEGER; an_argument_l1799_c7: INTEGER): POINTER is
+	rl_copy_text (an_argument_l1790_c7: INTEGER; an_argument_l1791_c7: INTEGER): POINTER is
  		-- rl_copy_text
 		external "plug_in"
 		alias "{
@@ -1209,7 +1209,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_delete (an_argument_l1260_c7: INTEGER; an_argument_l1261_c7: INTEGER): INTEGER is
+	rl_delete (an_argument_l1252_c7: INTEGER; an_argument_l1253_c7: INTEGER): INTEGER is
  		-- rl_delete
 		external "plug_in"
 		alias "{
@@ -1219,7 +1219,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_delete_horizontal_space (an_argument_l1948_c7: INTEGER; an_argument_l1949_c7: INTEGER): INTEGER is
+	rl_delete_horizontal_space (an_argument_l1940_c7: INTEGER; an_argument_l1941_c7: INTEGER): INTEGER is
  		-- rl_delete_horizontal_space
 		external "plug_in"
 		alias "{
@@ -1229,7 +1229,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_delete_or_show_completions (an_argument_l1606_c7: INTEGER; an_argument_l1607_c7: INTEGER): INTEGER is
+	rl_delete_or_show_completions (an_argument_l1599_c7: INTEGER; an_argument_l1600_c7: INTEGER): INTEGER is
  		-- rl_delete_or_show_completions
 		external "plug_in"
 		alias "{
@@ -1239,7 +1239,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_delete_text (an_argument_l2710_c7: INTEGER; an_argument_l2711_c7: INTEGER): INTEGER is
+	rl_delete_text (an_argument_l2711_c7: INTEGER; an_argument_l2712_c7: INTEGER): INTEGER is
  		-- rl_delete_text
 		external "plug_in"
 		alias "{
@@ -1289,7 +1289,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_digit_argument (an_argument_l872_c7: INTEGER; an_argument_l873_c7: INTEGER): INTEGER is
+	rl_digit_argument (an_argument_l873_c7: INTEGER; an_argument_l874_c7: INTEGER): INTEGER is
  		-- rl_digit_argument
 		external "plug_in"
 		alias "{
@@ -1379,7 +1379,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_discard_keymap (an_argument_l2421_c7: POINTER) is
+	rl_discard_keymap (an_argument_l2420_c7: POINTER) is
  		-- rl_discard_keymap
 		external "plug_in"
 		alias "{
@@ -1419,7 +1419,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_display_match_list (an_argument_l2113_c7: POINTER; an_argument_l2114_c7: INTEGER; an_argument_l2115_c7: INTEGER) is
+	rl_display_match_list (an_argument_l2102_c7: POINTER; an_argument_l2103_c7: INTEGER; an_argument_l2104_c7: INTEGER) is
  		-- rl_display_match_list
 		external "plug_in"
 		alias "{
@@ -1459,7 +1459,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_do_lowercase_version (an_argument_l1667_c7: INTEGER; an_argument_l1668_c7: INTEGER): INTEGER is
+	rl_do_lowercase_version (an_argument_l1660_c7: INTEGER; an_argument_l1661_c7: INTEGER): INTEGER is
  		-- rl_do_lowercase_version
 		external "plug_in"
 		alias "{
@@ -1509,7 +1509,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_downcase_word (an_argument_l2498_c7: INTEGER; an_argument_l2499_c7: INTEGER): INTEGER is
+	rl_downcase_word (an_argument_l2501_c7: INTEGER; an_argument_l2502_c7: INTEGER): INTEGER is
  		-- rl_downcase_word
 		external "plug_in"
 		alias "{
@@ -1519,7 +1519,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_dump_functions (an_argument_l848_c7: INTEGER; an_argument_l849_c7: INTEGER): INTEGER is
+	rl_dump_functions (an_argument_l849_c7: INTEGER; an_argument_l850_c7: INTEGER): INTEGER is
  		-- rl_dump_functions
 		external "plug_in"
 		alias "{
@@ -1529,7 +1529,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_dump_macros (an_argument_l704_c7: INTEGER; an_argument_l705_c7: INTEGER): INTEGER is
+	rl_dump_macros (an_argument_l697_c7: INTEGER; an_argument_l698_c7: INTEGER): INTEGER is
  		-- rl_dump_macros
 		external "plug_in"
 		alias "{
@@ -1539,7 +1539,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_dump_variables (an_argument_l1272_c7: INTEGER; an_argument_l1273_c7: INTEGER): INTEGER is
+	rl_dump_variables (an_argument_l1264_c7: INTEGER; an_argument_l1265_c7: INTEGER): INTEGER is
  		-- rl_dump_variables
 		external "plug_in"
 		alias "{
@@ -1549,7 +1549,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_echo_signal_char (an_argument_l491_c7: INTEGER) is
+	rl_echo_signal_char (an_argument_l486_c7: INTEGER) is
  		-- rl_echo_signal_char
 		external "plug_in"
 		alias "{
@@ -1589,7 +1589,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_emacs_editing_mode (an_argument_l525_c7: INTEGER; an_argument_l526_c7: INTEGER): INTEGER is
+	rl_emacs_editing_mode (an_argument_l520_c7: INTEGER; an_argument_l521_c7: INTEGER): INTEGER is
  		-- rl_emacs_editing_mode
 		external "plug_in"
 		alias "{
@@ -1629,7 +1629,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_end_kbd_macro (an_argument_l992_c7: INTEGER; an_argument_l993_c7: INTEGER): INTEGER is
+	rl_end_kbd_macro (an_argument_l993_c7: INTEGER; an_argument_l994_c7: INTEGER): INTEGER is
  		-- rl_end_kbd_macro
 		external "plug_in"
 		alias "{
@@ -1639,7 +1639,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_end_of_history (an_argument_l2118_c7: INTEGER; an_argument_l2119_c7: INTEGER): INTEGER is
+	rl_end_of_history (an_argument_l2107_c7: INTEGER; an_argument_l2108_c7: INTEGER): INTEGER is
  		-- rl_end_of_history
 		external "plug_in"
 		alias "{
@@ -1649,7 +1649,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_end_of_line (an_argument_l1173_c7: INTEGER; an_argument_l1174_c7: INTEGER): INTEGER is
+	rl_end_of_line (an_argument_l1171_c7: INTEGER; an_argument_l1172_c7: INTEGER): INTEGER is
  		-- rl_end_of_line
 		external "plug_in"
 		alias "{
@@ -1729,7 +1729,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_exchange_point_and_mark (an_argument_l1310_c7: INTEGER; an_argument_l1311_c7: INTEGER): INTEGER is
+	rl_exchange_point_and_mark (an_argument_l1302_c7: INTEGER; an_argument_l1303_c7: INTEGER): INTEGER is
  		-- rl_exchange_point_and_mark
 		external "plug_in"
 		alias "{
@@ -1739,7 +1739,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_execute_next (an_argument_l996_c7: INTEGER): INTEGER is
+	rl_execute_next (an_argument_l997_c7: INTEGER): INTEGER is
  		-- rl_execute_next
 		external "plug_in"
 		alias "{
@@ -1809,7 +1809,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_expand_prompt (an_argument_l1138_c7: POINTER): INTEGER is
+	rl_expand_prompt (an_argument_l1135_c7: POINTER): INTEGER is
  		-- rl_expand_prompt
 		external "plug_in"
 		alias "{
@@ -1849,7 +1849,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_extend_line_buffer (an_argument_l129_c7: INTEGER) is
+	rl_extend_line_buffer (an_argument_l124_c7: INTEGER) is
  		-- rl_extend_line_buffer
 		external "plug_in"
 		alias "{
@@ -1889,7 +1889,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_filename_completion_function (an_argument_l1395_c7: POINTER; an_argument_l1396_c7: INTEGER): POINTER is
+	rl_filename_completion_function (an_argument_l1384_c7: POINTER; an_argument_l1385_c7: INTEGER): POINTER is
  		-- rl_filename_completion_function
 		external "plug_in"
 		alias "{
@@ -2059,7 +2059,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_forward (an_argument_l434_c7: INTEGER; an_argument_l435_c7: INTEGER): INTEGER is
+	rl_forward (an_argument_l432_c7: INTEGER; an_argument_l433_c7: INTEGER): INTEGER is
  		-- rl_forward
 		external "plug_in"
 		alias "{
@@ -2069,7 +2069,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_forward_byte (an_argument_l2950_c7: INTEGER; an_argument_l2951_c7: INTEGER): INTEGER is
+	rl_forward_byte (an_argument_l2952_c7: INTEGER; an_argument_l2953_c7: INTEGER): INTEGER is
  		-- rl_forward_byte
 		external "plug_in"
 		alias "{
@@ -2079,7 +2079,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_forward_char (an_argument_l1888_c7: INTEGER; an_argument_l1889_c7: INTEGER): INTEGER is
+	rl_forward_char (an_argument_l1880_c7: INTEGER; an_argument_l1881_c7: INTEGER): INTEGER is
  		-- rl_forward_char
 		external "plug_in"
 		alias "{
@@ -2089,7 +2089,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_forward_search_history (an_argument_l825_c7: INTEGER; an_argument_l826_c7: INTEGER): INTEGER is
+	rl_forward_search_history (an_argument_l827_c7: INTEGER; an_argument_l828_c7: INTEGER): INTEGER is
  		-- rl_forward_search_history
 		external "plug_in"
 		alias "{
@@ -2099,7 +2099,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_forward_word (an_argument_l2224_c7: INTEGER; an_argument_l2225_c7: INTEGER): INTEGER is
+	rl_forward_word (an_argument_l2214_c7: INTEGER; an_argument_l2215_c7: INTEGER): INTEGER is
  		-- rl_forward_word
 		external "plug_in"
 		alias "{
@@ -2109,7 +2109,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_free (an_argument_l447_c7: POINTER) is
+	rl_free (an_argument_l1904_c7: POINTER) is
  		-- rl_free
 		external "plug_in"
 		alias "{
@@ -2139,7 +2139,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_function_dumper (an_argument_l712_c7: INTEGER) is
+	rl_function_dumper (an_argument_l705_c7: INTEGER) is
  		-- rl_function_dumper
 		external "plug_in"
 		alias "{
@@ -2149,7 +2149,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_function_of_keyseq (an_argument_l1133_c7: POINTER; an_argument_l1134_c7: POINTER; an_argument_l1135_c7: POINTER): POINTER is
+	rl_function_of_keyseq (an_argument_l1125_c7: POINTER; an_argument_l1126_c7: POINTER; an_argument_l1127_c7: POINTER): POINTER is
  		-- rl_function_of_keyseq
 		external "plug_in"
 		alias "{
@@ -2189,7 +2189,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_get_keymap_by_name (an_argument_l1231_c7: POINTER): POINTER is
+	rl_get_keymap_by_name (an_argument_l1229_c7: POINTER): POINTER is
  		-- rl_get_keymap_by_name
 		external "plug_in"
 		alias "{
@@ -2199,7 +2199,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_get_keymap_name (an_argument_l985_c7: POINTER): POINTER is
+	rl_get_keymap_name (an_argument_l986_c7: POINTER): POINTER is
  		-- rl_get_keymap_name
 		external "plug_in"
 		alias "{
@@ -2219,7 +2219,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_get_next_history (an_argument_l56_c7: INTEGER; an_argument_l57_c7: INTEGER): INTEGER is
+	rl_get_next_history (an_argument_l55_c7: INTEGER; an_argument_l56_c7: INTEGER): INTEGER is
  		-- rl_get_next_history
 		external "plug_in"
 		alias "{
@@ -2229,7 +2229,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_get_previous_history (an_argument_l1648_c7: INTEGER; an_argument_l1649_c7: INTEGER): INTEGER is
+	rl_get_previous_history (an_argument_l1641_c7: INTEGER; an_argument_l1642_c7: INTEGER): INTEGER is
  		-- rl_get_previous_history
 		external "plug_in"
 		alias "{
@@ -2239,7 +2239,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_get_screen_size (an_argument_l1267_c7: POINTER; an_argument_l1268_c7: POINTER) is
+	rl_get_screen_size (an_argument_l1259_c7: POINTER; an_argument_l1260_c7: POINTER) is
  		-- rl_get_screen_size
 		external "plug_in"
 		alias "{
@@ -2249,7 +2249,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_get_termcap (an_argument_l1844_c7: POINTER): POINTER is
+	rl_get_termcap (an_argument_l1836_c7: POINTER): POINTER is
  		-- rl_get_termcap
 		external "plug_in"
 		alias "{
@@ -2259,7 +2259,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_getc (an_argument_l1747_c7: POINTER): INTEGER is
+	rl_getc (an_argument_l1739_c7: POINTER): INTEGER is
  		-- rl_getc
 		external "plug_in"
 		alias "{
@@ -2329,7 +2329,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_history_search_backward (an_argument_l739_c7: INTEGER; an_argument_l740_c7: INTEGER): INTEGER is
+	rl_history_search_backward (an_argument_l735_c7: INTEGER; an_argument_l736_c7: INTEGER): INTEGER is
  		-- rl_history_search_backward
 		external "plug_in"
 		alias "{
@@ -2339,7 +2339,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_history_search_forward (an_argument_l2884_c7: INTEGER; an_argument_l2885_c7: INTEGER): INTEGER is
+	rl_history_search_forward (an_argument_l2891_c7: INTEGER; an_argument_l2892_c7: INTEGER): INTEGER is
  		-- rl_history_search_forward
 		external "plug_in"
 		alias "{
@@ -2459,7 +2459,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_insert (an_argument_l411_c7: INTEGER; an_argument_l412_c7: INTEGER): INTEGER is
+	rl_insert (an_argument_l403_c7: INTEGER; an_argument_l404_c7: INTEGER): INTEGER is
  		-- rl_insert
 		external "plug_in"
 		alias "{
@@ -2469,7 +2469,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_insert_close (an_argument_l1907_c7: INTEGER; an_argument_l1908_c7: INTEGER): INTEGER is
+	rl_insert_close (an_argument_l1900_c7: INTEGER; an_argument_l1901_c7: INTEGER): INTEGER is
  		-- rl_insert_close
 		external "plug_in"
 		alias "{
@@ -2479,7 +2479,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_insert_comment (an_argument_l1227_c7: INTEGER; an_argument_l1228_c7: INTEGER): INTEGER is
+	rl_insert_comment (an_argument_l1225_c7: INTEGER; an_argument_l1226_c7: INTEGER): INTEGER is
  		-- rl_insert_comment
 		external "plug_in"
 		alias "{
@@ -2489,7 +2489,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_insert_completions (an_argument_l606_c7: INTEGER; an_argument_l607_c7: INTEGER): INTEGER is
+	rl_insert_completions (an_argument_l598_c7: INTEGER; an_argument_l599_c7: INTEGER): INTEGER is
  		-- rl_insert_completions
 		external "plug_in"
 		alias "{
@@ -2529,7 +2529,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_insert_text (an_argument_l374_c7: POINTER): INTEGER is
+	rl_insert_text (an_argument_l365_c7: POINTER): INTEGER is
  		-- rl_insert_text
 		external "plug_in"
 		alias "{
@@ -2569,7 +2569,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_invoking_keyseqs (an_argument_l859_c7: POINTER): POINTER is
+	rl_invoking_keyseqs (an_argument_l860_c7: POINTER): POINTER is
  		-- rl_invoking_keyseqs
 		external "plug_in"
 		alias "{
@@ -2579,7 +2579,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_invoking_keyseqs_in_map (an_argument_l1911_c7: POINTER; an_argument_l1912_c7: POINTER): POINTER is
+	rl_invoking_keyseqs_in_map (an_argument_l2458_c7: POINTER; an_argument_l2459_c7: POINTER): POINTER is
  		-- rl_invoking_keyseqs_in_map
 		external "plug_in"
 		alias "{
@@ -2589,7 +2589,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_kill_full_line (an_argument_l2479_c7: INTEGER; an_argument_l2480_c7: INTEGER): INTEGER is
+	rl_kill_full_line (an_argument_l2482_c7: INTEGER; an_argument_l2483_c7: INTEGER): INTEGER is
  		-- rl_kill_full_line
 		external "plug_in"
 		alias "{
@@ -2599,7 +2599,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_kill_line (an_argument_l1882_c7: INTEGER; an_argument_l1883_c7: INTEGER): INTEGER is
+	rl_kill_line (an_argument_l1874_c7: INTEGER; an_argument_l1875_c7: INTEGER): INTEGER is
  		-- rl_kill_line
 		external "plug_in"
 		alias "{
@@ -2609,7 +2609,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_kill_region (an_argument_l219_c7: INTEGER; an_argument_l220_c7: INTEGER): INTEGER is
+	rl_kill_region (an_argument_l204_c7: INTEGER; an_argument_l205_c7: INTEGER): INTEGER is
  		-- rl_kill_region
 		external "plug_in"
 		alias "{
@@ -2619,7 +2619,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_kill_text (an_argument_l967_c7: INTEGER; an_argument_l968_c7: INTEGER): INTEGER is
+	rl_kill_text (an_argument_l968_c7: INTEGER; an_argument_l969_c7: INTEGER): INTEGER is
  		-- rl_kill_text
 		external "plug_in"
 		alias "{
@@ -2629,7 +2629,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_kill_word (an_argument_l2872_c7: INTEGER; an_argument_l2873_c7: INTEGER): INTEGER is
+	rl_kill_word (an_argument_l2879_c7: INTEGER; an_argument_l2880_c7: INTEGER): INTEGER is
  		-- rl_kill_word
 		external "plug_in"
 		alias "{
@@ -2739,7 +2739,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_macro_bind (an_argument_l1146_c7: POINTER; an_argument_l1147_c7: POINTER; an_argument_l1148_c7: POINTER): INTEGER is
+	rl_macro_bind (an_argument_l1143_c7: POINTER; an_argument_l1144_c7: POINTER; an_argument_l1145_c7: POINTER): INTEGER is
  		-- rl_macro_bind
 		external "plug_in"
 		alias "{
@@ -2749,7 +2749,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_macro_dumper (an_argument_l1349_c7: INTEGER) is
+	rl_macro_dumper (an_argument_l1341_c7: INTEGER) is
  		-- rl_macro_dumper
 		external "plug_in"
 		alias "{
@@ -2839,7 +2839,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_menu_complete (an_argument_l215_c7: INTEGER; an_argument_l216_c7: INTEGER): INTEGER is
+	rl_menu_complete (an_argument_l200_c7: INTEGER; an_argument_l201_c7: INTEGER): INTEGER is
  		-- rl_menu_complete
 		external "plug_in"
 		alias "{
@@ -2889,7 +2889,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_modifying (an_argument_l2764_c7: INTEGER; an_argument_l2765_c7: INTEGER): INTEGER is
+	rl_modifying (an_argument_l2772_c7: INTEGER; an_argument_l2773_c7: INTEGER): INTEGER is
  		-- rl_modifying
 		external "plug_in"
 		alias "{
@@ -2899,7 +2899,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_named_function (an_argument_l1956_c7: POINTER): POINTER is
+	rl_named_function (an_argument_l1948_c7: POINTER): POINTER is
  		-- rl_named_function
 		external "plug_in"
 		alias "{
@@ -2909,7 +2909,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_newline (an_argument_l2153_c7: INTEGER; an_argument_l2154_c7: INTEGER): INTEGER is
+	rl_newline (an_argument_l2143_c7: INTEGER; an_argument_l2144_c7: INTEGER): INTEGER is
  		-- rl_newline
 		external "plug_in"
 		alias "{
@@ -2919,7 +2919,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_noninc_forward_search (an_argument_l1847_c7: INTEGER; an_argument_l1848_c7: INTEGER): INTEGER is
+	rl_noninc_forward_search (an_argument_l1839_c7: INTEGER; an_argument_l1840_c7: INTEGER): INTEGER is
  		-- rl_noninc_forward_search
 		external "plug_in"
 		alias "{
@@ -2929,7 +2929,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_noninc_forward_search_again (an_argument_l594_c7: INTEGER; an_argument_l595_c7: INTEGER): INTEGER is
+	rl_noninc_forward_search_again (an_argument_l587_c7: INTEGER; an_argument_l588_c7: INTEGER): INTEGER is
  		-- rl_noninc_forward_search_again
 		external "plug_in"
 		alias "{
@@ -2939,7 +2939,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_noninc_reverse_search (an_argument_l720_c7: INTEGER; an_argument_l721_c7: INTEGER): INTEGER is
+	rl_noninc_reverse_search (an_argument_l713_c7: INTEGER; an_argument_l714_c7: INTEGER): INTEGER is
  		-- rl_noninc_reverse_search
 		external "plug_in"
 		alias "{
@@ -2949,7 +2949,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_noninc_reverse_search_again (an_argument_l830_c7: INTEGER; an_argument_l831_c7: INTEGER): INTEGER is
+	rl_noninc_reverse_search_again (an_argument_l832_c7: INTEGER; an_argument_l833_c7: INTEGER): INTEGER is
  		-- rl_noninc_reverse_search_again
 		external "plug_in"
 		alias "{
@@ -3019,7 +3019,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_old_menu_complete (an_argument_l1436_c7: INTEGER; an_argument_l1437_c7: INTEGER): INTEGER is
+	rl_old_menu_complete (an_argument_l1425_c7: INTEGER; an_argument_l1426_c7: INTEGER): INTEGER is
  		-- rl_old_menu_complete
 		external "plug_in"
 		alias "{
@@ -3079,7 +3079,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_overwrite_mode (an_argument_l681_c7: INTEGER; an_argument_l682_c7: INTEGER): INTEGER is
+	rl_overwrite_mode (an_argument_l673_c7: INTEGER; an_argument_l674_c7: INTEGER): INTEGER is
  		-- rl_overwrite_mode
 		external "plug_in"
 		alias "{
@@ -3089,7 +3089,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_parse_and_bind (an_argument_l2105_c7: POINTER): INTEGER is
+	rl_parse_and_bind (an_argument_l2094_c7: POINTER): INTEGER is
  		-- rl_parse_and_bind
 		external "plug_in"
 		alias "{
@@ -3159,7 +3159,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_possible_completions (an_argument_l419_c7: INTEGER; an_argument_l420_c7: INTEGER): INTEGER is
+	rl_possible_completions (an_argument_l417_c7: INTEGER; an_argument_l418_c7: INTEGER): INTEGER is
  		-- rl_possible_completions
 		external "plug_in"
 		alias "{
@@ -3259,7 +3259,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_prep_terminal (an_argument_l2424_c7: INTEGER) is
+	rl_prep_terminal (an_argument_l2423_c7: INTEGER) is
  		-- rl_prep_terminal
 		external "plug_in"
 		alias "{
@@ -3299,7 +3299,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_push_macro_input (an_argument_l2249_c7: POINTER) is
+	rl_push_macro_input (an_argument_l2239_c7: POINTER) is
  		-- rl_push_macro_input
 		external "plug_in"
 		alias "{
@@ -3309,7 +3309,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_quoted_insert (an_argument_l1901_c7: INTEGER; an_argument_l1902_c7: INTEGER): INTEGER is
+	rl_quoted_insert (an_argument_l1894_c7: INTEGER; an_argument_l1895_c7: INTEGER): INTEGER is
  		-- rl_quoted_insert
 		external "plug_in"
 		alias "{
@@ -3319,7 +3319,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_re_read_init_file (an_argument_l959_c7: INTEGER; an_argument_l960_c7: INTEGER): INTEGER is
+	rl_re_read_init_file (an_argument_l960_c7: INTEGER; an_argument_l961_c7: INTEGER): INTEGER is
  		-- rl_re_read_init_file
 		external "plug_in"
 		alias "{
@@ -3329,7 +3329,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_read_init_file (an_argument_l2094_c7: POINTER): INTEGER is
+	rl_read_init_file (an_argument_l2083_c7: POINTER): INTEGER is
  		-- rl_read_init_file
 		external "plug_in"
 		alias "{
@@ -3479,7 +3479,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_refresh_line (an_argument_l963_c7: INTEGER; an_argument_l964_c7: INTEGER): INTEGER is
+	rl_refresh_line (an_argument_l964_c7: INTEGER; an_argument_l965_c7: INTEGER): INTEGER is
  		-- rl_refresh_line
 		external "plug_in"
 		alias "{
@@ -3489,7 +3489,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_replace_line (an_argument_l2025_c7: POINTER; an_argument_l2026_c7: INTEGER) is
+	rl_replace_line (an_argument_l2014_c7: POINTER; an_argument_l2015_c7: INTEGER) is
  		-- rl_replace_line
 		external "plug_in"
 		alias "{
@@ -3549,7 +3549,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_restart_output (an_argument_l1089_c7: INTEGER; an_argument_l1090_c7: INTEGER): INTEGER is
+	rl_restart_output (an_argument_l1078_c7: INTEGER; an_argument_l1079_c7: INTEGER): INTEGER is
  		-- rl_restart_output
 		external "plug_in"
 		alias "{
@@ -3569,7 +3569,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_restore_state (an_argument_l2324_c7: POINTER): INTEGER is
+	rl_restore_state (an_argument_l2323_c7: POINTER): INTEGER is
  		-- rl_restore_state
 		external "plug_in"
 		alias "{
@@ -3579,7 +3579,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_reverse_search_history (an_argument_l1364_c7: INTEGER; an_argument_l1365_c7: INTEGER): INTEGER is
+	rl_reverse_search_history (an_argument_l1356_c7: INTEGER; an_argument_l1357_c7: INTEGER): INTEGER is
  		-- rl_reverse_search_history
 		external "plug_in"
 		alias "{
@@ -3589,7 +3589,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_revert_line (an_argument_l355_c7: INTEGER; an_argument_l356_c7: INTEGER): INTEGER is
+	rl_revert_line (an_argument_l346_c7: INTEGER; an_argument_l347_c7: INTEGER): INTEGER is
  		-- rl_revert_line
 		external "plug_in"
 		alias "{
@@ -3599,7 +3599,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_rubout (an_argument_l2291_c7: INTEGER; an_argument_l2292_c7: INTEGER): INTEGER is
+	rl_rubout (an_argument_l2285_c7: INTEGER; an_argument_l2286_c7: INTEGER): INTEGER is
  		-- rl_rubout
 		external "plug_in"
 		alias "{
@@ -3609,7 +3609,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_rubout_or_delete (an_argument_l2090_c7: INTEGER; an_argument_l2091_c7: INTEGER): INTEGER is
+	rl_rubout_or_delete (an_argument_l2079_c7: INTEGER; an_argument_l2080_c7: INTEGER): INTEGER is
  		-- rl_rubout_or_delete
 		external "plug_in"
 		alias "{
@@ -3629,7 +3629,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_save_state (an_argument_l2845_c7: POINTER): INTEGER is
+	rl_save_state (an_argument_l2852_c7: POINTER): INTEGER is
  		-- rl_save_state
 		external "plug_in"
 		alias "{
@@ -3639,7 +3639,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_set_key (an_argument_l1246_c7: POINTER; an_argument_l1247_c7: POINTER; an_argument_l1248_c7: POINTER): INTEGER is
+	rl_set_key (an_argument_l1241_c7: POINTER; an_argument_l1242_c7: POINTER; an_argument_l1243_c7: POINTER): INTEGER is
  		-- rl_set_key
 		external "plug_in"
 		alias "{
@@ -3649,7 +3649,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_set_keyboard_input_timeout (an_argument_l1966_c7: INTEGER): INTEGER is
+	rl_set_keyboard_input_timeout (an_argument_l717_c7: INTEGER): INTEGER is
  		-- rl_set_keyboard_input_timeout
 		external "plug_in"
 		alias "{
@@ -3659,7 +3659,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_set_keymap (an_argument_l1195_c7: POINTER) is
+	rl_set_keymap (an_argument_l1193_c7: POINTER) is
  		-- rl_set_keymap
 		external "plug_in"
 		alias "{
@@ -3679,7 +3679,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_set_mark (an_argument_l1802_c7: INTEGER; an_argument_l1803_c7: INTEGER): INTEGER is
+	rl_set_mark (an_argument_l1794_c7: INTEGER; an_argument_l1795_c7: INTEGER): INTEGER is
  		-- rl_set_mark
 		external "plug_in"
 		alias "{
@@ -3689,7 +3689,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_set_paren_blink_timeout (an_argument_l2495_c7: INTEGER): INTEGER is
+	rl_set_paren_blink_timeout (an_argument_l2498_c7: INTEGER): INTEGER is
  		-- rl_set_paren_blink_timeout
 		external "plug_in"
 		alias "{
@@ -3699,7 +3699,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_set_prompt (an_argument_l1699_c7: POINTER): INTEGER is
+	rl_set_prompt (an_argument_l1692_c7: POINTER): INTEGER is
  		-- rl_set_prompt
 		external "plug_in"
 		alias "{
@@ -3709,7 +3709,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_set_screen_size (an_argument_l1177_c7: INTEGER; an_argument_l1178_c7: INTEGER) is
+	rl_set_screen_size (an_argument_l1175_c7: INTEGER; an_argument_l1176_c7: INTEGER) is
  		-- rl_set_screen_size
 		external "plug_in"
 		alias "{
@@ -3729,7 +3729,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_show_char (an_argument_l2228_c7: INTEGER): INTEGER is
+	rl_show_char (an_argument_l2218_c7: INTEGER): INTEGER is
  		-- rl_show_char
 		external "plug_in"
 		alias "{
@@ -3739,7 +3739,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_skip_csi_sequence (an_argument_l2502_c7: INTEGER; an_argument_l2503_c7: INTEGER): INTEGER is
+	rl_skip_csi_sequence (an_argument_l2505_c7: INTEGER; an_argument_l2506_c7: INTEGER): INTEGER is
  		-- rl_skip_csi_sequence
 		external "plug_in"
 		alias "{
@@ -3809,7 +3809,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_start_kbd_macro (an_argument_l1208_c7: INTEGER; an_argument_l1209_c7: INTEGER): INTEGER is
+	rl_start_kbd_macro (an_argument_l1206_c7: INTEGER; an_argument_l1207_c7: INTEGER): INTEGER is
  		-- rl_start_kbd_macro
 		external "plug_in"
 		alias "{
@@ -3849,7 +3849,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_stop_output (an_argument_l2855_c7: INTEGER; an_argument_l2856_c7: INTEGER): INTEGER is
+	rl_stop_output (an_argument_l2862_c7: INTEGER; an_argument_l2863_c7: INTEGER): INTEGER is
  		-- rl_stop_output
 		external "plug_in"
 		alias "{
@@ -3859,7 +3859,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_stuff_char (an_argument_l2017_c7: INTEGER): INTEGER is
+	rl_stuff_char (an_argument_l2006_c7: INTEGER): INTEGER is
  		-- rl_stuff_char
 		external "plug_in"
 		alias "{
@@ -3869,7 +3869,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_tab_insert (an_argument_l1822_c7: INTEGER; an_argument_l1823_c7: INTEGER): INTEGER is
+	rl_tab_insert (an_argument_l1814_c7: INTEGER; an_argument_l1815_c7: INTEGER): INTEGER is
  		-- rl_tab_insert
 		external "plug_in"
 		alias "{
@@ -3909,7 +3909,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_tilde_expand (an_argument_l1586_c7: INTEGER; an_argument_l1587_c7: INTEGER): INTEGER is
+	rl_tilde_expand (an_argument_l1579_c7: INTEGER; an_argument_l1580_c7: INTEGER): INTEGER is
  		-- rl_tilde_expand
 		external "plug_in"
 		alias "{
@@ -3919,7 +3919,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_translate_keyseq (an_argument_l96_c7: POINTER; an_argument_l97_c7: POINTER; an_argument_l98_c7: POINTER): INTEGER is
+	rl_translate_keyseq (an_argument_l91_c7: POINTER; an_argument_l92_c7: POINTER; an_argument_l93_c7: POINTER): INTEGER is
  		-- rl_translate_keyseq
 		external "plug_in"
 		alias "{
@@ -3929,7 +3929,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_transpose_chars (an_argument_l2670_c7: INTEGER; an_argument_l2671_c7: INTEGER): INTEGER is
+	rl_transpose_chars (an_argument_l2671_c7: INTEGER; an_argument_l2672_c7: INTEGER): INTEGER is
  		-- rl_transpose_chars
 		external "plug_in"
 		alias "{
@@ -3939,7 +3939,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_transpose_words (an_argument_l1399_c7: INTEGER; an_argument_l1400_c7: INTEGER): INTEGER is
+	rl_transpose_words (an_argument_l1388_c7: INTEGER; an_argument_l1389_c7: INTEGER): INTEGER is
  		-- rl_transpose_words
 		external "plug_in"
 		alias "{
@@ -3949,7 +3949,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_tty_set_default_bindings (an_argument_l1023_c7: POINTER) is
+	rl_tty_set_default_bindings (an_argument_l1016_c7: POINTER) is
  		-- rl_tty_set_default_bindings
 		external "plug_in"
 		alias "{
@@ -3959,7 +3959,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_tty_status (an_argument_l2245_c7: INTEGER; an_argument_l2246_c7: INTEGER): INTEGER is
+	rl_tty_status (an_argument_l2235_c7: INTEGER; an_argument_l2236_c7: INTEGER): INTEGER is
  		-- rl_tty_status
 		external "plug_in"
 		alias "{
@@ -3969,7 +3969,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_tty_unset_default_bindings (an_argument_l359_c7: POINTER) is
+	rl_tty_unset_default_bindings (an_argument_l350_c7: POINTER) is
  		-- rl_tty_unset_default_bindings
 		external "plug_in"
 		alias "{
@@ -3979,7 +3979,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_unbind_command_in_map (an_argument_l1055_c7: POINTER; an_argument_l1056_c7: POINTER): INTEGER is
+	rl_unbind_command_in_map (an_argument_l1048_c7: POINTER; an_argument_l1049_c7: POINTER): INTEGER is
  		-- rl_unbind_command_in_map
 		external "plug_in"
 		alias "{
@@ -3989,7 +3989,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_unbind_function_in_map (an_argument_l1794_c7: POINTER; an_argument_l1795_c7: POINTER): INTEGER is
+	rl_unbind_function_in_map (an_argument_l1786_c7: POINTER; an_argument_l1787_c7: POINTER): INTEGER is
  		-- rl_unbind_function_in_map
 		external "plug_in"
 		alias "{
@@ -3999,7 +3999,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_unbind_key (an_argument_l2071_c7: INTEGER): INTEGER is
+	rl_unbind_key (an_argument_l2060_c7: INTEGER): INTEGER is
  		-- rl_unbind_key
 		external "plug_in"
 		alias "{
@@ -4009,7 +4009,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_unbind_key_in_map (an_argument_l2545_c7: INTEGER; an_argument_l2546_c7: POINTER): INTEGER is
+	rl_unbind_key_in_map (an_argument_l2551_c7: INTEGER; an_argument_l2552_c7: POINTER): INTEGER is
  		-- rl_unbind_key_in_map
 		external "plug_in"
 		alias "{
@@ -4019,7 +4019,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_undo_command (an_argument_l1514_c7: INTEGER; an_argument_l1515_c7: INTEGER): INTEGER is
+	rl_undo_command (an_argument_l1507_c7: INTEGER; an_argument_l1508_c7: INTEGER): INTEGER is
  		-- rl_undo_command
 		external "plug_in"
 		alias "{
@@ -4059,7 +4059,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_universal_argument (an_argument_l2977_c7: INTEGER; an_argument_l2978_c7: INTEGER): INTEGER is
+	rl_universal_argument (an_argument_l2979_c7: INTEGER; an_argument_l2980_c7: INTEGER): INTEGER is
  		-- rl_universal_argument
 		external "plug_in"
 		alias "{
@@ -4069,7 +4069,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_unix_filename_rubout (an_argument_l211_c7: INTEGER; an_argument_l212_c7: INTEGER): INTEGER is
+	rl_unix_filename_rubout (an_argument_l196_c7: INTEGER; an_argument_l197_c7: INTEGER): INTEGER is
  		-- rl_unix_filename_rubout
 		external "plug_in"
 		alias "{
@@ -4079,7 +4079,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_unix_line_discard (an_argument_l2983_c7: INTEGER; an_argument_l2984_c7: INTEGER): INTEGER is
+	rl_unix_line_discard (an_argument_l2985_c7: INTEGER; an_argument_l2986_c7: INTEGER): INTEGER is
  		-- rl_unix_line_discard
 		external "plug_in"
 		alias "{
@@ -4089,7 +4089,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_unix_word_rubout (an_argument_l2041_c7: INTEGER; an_argument_l2042_c7: INTEGER): INTEGER is
+	rl_unix_word_rubout (an_argument_l2030_c7: INTEGER; an_argument_l2031_c7: INTEGER): INTEGER is
  		-- rl_unix_word_rubout
 		external "plug_in"
 		alias "{
@@ -4099,7 +4099,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_untranslate_keyseq (an_argument_l2174_c7: INTEGER): POINTER is
+	rl_untranslate_keyseq (an_argument_l2164_c7: INTEGER): POINTER is
  		-- rl_untranslate_keyseq
 		external "plug_in"
 		alias "{
@@ -4109,7 +4109,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_upcase_word (an_argument_l2915_c7: INTEGER; an_argument_l2916_c7: INTEGER): INTEGER is
+	rl_upcase_word (an_argument_l2921_c7: INTEGER; an_argument_l2922_c7: INTEGER): INTEGER is
  		-- rl_upcase_word
 		external "plug_in"
 		alias "{
@@ -4119,7 +4119,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_username_completion_function (an_argument_l567_c7: POINTER; an_argument_l568_c7: INTEGER): POINTER is
+	rl_username_completion_function (an_argument_l2735_c7: POINTER; an_argument_l2736_c7: INTEGER): POINTER is
  		-- rl_username_completion_function
 		external "plug_in"
 		alias "{
@@ -4129,7 +4129,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_variable_bind (an_argument_l2449_c7: POINTER; an_argument_l2450_c7: POINTER): INTEGER is
+	rl_variable_bind (an_argument_l2448_c7: POINTER; an_argument_l2449_c7: POINTER): INTEGER is
  		-- rl_variable_bind
 		external "plug_in"
 		alias "{
@@ -4139,7 +4139,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_variable_dumper (an_argument_l591_c7: INTEGER) is
+	rl_variable_dumper (an_argument_l584_c7: INTEGER) is
  		-- rl_variable_dumper
 		external "plug_in"
 		alias "{
@@ -4149,7 +4149,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_variable_value (an_argument_l1403_c7: POINTER): POINTER is
+	rl_variable_value (an_argument_l1393_c7: POINTER): POINTER is
  		-- rl_variable_value
 		external "plug_in"
 		alias "{
@@ -4159,7 +4159,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_append_eol (an_argument_l955_c7: INTEGER; an_argument_l956_c7: INTEGER): INTEGER is
+	rl_vi_append_eol (an_argument_l956_c7: INTEGER; an_argument_l957_c7: INTEGER): INTEGER is
  		-- rl_vi_append_eol
 		external "plug_in"
 		alias "{
@@ -4169,7 +4169,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_append_mode (an_argument_l1214_c7: INTEGER; an_argument_l1215_c7: INTEGER): INTEGER is
+	rl_vi_append_mode (an_argument_l1212_c7: INTEGER; an_argument_l1213_c7: INTEGER): INTEGER is
  		-- rl_vi_append_mode
 		external "plug_in"
 		alias "{
@@ -4179,7 +4179,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_arg_digit (an_argument_l876_c7: INTEGER; an_argument_l877_c7: INTEGER): INTEGER is
+	rl_vi_arg_digit (an_argument_l877_c7: INTEGER; an_argument_l878_c7: INTEGER): INTEGER is
  		-- rl_vi_arg_digit
 		external "plug_in"
 		alias "{
@@ -4189,7 +4189,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_b_word (an_argument_l2169_c7: INTEGER; an_argument_l2170_c7: INTEGER): INTEGER is
+	rl_vi_b_word (an_argument_l2159_c7: INTEGER; an_argument_l2160_c7: INTEGER): INTEGER is
  		-- rl_vi_bWord
 		external "plug_in"
 		alias "{
@@ -4199,7 +4199,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_back_to_indent (an_argument_l2629_c7: INTEGER; an_argument_l2630_c7: INTEGER): INTEGER is
+	rl_vi_back_to_indent (an_argument_l2634_c7: INTEGER; an_argument_l2635_c7: INTEGER): INTEGER is
  		-- rl_vi_back_to_indent
 		external "plug_in"
 		alias "{
@@ -4209,7 +4209,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_bracktype (an_argument_l2525_c7: INTEGER): INTEGER is
+	rl_vi_bracktype (an_argument_l2531_c7: INTEGER): INTEGER is
  		-- rl_vi_bracktype
 		external "plug_in"
 		alias "{
@@ -4219,7 +4219,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_bword (an_argument_l423_c7: INTEGER; an_argument_l424_c7: INTEGER): INTEGER is
+	rl_vi_bword (an_argument_l421_c7: INTEGER; an_argument_l422_c7: INTEGER): INTEGER is
  		-- rl_vi_bword
 		external "plug_in"
 		alias "{
@@ -4229,7 +4229,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_change_case (an_argument_l1387_c7: INTEGER; an_argument_l1388_c7: INTEGER): INTEGER is
+	rl_vi_change_case (an_argument_l1376_c7: INTEGER; an_argument_l1377_c7: INTEGER): INTEGER is
  		-- rl_vi_change_case
 		external "plug_in"
 		alias "{
@@ -4239,7 +4239,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_change_char (an_argument_l842_c7: INTEGER; an_argument_l843_c7: INTEGER): INTEGER is
+	rl_vi_change_char (an_argument_l844_c7: INTEGER; an_argument_l845_c7: INTEGER): INTEGER is
  		-- rl_vi_change_char
 		external "plug_in"
 		alias "{
@@ -4249,7 +4249,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_change_to (an_argument_l1729_c7: INTEGER; an_argument_l1730_c7: INTEGER): INTEGER is
+	rl_vi_change_to (an_argument_l1722_c7: INTEGER; an_argument_l1723_c7: INTEGER): INTEGER is
  		-- rl_vi_change_to
 		external "plug_in"
 		alias "{
@@ -4259,7 +4259,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_char_search (an_argument_l1865_c7: INTEGER; an_argument_l1866_c7: INTEGER): INTEGER is
+	rl_vi_char_search (an_argument_l1857_c7: INTEGER; an_argument_l1858_c7: INTEGER): INTEGER is
  		-- rl_vi_char_search
 		external "plug_in"
 		alias "{
@@ -4279,7 +4279,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_column (an_argument_l2030_c7: INTEGER; an_argument_l2031_c7: INTEGER): INTEGER is
+	rl_vi_column (an_argument_l2019_c7: INTEGER; an_argument_l2020_c7: INTEGER): INTEGER is
  		-- rl_vi_column
 		external "plug_in"
 		alias "{
@@ -4299,7 +4299,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_delete (an_argument_l415_c7: INTEGER; an_argument_l416_c7: INTEGER): INTEGER is
+	rl_vi_delete (an_argument_l407_c7: INTEGER; an_argument_l408_c7: INTEGER): INTEGER is
  		-- rl_vi_delete
 		external "plug_in"
 		alias "{
@@ -4309,7 +4309,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_delete_to (an_argument_l551_c7: INTEGER; an_argument_l552_c7: INTEGER): INTEGER is
+	rl_vi_delete_to (an_argument_l546_c7: INTEGER; an_argument_l547_c7: INTEGER): INTEGER is
  		-- rl_vi_delete_to
 		external "plug_in"
 		alias "{
@@ -4319,7 +4319,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_domove (an_argument_l1591_c7: INTEGER; an_argument_l1592_c7: POINTER): INTEGER is
+	rl_vi_domove (an_argument_l1584_c7: INTEGER; an_argument_l1585_c7: POINTER): INTEGER is
  		-- rl_vi_domove
 		external "plug_in"
 		alias "{
@@ -4329,7 +4329,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_e_word (an_argument_l1510_c7: INTEGER; an_argument_l1511_c7: INTEGER): INTEGER is
+	rl_vi_e_word (an_argument_l1503_c7: INTEGER; an_argument_l1504_c7: INTEGER): INTEGER is
  		-- rl_vi_eWord
 		external "plug_in"
 		alias "{
@@ -4339,7 +4339,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_editing_mode (an_argument_l1003_c7: INTEGER; an_argument_l1004_c7: INTEGER): INTEGER is
+	rl_vi_editing_mode (an_argument_l1004_c7: INTEGER; an_argument_l1005_c7: INTEGER): INTEGER is
  		-- rl_vi_editing_mode
 		external "plug_in"
 		alias "{
@@ -4349,7 +4349,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_end_word (an_argument_l1076_c7: INTEGER; an_argument_l1077_c7: INTEGER): INTEGER is
+	rl_vi_end_word (an_argument_l1065_c7: INTEGER; an_argument_l1066_c7: INTEGER): INTEGER is
  		-- rl_vi_end_word
 		external "plug_in"
 		alias "{
@@ -4359,7 +4359,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_eof_maybe (an_argument_l2129_c7: INTEGER; an_argument_l2130_c7: INTEGER): INTEGER is
+	rl_vi_eof_maybe (an_argument_l2119_c7: INTEGER; an_argument_l2120_c7: INTEGER): INTEGER is
  		-- rl_vi_eof_maybe
 		external "plug_in"
 		alias "{
@@ -4369,7 +4369,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_eword (an_argument_l2787_c7: INTEGER; an_argument_l2788_c7: INTEGER): INTEGER is
+	rl_vi_eword (an_argument_l2795_c7: INTEGER; an_argument_l2796_c7: INTEGER): INTEGER is
  		-- rl_vi_eword
 		external "plug_in"
 		alias "{
@@ -4379,7 +4379,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_f_word (an_argument_l1315_c7: INTEGER; an_argument_l1316_c7: INTEGER): INTEGER is
+	rl_vi_f_word (an_argument_l1307_c7: INTEGER; an_argument_l1308_c7: INTEGER): INTEGER is
  		-- rl_vi_fWord
 		external "plug_in"
 		alias "{
@@ -4389,7 +4389,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_fetch_history (an_argument_l308_c7: INTEGER; an_argument_l309_c7: INTEGER): INTEGER is
+	rl_vi_fetch_history (an_argument_l296_c7: INTEGER; an_argument_l297_c7: INTEGER): INTEGER is
  		-- rl_vi_fetch_history
 		external "plug_in"
 		alias "{
@@ -4399,7 +4399,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_first_print (an_argument_l906_c7: INTEGER; an_argument_l907_c7: INTEGER): INTEGER is
+	rl_vi_first_print (an_argument_l907_c7: INTEGER; an_argument_l908_c7: INTEGER): INTEGER is
  		-- rl_vi_first_print
 		external "plug_in"
 		alias "{
@@ -4409,7 +4409,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_fword (an_argument_l2541_c7: INTEGER; an_argument_l2542_c7: INTEGER): INTEGER is
+	rl_vi_fword (an_argument_l2547_c7: INTEGER; an_argument_l2548_c7: INTEGER): INTEGER is
  		-- rl_vi_fword
 		external "plug_in"
 		alias "{
@@ -4419,7 +4419,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_goto_mark (an_argument_l45_c7: INTEGER; an_argument_l46_c7: INTEGER): INTEGER is
+	rl_vi_goto_mark (an_argument_l44_c7: INTEGER; an_argument_l45_c7: INTEGER): INTEGER is
  		-- rl_vi_goto_mark
 		external "plug_in"
 		alias "{
@@ -4429,7 +4429,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_insert_beg (an_argument_l1672_c7: INTEGER; an_argument_l1673_c7: INTEGER): INTEGER is
+	rl_vi_insert_beg (an_argument_l1665_c7: INTEGER; an_argument_l1666_c7: INTEGER): INTEGER is
  		-- rl_vi_insert_beg
 		external "plug_in"
 		alias "{
@@ -4439,7 +4439,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_insert_mode (an_argument_l92_c7: INTEGER; an_argument_l93_c7: INTEGER): INTEGER is
+	rl_vi_insert_mode (an_argument_l313_c7: INTEGER; an_argument_l314_c7: INTEGER): INTEGER is
  		-- rl_vi_insert_mode
 		external "plug_in"
 		alias "{
@@ -4449,7 +4449,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_insertion_mode (an_argument_l1234_c7: INTEGER; an_argument_l1235_c7: INTEGER): INTEGER is
+	rl_vi_insertion_mode (an_argument_l1232_c7: INTEGER; an_argument_l1233_c7: INTEGER): INTEGER is
  		-- rl_vi_insertion_mode
 		external "plug_in"
 		alias "{
@@ -4459,7 +4459,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_match (an_argument_l2359_c7: INTEGER; an_argument_l2360_c7: INTEGER): INTEGER is
+	rl_vi_match (an_argument_l2358_c7: INTEGER; an_argument_l2359_c7: INTEGER): INTEGER is
  		-- rl_vi_match
 		external "plug_in"
 		alias "{
@@ -4469,7 +4469,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_movement_mode (an_argument_l2879_c7: INTEGER; an_argument_l2880_c7: INTEGER): INTEGER is
+	rl_vi_movement_mode (an_argument_l2886_c7: INTEGER; an_argument_l2887_c7: INTEGER): INTEGER is
  		-- rl_vi_movement_mode
 		external "plug_in"
 		alias "{
@@ -4479,7 +4479,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_next_word (an_argument_l902_c7: INTEGER; an_argument_l903_c7: INTEGER): INTEGER is
+	rl_vi_next_word (an_argument_l903_c7: INTEGER; an_argument_l904_c7: INTEGER): INTEGER is
  		-- rl_vi_next_word
 		external "plug_in"
 		alias "{
@@ -4489,7 +4489,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_overstrike (an_argument_l1293_c7: INTEGER; an_argument_l1294_c7: INTEGER): INTEGER is
+	rl_vi_overstrike (an_argument_l1285_c7: INTEGER; an_argument_l1286_c7: INTEGER): INTEGER is
  		-- rl_vi_overstrike
 		external "plug_in"
 		alias "{
@@ -4499,7 +4499,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_overstrike_delete (an_argument_l730_c7: INTEGER; an_argument_l731_c7: INTEGER): INTEGER is
+	rl_vi_overstrike_delete (an_argument_l726_c7: INTEGER; an_argument_l727_c7: INTEGER): INTEGER is
  		-- rl_vi_overstrike_delete
 		external "plug_in"
 		alias "{
@@ -4509,7 +4509,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_prev_word (an_argument_l889_c7: INTEGER; an_argument_l890_c7: INTEGER): INTEGER is
+	rl_vi_prev_word (an_argument_l890_c7: INTEGER; an_argument_l891_c7: INTEGER): INTEGER is
  		-- rl_vi_prev_word
 		external "plug_in"
 		alias "{
@@ -4519,7 +4519,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_put (an_argument_l283_c7: INTEGER; an_argument_l284_c7: INTEGER): INTEGER is
+	rl_vi_put (an_argument_l270_c7: INTEGER; an_argument_l271_c7: INTEGER): INTEGER is
  		-- rl_vi_put
 		external "plug_in"
 		alias "{
@@ -4529,7 +4529,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_redo (an_argument_l1375_c7: INTEGER; an_argument_l1376_c7: INTEGER): INTEGER is
+	rl_vi_redo (an_argument_l1364_c7: INTEGER; an_argument_l1365_c7: INTEGER): INTEGER is
  		-- rl_vi_redo
 		external "plug_in"
 		alias "{
@@ -4539,7 +4539,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_replace (an_argument_l2801_c7: INTEGER; an_argument_l2802_c7: INTEGER): INTEGER is
+	rl_vi_replace (an_argument_l2808_c7: INTEGER; an_argument_l2809_c7: INTEGER): INTEGER is
  		-- rl_vi_replace
 		external "plug_in"
 		alias "{
@@ -4549,7 +4549,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_rubout (an_argument_l1542_c7: INTEGER; an_argument_l1543_c7: INTEGER): INTEGER is
+	rl_vi_rubout (an_argument_l1535_c7: INTEGER; an_argument_l1536_c7: INTEGER): INTEGER is
  		-- rl_vi_rubout
 		external "plug_in"
 		alias "{
@@ -4559,7 +4559,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_search (an_argument_l507_c7: INTEGER; an_argument_l508_c7: INTEGER): INTEGER is
+	rl_vi_search (an_argument_l502_c7: INTEGER; an_argument_l503_c7: INTEGER): INTEGER is
  		-- rl_vi_search
 		external "plug_in"
 		alias "{
@@ -4569,7 +4569,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_search_again (an_argument_l1455_c7: INTEGER; an_argument_l1456_c7: INTEGER): INTEGER is
+	rl_vi_search_again (an_argument_l1447_c7: INTEGER; an_argument_l1448_c7: INTEGER): INTEGER is
  		-- rl_vi_search_again
 		external "plug_in"
 		alias "{
@@ -4579,7 +4579,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_set_mark (an_argument_l1831_c7: INTEGER; an_argument_l1832_c7: INTEGER): INTEGER is
+	rl_vi_set_mark (an_argument_l1823_c7: INTEGER; an_argument_l1824_c7: INTEGER): INTEGER is
  		-- rl_vi_set_mark
 		external "plug_in"
 		alias "{
@@ -4589,7 +4589,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_start_inserting (an_argument_l1066_c7: INTEGER; an_argument_l1067_c7: INTEGER; an_argument_l1068_c7: INTEGER) is
+	rl_vi_start_inserting (an_argument_l1130_c7: INTEGER; an_argument_l1131_c7: INTEGER; an_argument_l1132_c7: INTEGER) is
  		-- rl_vi_start_inserting
 		external "plug_in"
 		alias "{
@@ -4599,7 +4599,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_subst (an_argument_l474_c7: INTEGER; an_argument_l475_c7: INTEGER): INTEGER is
+	rl_vi_subst (an_argument_l469_c7: INTEGER; an_argument_l470_c7: INTEGER): INTEGER is
  		-- rl_vi_subst
 		external "plug_in"
 		alias "{
@@ -4609,7 +4609,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_tilde_expand (an_argument_l294_c7: INTEGER; an_argument_l295_c7: INTEGER): INTEGER is
+	rl_vi_tilde_expand (an_argument_l281_c7: INTEGER; an_argument_l282_c7: INTEGER): INTEGER is
  		-- rl_vi_tilde_expand
 		external "plug_in"
 		alias "{
@@ -4629,7 +4629,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_yank_arg (an_argument_l194_c7: INTEGER; an_argument_l195_c7: INTEGER): INTEGER is
+	rl_vi_yank_arg (an_argument_l183_c7: INTEGER; an_argument_l184_c7: INTEGER): INTEGER is
  		-- rl_vi_yank_arg
 		external "plug_in"
 		alias "{
@@ -4639,7 +4639,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_vi_yank_to (an_argument_l880_c7: INTEGER; an_argument_l881_c7: INTEGER): INTEGER is
+	rl_vi_yank_to (an_argument_l881_c7: INTEGER; an_argument_l882_c7: INTEGER): INTEGER is
  		-- rl_vi_yank_to
 		external "plug_in"
 		alias "{
@@ -4649,7 +4649,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_yank (an_argument_l2352_c7: INTEGER; an_argument_l2353_c7: INTEGER): INTEGER is
+	rl_yank (an_argument_l2351_c7: INTEGER; an_argument_l2352_c7: INTEGER): INTEGER is
  		-- rl_yank
 		external "plug_in"
 		alias "{
@@ -4659,7 +4659,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_yank_last_arg (an_argument_l1915_c7: INTEGER; an_argument_l1916_c7: INTEGER): INTEGER is
+	rl_yank_last_arg (an_argument_l1907_c7: INTEGER; an_argument_l1908_c7: INTEGER): INTEGER is
  		-- rl_yank_last_arg
 		external "plug_in"
 		alias "{
@@ -4669,7 +4669,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_yank_nth_arg (an_argument_l988_c7: INTEGER; an_argument_l989_c7: INTEGER): INTEGER is
+	rl_yank_nth_arg (an_argument_l989_c7: INTEGER; an_argument_l990_c7: INTEGER): INTEGER is
  		-- rl_yank_nth_arg
 		external "plug_in"
 		alias "{
@@ -4679,7 +4679,7 @@ feature {} -- External calls
 		}"
 		end
 
-	rl_yank_pop (an_argument_l518_c7: INTEGER; an_argument_l519_c7: INTEGER): INTEGER is
+	rl_yank_pop (an_argument_l513_c7: INTEGER; an_argument_l514_c7: INTEGER): INTEGER is
  		-- rl_yank_pop
 		external "plug_in"
 		alias "{

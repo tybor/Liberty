@@ -1,5 +1,7 @@
 indexing
 	description: "Utility functions dealing with Gobject signals"
+	copyright: "(C) 2010,2013 Paolo Redaelli "
+	license: "LGPL v2 or later"
 
 	
 deferred class G_SIGNALS

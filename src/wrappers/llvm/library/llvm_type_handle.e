@@ -5,8 +5,8 @@ class LLVM_TYPE_HANDLE
 	-- the C++ òobrary.
  
 inherit 
-	C_STRUCT
-	EIFFEL_OWNED redefine dispose end
+	OPAQUE_TYPE
+	EIFFEL_OWNED 
 
 insert LLVM_TYPE_FACTORY
 
@@ -28,13 +28,6 @@ feature {ANY}
 
 	-- TODO: provide refining support:  void LLVMRefineType(LLVMTypeRef AbstractTy, LLVMTypeRef ConcreteTy);
 
-feature {ANY} -- Disposing
-	dispose is
-		do
-			llvmdispose_type_handle(handle)
-		end
-
-	struct_size: like size_t is do not_yet_implemented end 
 end -- class LLVM_TYPE_HANDLE
 
 -- Copyright 2009 Paolo Redaelli

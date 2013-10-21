@@ -12,6 +12,8 @@ feature
 			create repository 
 			gtk := repository.load("Gtk",Void)
 			repository.loaded_namespaces.print_on(std_output)
+			"%NGtk dependencies: ".print_on(std_output)
+			repository.dependencies("Gtk").print_on(std_output)
 			-- print(repository.infos("Gtk"))
 		end
 

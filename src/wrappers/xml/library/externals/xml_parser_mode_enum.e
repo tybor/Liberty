@@ -5,83 +5,83 @@ expanded class XML_PARSER_MODE_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := ((a_value = xml_parse_dom_low_level)  or else
-				(a_value = xml_parse_push_dom_low_level)  or else
-				(a_value = xml_parse_push_sax_low_level)  or else
-				(a_value = xml_parse_reader_low_level)  or else
-				(a_value = xml_parse_sax_low_level)  or else
-				(a_value = xml_parse_unknown_low_level) )
+            Result := ((a_value = dom_low_level)  or else
+				(a_value = push_dom_low_level)  or else
+				(a_value = push_sax_low_level)  or else
+				(a_value = reader_low_level)  or else
+				(a_value = sax_low_level)  or else
+				(a_value = unknown_low_level) )
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_xml_parse_dom is
+	set_dom is
 		do
-			value := xml_parse_dom_low_level
+			value := dom_low_level
 		end
 
-	set_xml_parse_push_dom is
+	set_push_dom is
 		do
-			value := xml_parse_push_dom_low_level
+			value := push_dom_low_level
 		end
 
-	set_xml_parse_push_sax is
+	set_push_sax is
 		do
-			value := xml_parse_push_sax_low_level
+			value := push_sax_low_level
 		end
 
-	set_xml_parse_reader is
+	set_reader is
 		do
-			value := xml_parse_reader_low_level
+			value := reader_low_level
 		end
 
-	set_xml_parse_sax is
+	set_sax is
 		do
-			value := xml_parse_sax_low_level
+			value := sax_low_level
 		end
 
-	set_xml_parse_unknown is
+	set_unknown is
 		do
-			value := xml_parse_unknown_low_level
+			value := unknown_low_level
 		end
 
-feature -- Queries
-	is_xml_parse_dom: BOOLEAN is
+feature {ANY} -- Queries
+	is_dom: BOOLEAN is
 		do
-			Result := (value=xml_parse_dom_low_level)
+			Result := (value=dom_low_level)
 		end
 
-	is_xml_parse_push_dom: BOOLEAN is
+	is_push_dom: BOOLEAN is
 		do
-			Result := (value=xml_parse_push_dom_low_level)
+			Result := (value=push_dom_low_level)
 		end
 
-	is_xml_parse_push_sax: BOOLEAN is
+	is_push_sax: BOOLEAN is
 		do
-			Result := (value=xml_parse_push_sax_low_level)
+			Result := (value=push_sax_low_level)
 		end
 
-	is_xml_parse_reader: BOOLEAN is
+	is_reader: BOOLEAN is
 		do
-			Result := (value=xml_parse_reader_low_level)
+			Result := (value=reader_low_level)
 		end
 
-	is_xml_parse_sax: BOOLEAN is
+	is_sax: BOOLEAN is
 		do
-			Result := (value=xml_parse_sax_low_level)
+			Result := (value=sax_low_level)
 		end
 
-	is_xml_parse_unknown: BOOLEAN is
+	is_unknown: BOOLEAN is
 		do
-			Result := (value=xml_parse_unknown_low_level)
+			Result := (value=unknown_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	xml_parse_dom_low_level: INTEGER is
+	dom_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -90,7 +90,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_push_dom_low_level: INTEGER is
+	push_dom_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -99,7 +99,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_push_sax_low_level: INTEGER is
+	push_sax_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -108,7 +108,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_reader_low_level: INTEGER is
+	reader_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -117,7 +117,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_sax_low_level: INTEGER is
+	sax_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -126,7 +126,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_unknown_low_level: INTEGER is
+	unknown_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."

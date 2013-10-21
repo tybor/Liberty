@@ -13,7 +13,13 @@ insert
 create {ANY}
    from_external_pointer
 
+feature 
+	wrapper: ABSTRACT_STRING is
+		do
+			Result:=""
+		end
 feature {ANY}
+
    direction: GIDIRECTION_ENUM is
          --  the direction of the argument. Can be in, out and inout
       do

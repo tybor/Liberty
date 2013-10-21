@@ -15,12 +15,32 @@ insert
    GICALLABLEINFO_EXTERNALS
 
 feature {ANY}
+	wrapper: ABSTRACT_STRING is
+		do
+			create {STRING} Result.with_capacity(512) -- half kilobytes is an euristic
+			Result.append(eiffel_name())
+			if has_arguments then 
+				Result.append(once "(")
+				from 
+				Result.append(once ")") 
+				
+		end
+
+feature {ANY}
    return_type: GI_TYPE_INFO is
          -- the return type of a callable item.
       do
          -- Implementation note: Free the struct by calling g_base_info_unref() when done. [transfer full]
          create Result.from_external_pointer(g_callable_info_get_return_type(handle))
       end
+
+   is_query: BOOLEAN is 
+         -- Does Current callable return some values?
+      do
+		  Result := boy return_type.tag.is_void
+		  DA_FINIRE
+	  end
+
 
    caller_owns: BOOLEAN is
          -- DOes the caller owns the return value of this callable?
@@ -85,6 +105,11 @@ feature {ANY} -- Indexing over arguments
          Result := g_callable_info_get_n_args(handle)
          -- Obtain the number of arguments (both IN and OUT) for this callable.
       end
+
+	has_arguments: BOOLEAN is
+		do
+			Result := not is_empty
+		end
 
    is_empty: BOOLEAN is
       do

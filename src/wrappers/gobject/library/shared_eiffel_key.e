@@ -1,3 +1,8 @@
+indexing
+	description: "Shared keys used in creation agents for GObject wrappers"
+	copyright: "(C) 2010 Paolo Redaelli "
+	license: "LGPL v2 or later"
+
 deferred class SHARED_EIFFEL_KEY
 
 inherit ANY undefine is_equal, copy end

@@ -1,3 +1,8 @@
+indexing
+	description: "Shared dictionary of creation agents"
+	copyright: "(C) 2010 Paolo Redaelli "
+	license: "LGPL v2 or later"
+
 deferred class SHARED_CREATION_DICTIONARY
 	-- Shared creation-agents dictionary.
 

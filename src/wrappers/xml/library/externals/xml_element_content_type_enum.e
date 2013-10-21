@@ -5,61 +5,61 @@ expanded class XML_ELEMENT_CONTENT_TYPE_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := ((a_value = xml_element_content_element_low_level)  or else
-				(a_value = xml_element_content_or_low_level)  or else
-				(a_value = xml_element_content_pcdata_low_level)  or else
-				(a_value = xml_element_content_seq_low_level) )
+            Result := ((a_value = element_low_level)  or else
+				(a_value = or_external_low_level)  or else
+				(a_value = pcdata_low_level)  or else
+				(a_value = seq_low_level) )
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_xml_element_content_element is
+	set_element is
 		do
-			value := xml_element_content_element_low_level
+			value := element_low_level
 		end
 
-	set_xml_element_content_or is
+	set_or_external is
 		do
-			value := xml_element_content_or_low_level
+			value := or_external_low_level
 		end
 
-	set_xml_element_content_pcdata is
+	set_pcdata is
 		do
-			value := xml_element_content_pcdata_low_level
+			value := pcdata_low_level
 		end
 
-	set_xml_element_content_seq is
+	set_seq is
 		do
-			value := xml_element_content_seq_low_level
+			value := seq_low_level
 		end
 
-feature -- Queries
-	is_xml_element_content_element: BOOLEAN is
+feature {ANY} -- Queries
+	is_element: BOOLEAN is
 		do
-			Result := (value=xml_element_content_element_low_level)
+			Result := (value=element_low_level)
 		end
 
-	is_xml_element_content_or: BOOLEAN is
+	is_or_external: BOOLEAN is
 		do
-			Result := (value=xml_element_content_or_low_level)
+			Result := (value=or_external_low_level)
 		end
 
-	is_xml_element_content_pcdata: BOOLEAN is
+	is_pcdata: BOOLEAN is
 		do
-			Result := (value=xml_element_content_pcdata_low_level)
+			Result := (value=pcdata_low_level)
 		end
 
-	is_xml_element_content_seq: BOOLEAN is
+	is_seq: BOOLEAN is
 		do
-			Result := (value=xml_element_content_seq_low_level)
+			Result := (value=seq_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	xml_element_content_element_low_level: INTEGER is
+	element_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -68,7 +68,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_element_content_or_low_level: INTEGER is
+	or_external_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -77,7 +77,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_element_content_pcdata_low_level: INTEGER is
+	pcdata_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -86,7 +86,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_element_content_seq_low_level: INTEGER is
+	seq_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."

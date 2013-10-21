@@ -201,14 +201,13 @@ feature {ANY}
 		ensure not_void: Result/=Void
 		end
 
-	groups: COLLECTION[STRING] is
-			-- all the groups in the key file. Currently it is a NULL_TERMINATED_STRING_ARRAY
+	groups: TRAVERSABLE[FIXED_STRING] is
+			-- all the groups in the key file. 
 		local groups_ptr: POINTER; a_length: INTEGER
 		do
 			groups_ptr:=(g_key_file_get_groups 
 							 (handle,$a_length))
-			create {NULL_TERMINATED_STRING_ARRAY}
-			Result.from_external(groups_ptr)
+			Result := strings_array_from(groups_ptr)
 
 			-- g_key_file_get_groups returns all groups in the key file loaded with
 			-- key_file. The array of returned groups will be NULL-terminated, so
@@ -222,11 +221,9 @@ feature {ANY}
 			-- necessary since memory handling is done throught Eiffel's GC
 		end
 
-	keys_of (a_group: STRING): COLLECTION[STRING] is
+	keys_of (a_group: STRING): TRAVERSABLE[FIXED_STRING] is
 			-- the all keys for `a_group'. If `a_group' cannot be found, Void is
-			-- returned and `error' is set to
-			-- `g_key_file_error_group_not_found'. Currently it is a
-			-- NULL_TERMINATED_STRING_ARRAY
+			-- returned and `error' is set to `g_key_file_error_group_not_found'. 
 		require
 			group_not_void: a_group/=Void
 			group_exists: has_group(a_group)
@@ -240,8 +237,9 @@ feature {ANY}
 						  (handle, a_group.to_external,
 							default_pointer, -- gsize *length,
 							error.reference))
-			create {NULL_TERMINATED_STRING_ARRAY}
-			Result.from_external(keys_ptr)
+			if keys_ptr.is_not_null then
+				Result := strings_array_from(keys_ptr)
+			end
 		end
 
 feature {ANY} -- Queries
@@ -426,6 +424,7 @@ feature {ANY} -- Queries
 							(handle, a_group.to_external, a_key.to_external,
 							 default_pointer, -- gsize *length,
 							 error.reference))
+			not_yet_implemented
 			-- if value_ptr.is_not_null then
 			-- 	create {NULL_TERMINATED_STRING_ARRAY}
 			-- 	Result.from_external(value_ptr)
@@ -763,7 +762,7 @@ feature {ANY} -- Setting commands
 			 array.to_external, array.count.to_natural_32)
 		end
 
-	set_reals (a_group, a_key: STRING; some_reals: COLLECTION[REAL]) is
+	set_reals (a_group, a_key: STRING; some_reals: TRAVERSABLE[REAL]) is
 			-- Associates `some_reals' to `a_key' under `a_group' If
 			-- `a_key' cannot be found then it is created. If `a_group'
 			-- cannot be found then it is created. If `a_group' is Void,

@@ -5,61 +5,61 @@ expanded class XML_ELEMENT_CONTENT_OCCUR_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := ((a_value = xml_element_content_mult_low_level)  or else
-				(a_value = xml_element_content_once_low_level)  or else
-				(a_value = xml_element_content_opt_low_level)  or else
-				(a_value = xml_element_content_plus_low_level) )
+            Result := ((a_value = mult_low_level)  or else
+				(a_value = once_external_low_level)  or else
+				(a_value = opt_low_level)  or else
+				(a_value = plus_low_level) )
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_xml_element_content_mult is
+	set_mult is
 		do
-			value := xml_element_content_mult_low_level
+			value := mult_low_level
 		end
 
-	set_xml_element_content_once is
+	set_once_external is
 		do
-			value := xml_element_content_once_low_level
+			value := once_external_low_level
 		end
 
-	set_xml_element_content_opt is
+	set_opt is
 		do
-			value := xml_element_content_opt_low_level
+			value := opt_low_level
 		end
 
-	set_xml_element_content_plus is
+	set_plus is
 		do
-			value := xml_element_content_plus_low_level
+			value := plus_low_level
 		end
 
-feature -- Queries
-	is_xml_element_content_mult: BOOLEAN is
+feature {ANY} -- Queries
+	is_mult: BOOLEAN is
 		do
-			Result := (value=xml_element_content_mult_low_level)
+			Result := (value=mult_low_level)
 		end
 
-	is_xml_element_content_once: BOOLEAN is
+	is_once_external: BOOLEAN is
 		do
-			Result := (value=xml_element_content_once_low_level)
+			Result := (value=once_external_low_level)
 		end
 
-	is_xml_element_content_opt: BOOLEAN is
+	is_opt: BOOLEAN is
 		do
-			Result := (value=xml_element_content_opt_low_level)
+			Result := (value=opt_low_level)
 		end
 
-	is_xml_element_content_plus: BOOLEAN is
+	is_plus: BOOLEAN is
 		do
-			Result := (value=xml_element_content_plus_low_level)
+			Result := (value=plus_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	xml_element_content_mult_low_level: INTEGER is
+	mult_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -68,7 +68,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_element_content_once_low_level: INTEGER is
+	once_external_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -77,7 +77,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_element_content_opt_low_level: INTEGER is
+	opt_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -86,7 +86,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_element_content_plus_low_level: INTEGER is
+	plus_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."

@@ -14,18 +14,54 @@ class G_STRING
 	-- Note: this class is seldom used in other libraries.
 inherit
 	ABSTRACT_STRING
+
+	C_STRUCT 
+		undefine 
+			is_equal,
+			out_in_tagged_out_memory,
+			print_on
 		redefine
-			lower
-		end
-	C_STRUCT undefine out_in_tagged_out_memory end 
-	DISPOSABLE undefine out_in_tagged_out_memory end 
+			copy,
+			is_equal
+		end 
+	
+	EIFFEL_OWNED
+		undefine 
+			is_equal,
+			out_in_tagged_out_memory,
+			print_on
+		redefine
+			copy,
+			dispose,
+			is_equal
+		end 
 
 insert
-	GSTRING_EXTERNALS undefine out_in_tagged_out_memory end 
-	GSTRING_STRUCT undefine out_in_tagged_out_memory end 
-	GLIB_STRING_UTILITY_FUNCTIONS undefine out_in_tagged_out_memory end 
+	GSTRING_EXTERNALS
+		undefine 
+			is_equal, 
+			out_in_tagged_out_memory,
+			print_on
+		redefine is_equal
+		end 
 
-	
+	GSTRING_STRUCT 
+		undefine 
+			is_equal,
+			out_in_tagged_out_memory,
+			print_on
+		redefine is_equal
+		end
+
+	GLIB_STRING_UTILITY_FUNCTIONS 
+		undefine 
+			is_equal,
+			out_in_tagged_out_memory,
+			print_on
+		redefine is_equal
+		end
+
+
 create {ANY}
 	make, copy, make_empty, from_string
 	
@@ -40,13 +76,6 @@ feature {ANY}
 			Result := gstring_struct_get_allocated_len(handle)
 		end
 		
-	lower: INTEGER is 0
-
-	upper: INTEGER is
-		do
-			Result := count-1
-		end
-
 feature {ANY} -- Creation / Modification:
 	make (needed_capacity: INTEGER) is
 			-- Initialize the string to have at least `needed_capacity'
@@ -58,12 +87,12 @@ feature {ANY} -- Creation / Modification:
 		end
 
 	make_empty is
-			-- Create an empty string.
-		do
-			make(0)
-      ensure
-         empty: count = 0
-	 end
+		-- Create an empty string.
+	do
+		make(0)
+	ensure
+		empty: count = 0
+	end
 
 	from_string (a_string: ABSTRACT_STRING) is
 			-- Create a new G_STRING from `a_string'
@@ -210,15 +239,6 @@ feature {ANY} -- Conversion to STRING
 			create Result.from_external (c_string)
 		end
 	
-feature {ANY}  -- Disposing
-	dispose is
-		local
-         p: POINTER
-		do
-			p := g_string_free (handle, 1)
-			handle := default_pointer
-		end
-
 feature {G_STRING}
 	c_string: POINTER is
 		-- Shortcut for gstring_struct_get_str(handle)
@@ -231,5 +251,14 @@ feature {G_STRING}
 	do
 		Result := Result.from_pointer(c_string)
 	end
+
+feature {}
+	dispose is
+		local p: POINTER
+		do
+			p:=g_string_free(handle,1)
+			handle := default_pointer -- make sure the C object is not used anymore
+		end
+
 end
 	

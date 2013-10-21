@@ -69,7 +69,7 @@ feature {} -- External calls
 		}"
 		end
 
-	tilde_expand (an_argument_l185_c7: POINTER): POINTER is
+	tilde_expand (an_argument_l174_c7: POINTER): POINTER is
  		-- tilde_expand
 		external "plug_in"
 		alias "{
@@ -79,7 +79,7 @@ feature {} -- External calls
 		}"
 		end
 
-	tilde_expand_word (an_argument_l2728_c7: POINTER): POINTER is
+	tilde_expand_word (an_argument_l2729_c7: POINTER): POINTER is
  		-- tilde_expand_word
 		external "plug_in"
 		alias "{
@@ -149,7 +149,7 @@ feature {} -- External calls
 		}"
 		end
 
-	tilde_find_word (an_argument_l2554_c7: POINTER; an_argument_l2555_c7: INTEGER; an_argument_l2556_c7: POINTER): POINTER is
+	tilde_find_word (an_argument_l2560_c7: POINTER; an_argument_l2561_c7: INTEGER; an_argument_l2562_c7: POINTER): POINTER is
  		-- tilde_find_word
 		external "plug_in"
 		alias "{

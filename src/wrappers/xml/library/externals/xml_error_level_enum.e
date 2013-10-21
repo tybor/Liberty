@@ -5,61 +5,61 @@ expanded class XML_ERROR_LEVEL_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := ((a_value = xml_err_error_low_level)  or else
-				(a_value = xml_err_fatal_low_level)  or else
-				(a_value = xml_err_none_low_level)  or else
-				(a_value = xml_err_warning_low_level) )
+            Result := ((a_value = error_low_level)  or else
+				(a_value = fatal_low_level)  or else
+				(a_value = none_low_level)  or else
+				(a_value = warning_low_level) )
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_xml_err_error is
+	set_error is
 		do
-			value := xml_err_error_low_level
+			value := error_low_level
 		end
 
-	set_xml_err_fatal is
+	set_fatal is
 		do
-			value := xml_err_fatal_low_level
+			value := fatal_low_level
 		end
 
-	set_xml_err_none is
+	set_none is
 		do
-			value := xml_err_none_low_level
+			value := none_low_level
 		end
 
-	set_xml_err_warning is
+	set_warning is
 		do
-			value := xml_err_warning_low_level
+			value := warning_low_level
 		end
 
-feature -- Queries
-	is_xml_err_error: BOOLEAN is
+feature {ANY} -- Queries
+	is_error: BOOLEAN is
 		do
-			Result := (value=xml_err_error_low_level)
+			Result := (value=error_low_level)
 		end
 
-	is_xml_err_fatal: BOOLEAN is
+	is_fatal: BOOLEAN is
 		do
-			Result := (value=xml_err_fatal_low_level)
+			Result := (value=fatal_low_level)
 		end
 
-	is_xml_err_none: BOOLEAN is
+	is_none: BOOLEAN is
 		do
-			Result := (value=xml_err_none_low_level)
+			Result := (value=none_low_level)
 		end
 
-	is_xml_err_warning: BOOLEAN is
+	is_warning: BOOLEAN is
 		do
-			Result := (value=xml_err_warning_low_level)
+			Result := (value=warning_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	xml_err_error_low_level: INTEGER is
+	error_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -68,7 +68,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_err_fatal_low_level: INTEGER is
+	fatal_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -77,7 +77,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_err_none_low_level: INTEGER is
+	none_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -86,7 +86,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_err_warning_low_level: INTEGER is
+	warning_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."

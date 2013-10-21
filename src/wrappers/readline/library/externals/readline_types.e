@@ -8,7 +8,7 @@ insert ANY undefine is_equal, copy end
 
 	STANDARD_C_LIBRARY_TYPES
 
-feature -- C type definitions (typedefs)
+feature {ANY} -- C type definitions (typedefs)
 	histdata_t: POINTER is
 		-- typedef histdata_t
 		-- Empty by design, used for anchored declarations.

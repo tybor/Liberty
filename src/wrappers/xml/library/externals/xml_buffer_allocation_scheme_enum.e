@@ -5,61 +5,61 @@ expanded class XML_BUFFER_ALLOCATION_SCHEME_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := ((a_value = xml_buffer_alloc_doubleit_low_level)  or else
-				(a_value = xml_buffer_alloc_exact_low_level)  or else
-				(a_value = xml_buffer_alloc_immutable_low_level)  or else
-				(a_value = xml_buffer_alloc_io_low_level) )
+            Result := ((a_value = doubleit_low_level)  or else
+				(a_value = exact_low_level)  or else
+				(a_value = immutable_low_level)  or else
+				(a_value = io_low_level) )
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_xml_buffer_alloc_doubleit is
+	set_doubleit is
 		do
-			value := xml_buffer_alloc_doubleit_low_level
+			value := doubleit_low_level
 		end
 
-	set_xml_buffer_alloc_exact is
+	set_exact is
 		do
-			value := xml_buffer_alloc_exact_low_level
+			value := exact_low_level
 		end
 
-	set_xml_buffer_alloc_immutable is
+	set_immutable is
 		do
-			value := xml_buffer_alloc_immutable_low_level
+			value := immutable_low_level
 		end
 
-	set_xml_buffer_alloc_io is
+	set_io is
 		do
-			value := xml_buffer_alloc_io_low_level
+			value := io_low_level
 		end
 
-feature -- Queries
-	is_xml_buffer_alloc_doubleit: BOOLEAN is
+feature {ANY} -- Queries
+	is_doubleit: BOOLEAN is
 		do
-			Result := (value=xml_buffer_alloc_doubleit_low_level)
+			Result := (value=doubleit_low_level)
 		end
 
-	is_xml_buffer_alloc_exact: BOOLEAN is
+	is_exact: BOOLEAN is
 		do
-			Result := (value=xml_buffer_alloc_exact_low_level)
+			Result := (value=exact_low_level)
 		end
 
-	is_xml_buffer_alloc_immutable: BOOLEAN is
+	is_immutable: BOOLEAN is
 		do
-			Result := (value=xml_buffer_alloc_immutable_low_level)
+			Result := (value=immutable_low_level)
 		end
 
-	is_xml_buffer_alloc_io: BOOLEAN is
+	is_io: BOOLEAN is
 		do
-			Result := (value=xml_buffer_alloc_io_low_level)
+			Result := (value=io_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	xml_buffer_alloc_doubleit_low_level: INTEGER is
+	doubleit_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -68,7 +68,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_buffer_alloc_exact_low_level: INTEGER is
+	exact_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -77,7 +77,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_buffer_alloc_immutable_low_level: INTEGER is
+	immutable_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -86,7 +86,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_buffer_alloc_io_low_level: INTEGER is
+	io_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."

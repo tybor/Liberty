@@ -18,6 +18,13 @@ insert
    GIBASEINFO_EXTERNALS
    GITYPEINFO_EXTERNALS
 
+feature {ANY} -- Eiffel wrapper generation
+	wrapper: ABSTRACT_STRING is
+		-- The text of Eiffel source code that wraps Current object
+		deferred
+		ensure Result/=Void
+		end
+
 feature {WRAPPER_HANDLER} -- Memory handling
    ref is
       local

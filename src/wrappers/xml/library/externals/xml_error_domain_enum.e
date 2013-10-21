@@ -5,336 +5,336 @@ expanded class XML_ERROR_DOMAIN_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := ((a_value = xml_from_c14n_low_level)  or else
-				(a_value = xml_from_catalog_low_level)  or else
-				(a_value = xml_from_check_low_level)  or else
-				(a_value = xml_from_datatype_low_level)  or else
-				(a_value = xml_from_dtd_low_level)  or else
-				(a_value = xml_from_ftp_low_level)  or else
-				(a_value = xml_from_html_low_level)  or else
-				(a_value = xml_from_http_low_level)  or else
-				(a_value = xml_from_i18n_low_level)  or else
-				(a_value = xml_from_io_low_level)  or else
-				(a_value = xml_from_memory_low_level)  or else
-				(a_value = xml_from_module_low_level)  or else
-				(a_value = xml_from_namespace_low_level)  or else
-				(a_value = xml_from_none_low_level)  or else
-				(a_value = xml_from_output_low_level)  or else
-				(a_value = xml_from_parser_low_level)  or else
-				(a_value = xml_from_regexp_low_level)  or else
-				(a_value = xml_from_relaxngp_low_level)  or else
-				(a_value = xml_from_relaxngv_low_level)  or else
-				(a_value = xml_from_schemasp_low_level)  or else
-				(a_value = xml_from_schemasv_low_level)  or else
-				(a_value = xml_from_schematronv_low_level)  or else
-				(a_value = xml_from_tree_low_level)  or else
-				(a_value = xml_from_valid_low_level)  or else
-				(a_value = xml_from_writer_low_level)  or else
-				(a_value = xml_from_xinclude_low_level)  or else
-				(a_value = xml_from_xpath_low_level)  or else
-				(a_value = xml_from_xpointer_low_level)  or else
-				(a_value = xml_from_xslt_low_level) )
+            Result := ((a_value = c14n_low_level)  or else
+				(a_value = catalog_low_level)  or else
+				(a_value = check_external_low_level)  or else
+				(a_value = datatype_low_level)  or else
+				(a_value = dtd_low_level)  or else
+				(a_value = ftp_low_level)  or else
+				(a_value = html_low_level)  or else
+				(a_value = http_low_level)  or else
+				(a_value = i18n_low_level)  or else
+				(a_value = io_low_level)  or else
+				(a_value = memory_low_level)  or else
+				(a_value = module_low_level)  or else
+				(a_value = namespace_low_level)  or else
+				(a_value = none_low_level)  or else
+				(a_value = output_low_level)  or else
+				(a_value = parser_low_level)  or else
+				(a_value = regexp_low_level)  or else
+				(a_value = relaxngp_low_level)  or else
+				(a_value = relaxngv_low_level)  or else
+				(a_value = schemasp_low_level)  or else
+				(a_value = schemasv_low_level)  or else
+				(a_value = schematronv_low_level)  or else
+				(a_value = tree_low_level)  or else
+				(a_value = valid_low_level)  or else
+				(a_value = writer_low_level)  or else
+				(a_value = xinclude_low_level)  or else
+				(a_value = xpath_low_level)  or else
+				(a_value = xpointer_low_level)  or else
+				(a_value = xslt_low_level) )
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_xml_from_c14n is
+	set_c14n is
 		do
-			value := xml_from_c14n_low_level
+			value := c14n_low_level
 		end
 
-	set_xml_from_catalog is
+	set_catalog is
 		do
-			value := xml_from_catalog_low_level
+			value := catalog_low_level
 		end
 
-	set_xml_from_check is
+	set_check_external is
 		do
-			value := xml_from_check_low_level
+			value := check_external_low_level
 		end
 
-	set_xml_from_datatype is
+	set_datatype is
 		do
-			value := xml_from_datatype_low_level
+			value := datatype_low_level
 		end
 
-	set_xml_from_dtd is
+	set_dtd is
 		do
-			value := xml_from_dtd_low_level
+			value := dtd_low_level
 		end
 
-	set_xml_from_ftp is
+	set_ftp is
 		do
-			value := xml_from_ftp_low_level
+			value := ftp_low_level
 		end
 
-	set_xml_from_html is
+	set_html is
 		do
-			value := xml_from_html_low_level
+			value := html_low_level
 		end
 
-	set_xml_from_http is
+	set_http is
 		do
-			value := xml_from_http_low_level
+			value := http_low_level
 		end
 
-	set_xml_from_i18n is
+	set_i18n is
 		do
-			value := xml_from_i18n_low_level
+			value := i18n_low_level
 		end
 
-	set_xml_from_io is
+	set_io is
 		do
-			value := xml_from_io_low_level
+			value := io_low_level
 		end
 
-	set_xml_from_memory is
+	set_memory is
 		do
-			value := xml_from_memory_low_level
+			value := memory_low_level
 		end
 
-	set_xml_from_module is
+	set_module is
 		do
-			value := xml_from_module_low_level
+			value := module_low_level
 		end
 
-	set_xml_from_namespace is
+	set_namespace is
 		do
-			value := xml_from_namespace_low_level
+			value := namespace_low_level
 		end
 
-	set_xml_from_none is
+	set_none is
 		do
-			value := xml_from_none_low_level
+			value := none_low_level
 		end
 
-	set_xml_from_output is
+	set_output is
 		do
-			value := xml_from_output_low_level
+			value := output_low_level
 		end
 
-	set_xml_from_parser is
+	set_parser is
 		do
-			value := xml_from_parser_low_level
+			value := parser_low_level
 		end
 
-	set_xml_from_regexp is
+	set_regexp is
 		do
-			value := xml_from_regexp_low_level
+			value := regexp_low_level
 		end
 
-	set_xml_from_relaxngp is
+	set_relaxngp is
 		do
-			value := xml_from_relaxngp_low_level
+			value := relaxngp_low_level
 		end
 
-	set_xml_from_relaxngv is
+	set_relaxngv is
 		do
-			value := xml_from_relaxngv_low_level
+			value := relaxngv_low_level
 		end
 
-	set_xml_from_schemasp is
+	set_schemasp is
 		do
-			value := xml_from_schemasp_low_level
+			value := schemasp_low_level
 		end
 
-	set_xml_from_schemasv is
+	set_schemasv is
 		do
-			value := xml_from_schemasv_low_level
+			value := schemasv_low_level
 		end
 
-	set_xml_from_schematronv is
+	set_schematronv is
 		do
-			value := xml_from_schematronv_low_level
+			value := schematronv_low_level
 		end
 
-	set_xml_from_tree is
+	set_tree is
 		do
-			value := xml_from_tree_low_level
+			value := tree_low_level
 		end
 
-	set_xml_from_valid is
+	set_valid is
 		do
-			value := xml_from_valid_low_level
+			value := valid_low_level
 		end
 
-	set_xml_from_writer is
+	set_writer is
 		do
-			value := xml_from_writer_low_level
+			value := writer_low_level
 		end
 
-	set_xml_from_xinclude is
+	set_xinclude is
 		do
-			value := xml_from_xinclude_low_level
+			value := xinclude_low_level
 		end
 
-	set_xml_from_xpath is
+	set_xpath is
 		do
-			value := xml_from_xpath_low_level
+			value := xpath_low_level
 		end
 
-	set_xml_from_xpointer is
+	set_xpointer is
 		do
-			value := xml_from_xpointer_low_level
+			value := xpointer_low_level
 		end
 
-	set_xml_from_xslt is
+	set_xslt is
 		do
-			value := xml_from_xslt_low_level
+			value := xslt_low_level
 		end
 
-feature -- Queries
-	is_xml_from_c14n: BOOLEAN is
+feature {ANY} -- Queries
+	is_c14n: BOOLEAN is
 		do
-			Result := (value=xml_from_c14n_low_level)
+			Result := (value=c14n_low_level)
 		end
 
-	is_xml_from_catalog: BOOLEAN is
+	is_catalog: BOOLEAN is
 		do
-			Result := (value=xml_from_catalog_low_level)
+			Result := (value=catalog_low_level)
 		end
 
-	is_xml_from_check: BOOLEAN is
+	is_check_external: BOOLEAN is
 		do
-			Result := (value=xml_from_check_low_level)
+			Result := (value=check_external_low_level)
 		end
 
-	is_xml_from_datatype: BOOLEAN is
+	is_datatype: BOOLEAN is
 		do
-			Result := (value=xml_from_datatype_low_level)
+			Result := (value=datatype_low_level)
 		end
 
-	is_xml_from_dtd: BOOLEAN is
+	is_dtd: BOOLEAN is
 		do
-			Result := (value=xml_from_dtd_low_level)
+			Result := (value=dtd_low_level)
 		end
 
-	is_xml_from_ftp: BOOLEAN is
+	is_ftp: BOOLEAN is
 		do
-			Result := (value=xml_from_ftp_low_level)
+			Result := (value=ftp_low_level)
 		end
 
-	is_xml_from_html: BOOLEAN is
+	is_html: BOOLEAN is
 		do
-			Result := (value=xml_from_html_low_level)
+			Result := (value=html_low_level)
 		end
 
-	is_xml_from_http: BOOLEAN is
+	is_http: BOOLEAN is
 		do
-			Result := (value=xml_from_http_low_level)
+			Result := (value=http_low_level)
 		end
 
-	is_xml_from_i18n: BOOLEAN is
+	is_i18n: BOOLEAN is
 		do
-			Result := (value=xml_from_i18n_low_level)
+			Result := (value=i18n_low_level)
 		end
 
-	is_xml_from_io: BOOLEAN is
+	is_io: BOOLEAN is
 		do
-			Result := (value=xml_from_io_low_level)
+			Result := (value=io_low_level)
 		end
 
-	is_xml_from_memory: BOOLEAN is
+	is_memory: BOOLEAN is
 		do
-			Result := (value=xml_from_memory_low_level)
+			Result := (value=memory_low_level)
 		end
 
-	is_xml_from_module: BOOLEAN is
+	is_module: BOOLEAN is
 		do
-			Result := (value=xml_from_module_low_level)
+			Result := (value=module_low_level)
 		end
 
-	is_xml_from_namespace: BOOLEAN is
+	is_namespace: BOOLEAN is
 		do
-			Result := (value=xml_from_namespace_low_level)
+			Result := (value=namespace_low_level)
 		end
 
-	is_xml_from_none: BOOLEAN is
+	is_none: BOOLEAN is
 		do
-			Result := (value=xml_from_none_low_level)
+			Result := (value=none_low_level)
 		end
 
-	is_xml_from_output: BOOLEAN is
+	is_output: BOOLEAN is
 		do
-			Result := (value=xml_from_output_low_level)
+			Result := (value=output_low_level)
 		end
 
-	is_xml_from_parser: BOOLEAN is
+	is_parser: BOOLEAN is
 		do
-			Result := (value=xml_from_parser_low_level)
+			Result := (value=parser_low_level)
 		end
 
-	is_xml_from_regexp: BOOLEAN is
+	is_regexp: BOOLEAN is
 		do
-			Result := (value=xml_from_regexp_low_level)
+			Result := (value=regexp_low_level)
 		end
 
-	is_xml_from_relaxngp: BOOLEAN is
+	is_relaxngp: BOOLEAN is
 		do
-			Result := (value=xml_from_relaxngp_low_level)
+			Result := (value=relaxngp_low_level)
 		end
 
-	is_xml_from_relaxngv: BOOLEAN is
+	is_relaxngv: BOOLEAN is
 		do
-			Result := (value=xml_from_relaxngv_low_level)
+			Result := (value=relaxngv_low_level)
 		end
 
-	is_xml_from_schemasp: BOOLEAN is
+	is_schemasp: BOOLEAN is
 		do
-			Result := (value=xml_from_schemasp_low_level)
+			Result := (value=schemasp_low_level)
 		end
 
-	is_xml_from_schemasv: BOOLEAN is
+	is_schemasv: BOOLEAN is
 		do
-			Result := (value=xml_from_schemasv_low_level)
+			Result := (value=schemasv_low_level)
 		end
 
-	is_xml_from_schematronv: BOOLEAN is
+	is_schematronv: BOOLEAN is
 		do
-			Result := (value=xml_from_schematronv_low_level)
+			Result := (value=schematronv_low_level)
 		end
 
-	is_xml_from_tree: BOOLEAN is
+	is_tree: BOOLEAN is
 		do
-			Result := (value=xml_from_tree_low_level)
+			Result := (value=tree_low_level)
 		end
 
-	is_xml_from_valid: BOOLEAN is
+	is_valid: BOOLEAN is
 		do
-			Result := (value=xml_from_valid_low_level)
+			Result := (value=valid_low_level)
 		end
 
-	is_xml_from_writer: BOOLEAN is
+	is_writer: BOOLEAN is
 		do
-			Result := (value=xml_from_writer_low_level)
+			Result := (value=writer_low_level)
 		end
 
-	is_xml_from_xinclude: BOOLEAN is
+	is_xinclude: BOOLEAN is
 		do
-			Result := (value=xml_from_xinclude_low_level)
+			Result := (value=xinclude_low_level)
 		end
 
-	is_xml_from_xpath: BOOLEAN is
+	is_xpath: BOOLEAN is
 		do
-			Result := (value=xml_from_xpath_low_level)
+			Result := (value=xpath_low_level)
 		end
 
-	is_xml_from_xpointer: BOOLEAN is
+	is_xpointer: BOOLEAN is
 		do
-			Result := (value=xml_from_xpointer_low_level)
+			Result := (value=xpointer_low_level)
 		end
 
-	is_xml_from_xslt: BOOLEAN is
+	is_xslt: BOOLEAN is
 		do
-			Result := (value=xml_from_xslt_low_level)
+			Result := (value=xslt_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	xml_from_c14n_low_level: INTEGER is
+	c14n_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -343,7 +343,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_catalog_low_level: INTEGER is
+	catalog_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -352,7 +352,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_check_low_level: INTEGER is
+	check_external_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -361,7 +361,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_datatype_low_level: INTEGER is
+	datatype_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -370,7 +370,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_dtd_low_level: INTEGER is
+	dtd_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -379,7 +379,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_ftp_low_level: INTEGER is
+	ftp_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -388,7 +388,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_html_low_level: INTEGER is
+	html_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -397,7 +397,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_http_low_level: INTEGER is
+	http_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -406,7 +406,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_i18n_low_level: INTEGER is
+	i18n_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -415,7 +415,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_io_low_level: INTEGER is
+	io_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -424,7 +424,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_memory_low_level: INTEGER is
+	memory_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -433,7 +433,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_module_low_level: INTEGER is
+	module_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -442,7 +442,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_namespace_low_level: INTEGER is
+	namespace_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -451,7 +451,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_none_low_level: INTEGER is
+	none_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -460,7 +460,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_output_low_level: INTEGER is
+	output_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -469,7 +469,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_parser_low_level: INTEGER is
+	parser_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -478,7 +478,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_regexp_low_level: INTEGER is
+	regexp_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -487,7 +487,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_relaxngp_low_level: INTEGER is
+	relaxngp_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -496,7 +496,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_relaxngv_low_level: INTEGER is
+	relaxngv_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -505,7 +505,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_schemasp_low_level: INTEGER is
+	schemasp_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -514,7 +514,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_schemasv_low_level: INTEGER is
+	schemasv_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -523,7 +523,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_schematronv_low_level: INTEGER is
+	schematronv_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -532,7 +532,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_tree_low_level: INTEGER is
+	tree_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -541,7 +541,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_valid_low_level: INTEGER is
+	valid_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -550,7 +550,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_writer_low_level: INTEGER is
+	writer_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -559,7 +559,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_xinclude_low_level: INTEGER is
+	xinclude_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -568,7 +568,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_xpath_low_level: INTEGER is
+	xpath_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -577,7 +577,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_xpointer_low_level: INTEGER is
+	xpointer_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -586,7 +586,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_from_xslt_low_level: INTEGER is
+	xslt_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."

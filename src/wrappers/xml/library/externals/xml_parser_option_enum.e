@@ -5,337 +5,353 @@ expanded class XML_PARSER_OPTION_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := (a_value & (xml_parse_compact_low_level | 
-				xml_parse_dtdload_low_level | 
-				xml_parse_dtdvalid_low_level | 
-				xml_parse_huge_low_level | 
-				xml_parse_nobasefix_low_level | 
-				xml_parse_noblanks_low_level | 
-				xml_parse_nocdata_low_level | 
-				xml_parse_nodict_low_level | 
-				xml_parse_noent_low_level | 
-				xml_parse_noerror_low_level | 
-				xml_parse_nonet_low_level | 
-				xml_parse_nowarning_low_level | 
-				xml_parse_noxincnode_low_level | 
-				xml_parse_nsclean_low_level | 
-				xml_parse_old10_low_level | 
-				xml_parse_oldsax_low_level | 
-				xml_parse_pedantic_low_level | 
-				xml_parse_recover_low_level | 
-				xml_parse_sax1_low_level | 
-				xml_parse_xinclude_low_level)).to_boolean
+            Result := (a_value & (compact_low_level | 
+				dtdattr_low_level | 
+				dtdload_low_level | 
+				dtdvalid_low_level | 
+				huge_low_level | 
+				nobasefix_low_level | 
+				noblanks_low_level | 
+				nocdata_low_level | 
+				nodict_low_level | 
+				noent_low_level | 
+				noerror_low_level | 
+				nonet_low_level | 
+				nowarning_low_level | 
+				noxincnode_low_level | 
+				nsclean_low_level | 
+				old10_low_level | 
+				oldsax_low_level | 
+				pedantic_low_level | 
+				recover_low_level | 
+				sax1_low_level | 
+				xinclude_low_level)).to_boolean
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_xml_parse_compact is
+	set_compact is
 		do
-			value := value.bit_or(xml_parse_compact_low_level)
+			value := value.bit_or(compact_low_level)
 		end
 
-	unset_xml_parse_compact is
+	unset_compact is
 		do
-			value := value.bit_xor(xml_parse_compact_low_level)
+			value := value.bit_xor(compact_low_level)
 		end
 
-	set_xml_parse_dtdload is
+	set_dtdattr is
 		do
-			value := value.bit_or(xml_parse_dtdload_low_level)
+			value := value.bit_or(dtdattr_low_level)
 		end
 
-	unset_xml_parse_dtdload is
+	unset_dtdattr is
 		do
-			value := value.bit_xor(xml_parse_dtdload_low_level)
+			value := value.bit_xor(dtdattr_low_level)
 		end
 
-	set_xml_parse_dtdvalid is
+	set_dtdload is
 		do
-			value := value.bit_or(xml_parse_dtdvalid_low_level)
+			value := value.bit_or(dtdload_low_level)
 		end
 
-	unset_xml_parse_dtdvalid is
+	unset_dtdload is
 		do
-			value := value.bit_xor(xml_parse_dtdvalid_low_level)
+			value := value.bit_xor(dtdload_low_level)
 		end
 
-	set_xml_parse_huge is
+	set_dtdvalid is
 		do
-			value := value.bit_or(xml_parse_huge_low_level)
+			value := value.bit_or(dtdvalid_low_level)
 		end
 
-	unset_xml_parse_huge is
+	unset_dtdvalid is
 		do
-			value := value.bit_xor(xml_parse_huge_low_level)
+			value := value.bit_xor(dtdvalid_low_level)
 		end
 
-	set_xml_parse_nobasefix is
+	set_huge is
 		do
-			value := value.bit_or(xml_parse_nobasefix_low_level)
+			value := value.bit_or(huge_low_level)
 		end
 
-	unset_xml_parse_nobasefix is
+	unset_huge is
 		do
-			value := value.bit_xor(xml_parse_nobasefix_low_level)
+			value := value.bit_xor(huge_low_level)
 		end
 
-	set_xml_parse_noblanks is
+	set_nobasefix is
 		do
-			value := value.bit_or(xml_parse_noblanks_low_level)
+			value := value.bit_or(nobasefix_low_level)
 		end
 
-	unset_xml_parse_noblanks is
+	unset_nobasefix is
 		do
-			value := value.bit_xor(xml_parse_noblanks_low_level)
+			value := value.bit_xor(nobasefix_low_level)
 		end
 
-	set_xml_parse_nocdata is
+	set_noblanks is
 		do
-			value := value.bit_or(xml_parse_nocdata_low_level)
+			value := value.bit_or(noblanks_low_level)
 		end
 
-	unset_xml_parse_nocdata is
+	unset_noblanks is
 		do
-			value := value.bit_xor(xml_parse_nocdata_low_level)
+			value := value.bit_xor(noblanks_low_level)
 		end
 
-	set_xml_parse_nodict is
+	set_nocdata is
 		do
-			value := value.bit_or(xml_parse_nodict_low_level)
+			value := value.bit_or(nocdata_low_level)
 		end
 
-	unset_xml_parse_nodict is
+	unset_nocdata is
 		do
-			value := value.bit_xor(xml_parse_nodict_low_level)
+			value := value.bit_xor(nocdata_low_level)
 		end
 
-	set_xml_parse_noent is
+	set_nodict is
 		do
-			value := value.bit_or(xml_parse_noent_low_level)
+			value := value.bit_or(nodict_low_level)
 		end
 
-	unset_xml_parse_noent is
+	unset_nodict is
 		do
-			value := value.bit_xor(xml_parse_noent_low_level)
+			value := value.bit_xor(nodict_low_level)
 		end
 
-	set_xml_parse_noerror is
+	set_noent is
 		do
-			value := value.bit_or(xml_parse_noerror_low_level)
+			value := value.bit_or(noent_low_level)
 		end
 
-	unset_xml_parse_noerror is
+	unset_noent is
 		do
-			value := value.bit_xor(xml_parse_noerror_low_level)
+			value := value.bit_xor(noent_low_level)
 		end
 
-	set_xml_parse_nonet is
+	set_noerror is
 		do
-			value := value.bit_or(xml_parse_nonet_low_level)
+			value := value.bit_or(noerror_low_level)
 		end
 
-	unset_xml_parse_nonet is
+	unset_noerror is
 		do
-			value := value.bit_xor(xml_parse_nonet_low_level)
+			value := value.bit_xor(noerror_low_level)
 		end
 
-	set_xml_parse_nowarning is
+	set_nonet is
 		do
-			value := value.bit_or(xml_parse_nowarning_low_level)
+			value := value.bit_or(nonet_low_level)
 		end
 
-	unset_xml_parse_nowarning is
+	unset_nonet is
 		do
-			value := value.bit_xor(xml_parse_nowarning_low_level)
+			value := value.bit_xor(nonet_low_level)
 		end
 
-	set_xml_parse_noxincnode is
+	set_nowarning is
 		do
-			value := value.bit_or(xml_parse_noxincnode_low_level)
+			value := value.bit_or(nowarning_low_level)
 		end
 
-	unset_xml_parse_noxincnode is
+	unset_nowarning is
 		do
-			value := value.bit_xor(xml_parse_noxincnode_low_level)
+			value := value.bit_xor(nowarning_low_level)
 		end
 
-	set_xml_parse_nsclean is
+	set_noxincnode is
 		do
-			value := value.bit_or(xml_parse_nsclean_low_level)
+			value := value.bit_or(noxincnode_low_level)
 		end
 
-	unset_xml_parse_nsclean is
+	unset_noxincnode is
 		do
-			value := value.bit_xor(xml_parse_nsclean_low_level)
+			value := value.bit_xor(noxincnode_low_level)
 		end
 
-	set_xml_parse_old10 is
+	set_nsclean is
 		do
-			value := value.bit_or(xml_parse_old10_low_level)
+			value := value.bit_or(nsclean_low_level)
 		end
 
-	unset_xml_parse_old10 is
+	unset_nsclean is
 		do
-			value := value.bit_xor(xml_parse_old10_low_level)
+			value := value.bit_xor(nsclean_low_level)
 		end
 
-	set_xml_parse_oldsax is
+	set_old10 is
 		do
-			value := value.bit_or(xml_parse_oldsax_low_level)
+			value := value.bit_or(old10_low_level)
 		end
 
-	unset_xml_parse_oldsax is
+	unset_old10 is
 		do
-			value := value.bit_xor(xml_parse_oldsax_low_level)
+			value := value.bit_xor(old10_low_level)
 		end
 
-	set_xml_parse_pedantic is
+	set_oldsax is
 		do
-			value := value.bit_or(xml_parse_pedantic_low_level)
+			value := value.bit_or(oldsax_low_level)
 		end
 
-	unset_xml_parse_pedantic is
+	unset_oldsax is
 		do
-			value := value.bit_xor(xml_parse_pedantic_low_level)
+			value := value.bit_xor(oldsax_low_level)
 		end
 
-	set_xml_parse_recover is
+	set_pedantic is
 		do
-			value := value.bit_or(xml_parse_recover_low_level)
+			value := value.bit_or(pedantic_low_level)
 		end
 
-	unset_xml_parse_recover is
+	unset_pedantic is
 		do
-			value := value.bit_xor(xml_parse_recover_low_level)
+			value := value.bit_xor(pedantic_low_level)
 		end
 
-	set_xml_parse_sax1 is
+	set_recover is
 		do
-			value := value.bit_or(xml_parse_sax1_low_level)
+			value := value.bit_or(recover_low_level)
 		end
 
-	unset_xml_parse_sax1 is
+	unset_recover is
 		do
-			value := value.bit_xor(xml_parse_sax1_low_level)
+			value := value.bit_xor(recover_low_level)
 		end
 
-	set_xml_parse_xinclude is
+	set_sax1 is
 		do
-			value := value.bit_or(xml_parse_xinclude_low_level)
+			value := value.bit_or(sax1_low_level)
 		end
 
-	unset_xml_parse_xinclude is
+	unset_sax1 is
 		do
-			value := value.bit_xor(xml_parse_xinclude_low_level)
+			value := value.bit_xor(sax1_low_level)
 		end
 
-feature -- Queries
-	is_xml_parse_compact: BOOLEAN is
+	set_xinclude is
 		do
-			Result := (value=xml_parse_compact_low_level)
+			value := value.bit_or(xinclude_low_level)
 		end
 
-	is_xml_parse_dtdload: BOOLEAN is
+	unset_xinclude is
 		do
-			Result := (value=xml_parse_dtdload_low_level)
+			value := value.bit_xor(xinclude_low_level)
 		end
 
-	is_xml_parse_dtdvalid: BOOLEAN is
+feature {ANY} -- Queries
+	is_compact: BOOLEAN is
 		do
-			Result := (value=xml_parse_dtdvalid_low_level)
+			Result := (value=compact_low_level)
 		end
 
-	is_xml_parse_huge: BOOLEAN is
+	is_dtdattr: BOOLEAN is
 		do
-			Result := (value=xml_parse_huge_low_level)
+			Result := (value=dtdattr_low_level)
 		end
 
-	is_xml_parse_nobasefix: BOOLEAN is
+	is_dtdload: BOOLEAN is
 		do
-			Result := (value=xml_parse_nobasefix_low_level)
+			Result := (value=dtdload_low_level)
 		end
 
-	is_xml_parse_noblanks: BOOLEAN is
+	is_dtdvalid: BOOLEAN is
 		do
-			Result := (value=xml_parse_noblanks_low_level)
+			Result := (value=dtdvalid_low_level)
 		end
 
-	is_xml_parse_nocdata: BOOLEAN is
+	is_huge: BOOLEAN is
 		do
-			Result := (value=xml_parse_nocdata_low_level)
+			Result := (value=huge_low_level)
 		end
 
-	is_xml_parse_nodict: BOOLEAN is
+	is_nobasefix: BOOLEAN is
 		do
-			Result := (value=xml_parse_nodict_low_level)
+			Result := (value=nobasefix_low_level)
 		end
 
-	is_xml_parse_noent: BOOLEAN is
+	is_noblanks: BOOLEAN is
 		do
-			Result := (value=xml_parse_noent_low_level)
+			Result := (value=noblanks_low_level)
 		end
 
-	is_xml_parse_noerror: BOOLEAN is
+	is_nocdata: BOOLEAN is
 		do
-			Result := (value=xml_parse_noerror_low_level)
+			Result := (value=nocdata_low_level)
 		end
 
-	is_xml_parse_nonet: BOOLEAN is
+	is_nodict: BOOLEAN is
 		do
-			Result := (value=xml_parse_nonet_low_level)
+			Result := (value=nodict_low_level)
 		end
 
-	is_xml_parse_nowarning: BOOLEAN is
+	is_noent: BOOLEAN is
 		do
-			Result := (value=xml_parse_nowarning_low_level)
+			Result := (value=noent_low_level)
 		end
 
-	is_xml_parse_noxincnode: BOOLEAN is
+	is_noerror: BOOLEAN is
 		do
-			Result := (value=xml_parse_noxincnode_low_level)
+			Result := (value=noerror_low_level)
 		end
 
-	is_xml_parse_nsclean: BOOLEAN is
+	is_nonet: BOOLEAN is
 		do
-			Result := (value=xml_parse_nsclean_low_level)
+			Result := (value=nonet_low_level)
 		end
 
-	is_xml_parse_old10: BOOLEAN is
+	is_nowarning: BOOLEAN is
 		do
-			Result := (value=xml_parse_old10_low_level)
+			Result := (value=nowarning_low_level)
 		end
 
-	is_xml_parse_oldsax: BOOLEAN is
+	is_noxincnode: BOOLEAN is
 		do
-			Result := (value=xml_parse_oldsax_low_level)
+			Result := (value=noxincnode_low_level)
 		end
 
-	is_xml_parse_pedantic: BOOLEAN is
+	is_nsclean: BOOLEAN is
 		do
-			Result := (value=xml_parse_pedantic_low_level)
+			Result := (value=nsclean_low_level)
 		end
 
-	is_xml_parse_recover: BOOLEAN is
+	is_old10: BOOLEAN is
 		do
-			Result := (value=xml_parse_recover_low_level)
+			Result := (value=old10_low_level)
 		end
 
-	is_xml_parse_sax1: BOOLEAN is
+	is_oldsax: BOOLEAN is
 		do
-			Result := (value=xml_parse_sax1_low_level)
+			Result := (value=oldsax_low_level)
 		end
 
-	is_xml_parse_xinclude: BOOLEAN is
+	is_pedantic: BOOLEAN is
 		do
-			Result := (value=xml_parse_xinclude_low_level)
+			Result := (value=pedantic_low_level)
+		end
+
+	is_recover: BOOLEAN is
+		do
+			Result := (value=recover_low_level)
+		end
+
+	is_sax1: BOOLEAN is
+		do
+			Result := (value=sax1_low_level)
+		end
+
+	is_xinclude: BOOLEAN is
+		do
+			Result := (value=xinclude_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	xml_parse_compact_low_level: INTEGER is
+	compact_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -344,7 +360,16 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_dtdload_low_level: INTEGER is
+	dtdattr_low_level: INTEGER is
+		external "plug_in"
+ 		alias "{
+ 			location: "."
+ 			module: "plugin"
+ 			feature_name: "XML_PARSE_DTDATTR"
+ 			}"
+ 		end
+
+	dtdload_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -353,7 +378,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_dtdvalid_low_level: INTEGER is
+	dtdvalid_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -362,7 +387,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_huge_low_level: INTEGER is
+	huge_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -371,7 +396,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_nobasefix_low_level: INTEGER is
+	nobasefix_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -380,7 +405,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_noblanks_low_level: INTEGER is
+	noblanks_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -389,7 +414,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_nocdata_low_level: INTEGER is
+	nocdata_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -398,7 +423,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_nodict_low_level: INTEGER is
+	nodict_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -407,7 +432,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_noent_low_level: INTEGER is
+	noent_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -416,7 +441,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_noerror_low_level: INTEGER is
+	noerror_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -425,7 +450,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_nonet_low_level: INTEGER is
+	nonet_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -434,7 +459,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_nowarning_low_level: INTEGER is
+	nowarning_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -443,7 +468,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_noxincnode_low_level: INTEGER is
+	noxincnode_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -452,7 +477,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_nsclean_low_level: INTEGER is
+	nsclean_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -461,7 +486,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_old10_low_level: INTEGER is
+	old10_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -470,7 +495,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_oldsax_low_level: INTEGER is
+	oldsax_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -479,7 +504,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_pedantic_low_level: INTEGER is
+	pedantic_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -488,7 +513,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_recover_low_level: INTEGER is
+	recover_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -497,7 +522,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_sax1_low_level: INTEGER is
+	sax1_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -506,7 +531,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_parse_xinclude_low_level: INTEGER is
+	xinclude_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."

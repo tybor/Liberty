@@ -5,61 +5,61 @@ expanded class XLINK_SHOW_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := ((a_value = xlink_show_embed_low_level)  or else
-				(a_value = xlink_show_new_low_level)  or else
-				(a_value = xlink_show_none_low_level)  or else
-				(a_value = xlink_show_replace_low_level) )
+            Result := ((a_value = embed_low_level)  or else
+				(a_value = new_low_level)  or else
+				(a_value = none_low_level)  or else
+				(a_value = replace_low_level) )
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_xlink_show_embed is
+	set_embed is
 		do
-			value := xlink_show_embed_low_level
+			value := embed_low_level
 		end
 
-	set_xlink_show_new is
+	set_new is
 		do
-			value := xlink_show_new_low_level
+			value := new_low_level
 		end
 
-	set_xlink_show_none is
+	set_none is
 		do
-			value := xlink_show_none_low_level
+			value := none_low_level
 		end
 
-	set_xlink_show_replace is
+	set_replace is
 		do
-			value := xlink_show_replace_low_level
+			value := replace_low_level
 		end
 
-feature -- Queries
-	is_xlink_show_embed: BOOLEAN is
+feature {ANY} -- Queries
+	is_embed: BOOLEAN is
 		do
-			Result := (value=xlink_show_embed_low_level)
+			Result := (value=embed_low_level)
 		end
 
-	is_xlink_show_new: BOOLEAN is
+	is_new: BOOLEAN is
 		do
-			Result := (value=xlink_show_new_low_level)
+			Result := (value=new_low_level)
 		end
 
-	is_xlink_show_none: BOOLEAN is
+	is_none: BOOLEAN is
 		do
-			Result := (value=xlink_show_none_low_level)
+			Result := (value=none_low_level)
 		end
 
-	is_xlink_show_replace: BOOLEAN is
+	is_replace: BOOLEAN is
 		do
-			Result := (value=xlink_show_replace_low_level)
+			Result := (value=replace_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	xlink_show_embed_low_level: INTEGER is
+	embed_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -68,7 +68,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xlink_show_new_low_level: INTEGER is
+	new_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -77,7 +77,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xlink_show_none_low_level: INTEGER is
+	none_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -86,7 +86,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xlink_show_replace_low_level: INTEGER is
+	replace_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."

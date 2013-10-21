@@ -29,7 +29,8 @@ inherit
 	
 insert 
 	SHARED_XML2_NODE_CACHE
-	LIBXML2_EXTERNALS
+	XML_NODE_STRUCT
+	TREE_EXTERNALS
 
 create {ANY} from_external_pointer
 
@@ -37,7 +38,7 @@ feature {ANY} -- Name and attributes
 	name: STRING is
 		-- Name of the node.
 		do
-			create Result.from_external_copy(xml_node_get_name(handle))
+			create Result.from_external_copy(xml_node_struct_get_name(handle))
 		end
 	
 	attribute_at (a_name: STRING): STRING is
@@ -65,31 +66,31 @@ feature {ANY} -- Nodes relationships
 	parent: XML2_NODE is
 		-- Curren't parent, if any.
 	do
-		Result:=cache.wrapper_or_void(xml_node_get_parent(handle))
+		Result:=cache.wrapper_or_void(xml_node_struct_get_parent(handle))
 	end
 
 	first: XML2_NODE is
 		-- First child of Current node. Can be Void
 	do
-		Result:=cache.wrapper_or_void(xml_node_get_children(handle))
+		Result:=cache.wrapper_or_void(xml_node_struct_get_children(handle))
 	end
 
 	next: XML2_NODE is
 		-- Next "brother" node. Can be Void
 	do
-		Result:=cache.wrapper_or_void(xml_node_get_next(handle))
+		Result:=cache.wrapper_or_void(xml_node_struct_get_next(handle))
 	end
 
 	prev: XML2_NODE is 
 		-- Previous "brother" node. Can be Void
 	do
-		Result:=cache.wrapper_or_void(xml_node_get_prev(handle))
+		Result:=cache.wrapper_or_void(xml_node_struct_get_struct_prev(handle))
 	end
 
 	last: XML2_NODE is 
 		-- Last child node. Can be Void
 	do
-		Result:=cache.wrapper_or_void(xml_node_get_last(handle))
+		Result:=cache.wrapper_or_void(xml_node_struct_get_last(handle))
 	end
 
 feature {} -- Implementation
@@ -98,8 +99,4 @@ feature {} -- Implementation
 			xml_free (p)
 		end
 
-	struct_size: INTEGER is
-		external "C use <libxml/tree.h>"
-		alias "size_of (xmlNode)"
-		end
 end -- class XML2_NODE

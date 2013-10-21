@@ -5,129 +5,145 @@ expanded class XML_DOC_PROPERTIES_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := (a_value & (xml_doc_dtdvalid_low_level | 
-				xml_doc_internal_low_level | 
-				xml_doc_nsvalid_low_level | 
-				xml_doc_old10_low_level | 
-				xml_doc_userbuilt_low_level | 
-				xml_doc_wellformed_low_level | 
-				xml_doc_xinclude_low_level)).to_boolean
+            Result := (a_value & (dtdvalid_low_level | 
+				html_low_level | 
+				internal_low_level | 
+				nsvalid_low_level | 
+				old10_low_level | 
+				userbuilt_low_level | 
+				wellformed_low_level | 
+				xinclude_low_level)).to_boolean
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_xml_doc_dtdvalid is
+	set_dtdvalid is
 		do
-			value := value.bit_or(xml_doc_dtdvalid_low_level)
+			value := value.bit_or(dtdvalid_low_level)
 		end
 
-	unset_xml_doc_dtdvalid is
+	unset_dtdvalid is
 		do
-			value := value.bit_xor(xml_doc_dtdvalid_low_level)
+			value := value.bit_xor(dtdvalid_low_level)
 		end
 
-	set_xml_doc_internal is
+	set_html is
 		do
-			value := value.bit_or(xml_doc_internal_low_level)
+			value := value.bit_or(html_low_level)
 		end
 
-	unset_xml_doc_internal is
+	unset_html is
 		do
-			value := value.bit_xor(xml_doc_internal_low_level)
+			value := value.bit_xor(html_low_level)
 		end
 
-	set_xml_doc_nsvalid is
+	set_internal is
 		do
-			value := value.bit_or(xml_doc_nsvalid_low_level)
+			value := value.bit_or(internal_low_level)
 		end
 
-	unset_xml_doc_nsvalid is
+	unset_internal is
 		do
-			value := value.bit_xor(xml_doc_nsvalid_low_level)
+			value := value.bit_xor(internal_low_level)
 		end
 
-	set_xml_doc_old10 is
+	set_nsvalid is
 		do
-			value := value.bit_or(xml_doc_old10_low_level)
+			value := value.bit_or(nsvalid_low_level)
 		end
 
-	unset_xml_doc_old10 is
+	unset_nsvalid is
 		do
-			value := value.bit_xor(xml_doc_old10_low_level)
+			value := value.bit_xor(nsvalid_low_level)
 		end
 
-	set_xml_doc_userbuilt is
+	set_old10 is
 		do
-			value := value.bit_or(xml_doc_userbuilt_low_level)
+			value := value.bit_or(old10_low_level)
 		end
 
-	unset_xml_doc_userbuilt is
+	unset_old10 is
 		do
-			value := value.bit_xor(xml_doc_userbuilt_low_level)
+			value := value.bit_xor(old10_low_level)
 		end
 
-	set_xml_doc_wellformed is
+	set_userbuilt is
 		do
-			value := value.bit_or(xml_doc_wellformed_low_level)
+			value := value.bit_or(userbuilt_low_level)
 		end
 
-	unset_xml_doc_wellformed is
+	unset_userbuilt is
 		do
-			value := value.bit_xor(xml_doc_wellformed_low_level)
+			value := value.bit_xor(userbuilt_low_level)
 		end
 
-	set_xml_doc_xinclude is
+	set_wellformed is
 		do
-			value := value.bit_or(xml_doc_xinclude_low_level)
+			value := value.bit_or(wellformed_low_level)
 		end
 
-	unset_xml_doc_xinclude is
+	unset_wellformed is
 		do
-			value := value.bit_xor(xml_doc_xinclude_low_level)
+			value := value.bit_xor(wellformed_low_level)
 		end
 
-feature -- Queries
-	is_xml_doc_dtdvalid: BOOLEAN is
+	set_xinclude is
 		do
-			Result := (value=xml_doc_dtdvalid_low_level)
+			value := value.bit_or(xinclude_low_level)
 		end
 
-	is_xml_doc_internal: BOOLEAN is
+	unset_xinclude is
 		do
-			Result := (value=xml_doc_internal_low_level)
+			value := value.bit_xor(xinclude_low_level)
 		end
 
-	is_xml_doc_nsvalid: BOOLEAN is
+feature {ANY} -- Queries
+	is_dtdvalid: BOOLEAN is
 		do
-			Result := (value=xml_doc_nsvalid_low_level)
+			Result := (value=dtdvalid_low_level)
 		end
 
-	is_xml_doc_old10: BOOLEAN is
+	is_html: BOOLEAN is
 		do
-			Result := (value=xml_doc_old10_low_level)
+			Result := (value=html_low_level)
 		end
 
-	is_xml_doc_userbuilt: BOOLEAN is
+	is_internal: BOOLEAN is
 		do
-			Result := (value=xml_doc_userbuilt_low_level)
+			Result := (value=internal_low_level)
 		end
 
-	is_xml_doc_wellformed: BOOLEAN is
+	is_nsvalid: BOOLEAN is
 		do
-			Result := (value=xml_doc_wellformed_low_level)
+			Result := (value=nsvalid_low_level)
 		end
 
-	is_xml_doc_xinclude: BOOLEAN is
+	is_old10: BOOLEAN is
 		do
-			Result := (value=xml_doc_xinclude_low_level)
+			Result := (value=old10_low_level)
+		end
+
+	is_userbuilt: BOOLEAN is
+		do
+			Result := (value=userbuilt_low_level)
+		end
+
+	is_wellformed: BOOLEAN is
+		do
+			Result := (value=wellformed_low_level)
+		end
+
+	is_xinclude: BOOLEAN is
+		do
+			Result := (value=xinclude_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	xml_doc_dtdvalid_low_level: INTEGER is
+	dtdvalid_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -136,7 +152,16 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_doc_internal_low_level: INTEGER is
+	html_low_level: INTEGER is
+		external "plug_in"
+ 		alias "{
+ 			location: "."
+ 			module: "plugin"
+ 			feature_name: "XML_DOC_HTML"
+ 			}"
+ 		end
+
+	internal_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -145,7 +170,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_doc_nsvalid_low_level: INTEGER is
+	nsvalid_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -154,7 +179,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_doc_old10_low_level: INTEGER is
+	old10_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -163,7 +188,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_doc_userbuilt_low_level: INTEGER is
+	userbuilt_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -172,7 +197,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_doc_wellformed_low_level: INTEGER is
+	wellformed_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -181,7 +206,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_doc_xinclude_low_level: INTEGER is
+	xinclude_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."

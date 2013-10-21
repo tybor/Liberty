@@ -38,3 +38,5 @@ feature {ANY}
 		end
 	end
 end -- XML2_EXAMPLE
+
+

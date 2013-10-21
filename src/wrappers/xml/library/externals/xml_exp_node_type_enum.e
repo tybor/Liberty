@@ -5,83 +5,83 @@ expanded class XML_EXP_NODE_TYPE_ENUM
 
 insert ENUM
 
-creation default_create
-feature -- Validity
+creation {ANY} default_create
+feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
         do
-            Result := ((a_value = xml_exp_atom_low_level)  or else
-				(a_value = xml_exp_count_low_level)  or else
-				(a_value = xml_exp_empty_low_level)  or else
-				(a_value = xml_exp_forbid_low_level)  or else
-				(a_value = xml_exp_or_low_level)  or else
-				(a_value = xml_exp_seq_low_level) )
+            Result := ((a_value = atom_low_level)  or else
+				(a_value = count_low_level)  or else
+				(a_value = empty_low_level)  or else
+				(a_value = forbid_low_level)  or else
+				(a_value = or_external_low_level)  or else
+				(a_value = seq_low_level) )
 		end
 
-feature -- Setters
+feature {ANY} -- Setters
 	default_create,
-	set_xml_exp_atom is
+	set_atom is
 		do
-			value := xml_exp_atom_low_level
+			value := atom_low_level
 		end
 
-	set_xml_exp_count is
+	set_count is
 		do
-			value := xml_exp_count_low_level
+			value := count_low_level
 		end
 
-	set_xml_exp_empty is
+	set_empty is
 		do
-			value := xml_exp_empty_low_level
+			value := empty_low_level
 		end
 
-	set_xml_exp_forbid is
+	set_forbid is
 		do
-			value := xml_exp_forbid_low_level
+			value := forbid_low_level
 		end
 
-	set_xml_exp_or is
+	set_or_external is
 		do
-			value := xml_exp_or_low_level
+			value := or_external_low_level
 		end
 
-	set_xml_exp_seq is
+	set_seq is
 		do
-			value := xml_exp_seq_low_level
+			value := seq_low_level
 		end
 
-feature -- Queries
-	is_xml_exp_atom: BOOLEAN is
+feature {ANY} -- Queries
+	is_atom: BOOLEAN is
 		do
-			Result := (value=xml_exp_atom_low_level)
+			Result := (value=atom_low_level)
 		end
 
-	is_xml_exp_count: BOOLEAN is
+	is_count: BOOLEAN is
 		do
-			Result := (value=xml_exp_count_low_level)
+			Result := (value=count_low_level)
 		end
 
-	is_xml_exp_empty: BOOLEAN is
+	is_empty: BOOLEAN is
 		do
-			Result := (value=xml_exp_empty_low_level)
+			Result := (value=empty_low_level)
 		end
 
-	is_xml_exp_forbid: BOOLEAN is
+	is_forbid: BOOLEAN is
 		do
-			Result := (value=xml_exp_forbid_low_level)
+			Result := (value=forbid_low_level)
 		end
 
-	is_xml_exp_or: BOOLEAN is
+	is_or_external: BOOLEAN is
 		do
-			Result := (value=xml_exp_or_low_level)
+			Result := (value=or_external_low_level)
 		end
 
-	is_xml_exp_seq: BOOLEAN is
+	is_seq: BOOLEAN is
 		do
-			Result := (value=xml_exp_seq_low_level)
+			Result := (value=seq_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	xml_exp_atom_low_level: INTEGER is
+	atom_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -90,7 +90,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_exp_count_low_level: INTEGER is
+	count_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -99,7 +99,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_exp_empty_low_level: INTEGER is
+	empty_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -108,7 +108,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_exp_forbid_low_level: INTEGER is
+	forbid_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -117,7 +117,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_exp_or_low_level: INTEGER is
+	or_external_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."
@@ -126,7 +126,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	xml_exp_seq_low_level: INTEGER is
+	seq_low_level: INTEGER is
 		external "plug_in"
  		alias "{
  			location: "."

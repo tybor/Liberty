@@ -151,7 +151,7 @@ feature {ANY}
 	--   Returns :     a pointer to the GITypelib if successful, NULL otherwise. [transfer none]
 	--
 	
-	dependencies (a_namespace: ABSTRACT_STRING): TRAVERSABLE[STRING] is 
+	dependencies (a_namespace: ABSTRACT_STRING): TRAVERSABLE[FIXED_STRING] is 
 			-- All the transitive dependencies for 'a_namespace', including
 			-- version. The strings are of the form "namespace-version".
 
@@ -161,15 +161,14 @@ feature {ANY}
 		local ptr: POINTER
 		do
 			ptr := g_irepository_get_dependencies (handle, a_namespace.to_external)
-			create {STRING_ARRAY} Result.from_external_null_array(ptr)
-			-- TODO: STRING_ARRAY is extremely weak is zero-terminated string array of versioned dependencies. [transfer full]
+			Result := strings_array_from(ptr)
 		end
  
  	
-	loaded_namespaces: STRING_ARRAY is
+	loaded_namespaces: TRAVERSABLE[FIXED_STRING] is
 		-- The list of currently loaded namespaces (in UTF8).
 	do
-		create Result.from_external_null_array(g_irepository_get_loaded_namespaces (handle))
+		Result := strings_array_from(g_irepository_get_loaded_namespaces (handle))
 	end
  --
  --  g_irepository_find_by_gtype ()

@@ -229,16 +229,7 @@ feature {} -- External calls
 		}"
 		end
 
-	xml_buffer_write_char (a_buf: POINTER; a_string: POINTER) is
- 		-- xmlBufferWriteCHAR
-		external "plug_in"
-		alias "{
-			location: "."
-			module_name: "plugin"
-			feature_name: "xmlBufferWriteCHAR"
-		}"
-		end
-
+	-- function xmlBufferWriteCHAR @(2) skipped as requested.
 	xml_buffer_write_char (a_buf: POINTER; a_string: POINTER) is
  		-- xmlBufferWriteChar
 		external "plug_in"

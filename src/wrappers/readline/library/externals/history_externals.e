@@ -9,7 +9,7 @@ insert ANY undefine is_equal, copy end
 		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
-	add_history (an_argument_l2165_c7: POINTER) is
+	add_history (an_argument_l2155_c7: POINTER) is
  		-- add_history
 		external "plug_in"
 		alias "{
@@ -19,7 +19,7 @@ feature {} -- External calls
 		}"
 		end
 
-	add_history_time (an_argument_l2852_c7: POINTER) is
+	add_history_time (an_argument_l2859_c7: POINTER) is
  		-- add_history_time
 		external "plug_in"
 		alias "{
@@ -29,7 +29,7 @@ feature {} -- External calls
 		}"
 		end
 
-	append_history (an_argument_l2348_c7: INTEGER; an_argument_l2349_c7: POINTER): INTEGER is
+	append_history (an_argument_l2347_c7: INTEGER; an_argument_l2348_c7: POINTER): INTEGER is
  		-- append_history
 		external "plug_in"
 		alias "{
@@ -59,7 +59,7 @@ feature {} -- External calls
 		}"
 		end
 
-	free_history_entry (an_argument_l2464_c7: POINTER): POINTER is
+	free_history_entry (an_argument_l2467_c7: POINTER): POINTER is
  		-- free_history_entry
 		external "plug_in"
 		alias "{
@@ -69,7 +69,7 @@ feature {} -- External calls
 		}"
 		end
 
-	get_history_event (an_argument_l2240_c7: POINTER; an_argument_l2241_c7: POINTER; an_argument_l2242_c7: INTEGER): POINTER is
+	get_history_event (an_argument_l2230_c7: POINTER; an_argument_l2231_c7: POINTER; an_argument_l2232_c7: INTEGER): POINTER is
  		-- get_history_event
 		external "plug_in"
 		alias "{
@@ -79,7 +79,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_arg_extract (an_argument_l2195_c7: INTEGER; an_argument_l2196_c7: INTEGER; an_argument_l2197_c7: POINTER): POINTER is
+	history_arg_extract (an_argument_l2185_c7: INTEGER; an_argument_l2186_c7: INTEGER; an_argument_l2187_c7: POINTER): POINTER is
  		-- history_arg_extract
 		external "plug_in"
 		alias "{
@@ -149,7 +149,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_expand (an_argument_l1942_c7: POINTER; an_argument_l1943_c7: POINTER): INTEGER is
+	history_expand (an_argument_l1934_c7: POINTER; an_argument_l1935_c7: POINTER): INTEGER is
  		-- history_expand
 		external "plug_in"
 		alias "{
@@ -189,7 +189,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_get (an_argument_l2626_c7: INTEGER): POINTER is
+	history_get (an_argument_l2631_c7: INTEGER): POINTER is
  		-- history_get
 		external "plug_in"
 		alias "{
@@ -209,7 +209,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_get_time (an_argument_l2409_c7: POINTER): like long is
+	history_get_time (an_argument_l2408_c7: POINTER): like long is
  		-- history_get_time
 		external "plug_in"
 		alias "{
@@ -389,7 +389,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_search (an_argument_l263_c7: POINTER; an_argument_l264_c7: INTEGER): INTEGER is
+	history_search (an_argument_l248_c7: POINTER; an_argument_l249_c7: INTEGER): INTEGER is
  		-- history_search
 		external "plug_in"
 		alias "{
@@ -429,7 +429,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_search_pos (an_argument_l2607_c7: POINTER; an_argument_l2608_c7: INTEGER; an_argument_l2609_c7: INTEGER): INTEGER is
+	history_search_pos (an_argument_l2613_c7: POINTER; an_argument_l2614_c7: INTEGER; an_argument_l2615_c7: INTEGER): INTEGER is
  		-- history_search_pos
 		external "plug_in"
 		alias "{
@@ -439,7 +439,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_search_prefix (an_argument_l2001_c7: POINTER; an_argument_l2002_c7: INTEGER): INTEGER is
+	history_search_prefix (an_argument_l1990_c7: POINTER; an_argument_l1991_c7: INTEGER): INTEGER is
  		-- history_search_prefix
 		external "plug_in"
 		alias "{
@@ -449,7 +449,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_set_history_state (an_argument_l838_c7: POINTER) is
+	history_set_history_state (an_argument_l840_c7: POINTER) is
  		-- history_set_history_state
 		external "plug_in"
 		alias "{
@@ -459,7 +459,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_set_pos (an_argument_l1819_c7: INTEGER): INTEGER is
+	history_set_pos (an_argument_l1811_c7: INTEGER): INTEGER is
  		-- history_set_pos
 		external "plug_in"
 		alias "{
@@ -499,7 +499,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_tokenize (an_argument_l2792_c7: POINTER): POINTER is
+	history_tokenize (an_argument_l2799_c7: POINTER): POINTER is
  		-- history_tokenize
 		external "plug_in"
 		alias "{
@@ -519,7 +519,7 @@ feature {} -- External calls
 		}"
 		end
 
-	history_truncate_file (an_argument_l1925_c7: POINTER; an_argument_l1926_c7: INTEGER): INTEGER is
+	history_truncate_file (an_argument_l1917_c7: POINTER; an_argument_l1918_c7: INTEGER): INTEGER is
  		-- history_truncate_file
 		external "plug_in"
 		alias "{
@@ -639,7 +639,7 @@ feature {} -- External calls
 		}"
 		end
 
-	read_history (an_argument_l2147_c7: POINTER): INTEGER is
+	read_history (an_argument_l2137_c7: POINTER): INTEGER is
  		-- read_history
 		external "plug_in"
 		alias "{
@@ -649,7 +649,7 @@ feature {} -- External calls
 		}"
 		end
 
-	read_history_range (an_argument_l66_c7: POINTER; an_argument_l67_c7: INTEGER; an_argument_l68_c7: INTEGER): INTEGER is
+	read_history_range (an_argument_l65_c7: POINTER; an_argument_l66_c7: INTEGER; an_argument_l67_c7: INTEGER): INTEGER is
  		-- read_history_range
 		external "plug_in"
 		alias "{
@@ -659,7 +659,7 @@ feature {} -- External calls
 		}"
 		end
 
-	remove_history (an_argument_l2282_c7: INTEGER): POINTER is
+	remove_history (an_argument_l2276_c7: INTEGER): POINTER is
  		-- remove_history
 		external "plug_in"
 		alias "{
@@ -669,7 +669,7 @@ feature {} -- External calls
 		}"
 		end
 
-	replace_history_entry (an_argument_l2252_c7: INTEGER; an_argument_l2253_c7: POINTER; an_argument_l2254_c7: POINTER): POINTER is
+	replace_history_entry (an_argument_l2247_c7: INTEGER; an_argument_l2248_c7: POINTER; an_argument_l2249_c7: POINTER): POINTER is
  		-- replace_history_entry
 		external "plug_in"
 		alias "{
@@ -679,7 +679,7 @@ feature {} -- External calls
 		}"
 		end
 
-	stifle_history (an_argument_l2836_c7: INTEGER) is
+	stifle_history (an_argument_l2843_c7: INTEGER) is
  		-- stifle_history
 		external "plug_in"
 		alias "{
@@ -719,7 +719,7 @@ feature {} -- External calls
 		}"
 		end
 
-	write_history (an_argument_l2758_c7: POINTER): INTEGER is
+	write_history (an_argument_l2763_c7: POINTER): INTEGER is
  		-- write_history
 		external "plug_in"
 		alias "{
