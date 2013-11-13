@@ -2,12 +2,17 @@
 -- See the Copyright notice at the end of this file.
 --
 class MANIFEST_STRING_INSPECTOR
-   --
-   -- *** I am quite sure that this class is not so useful. All the stuff should be now included into
-   -- the INSPECT_STATEMENT class. Please, consider do the removal job... or replace this comment
-   -- with an explaination telling us why this MANIFEST_STRING_INSPECTOR is still useful.
-   -- *** Dom. May 20th 2008 ***
-   --
+   --|
+   --| *** I am quite sure that this class is not so useful. All the stuff should be now included into
+   --| the INSPECT_STATEMENT class. Please, consider do the removal job... or replace this comment
+   --| with an explaination telling us why this MANIFEST_STRING_INSPECTOR is still useful.
+   --| *** Dom. May 20th 2008 ***
+   --|
+   --| Dominique is right (once again). This object has no own state but borrows its state from its
+   --| INSPECT_STATEMENT owner.
+   --| *** CAD October 24th 2013 ***
+   --|
+
 insert
    GLOBALS
 
@@ -75,6 +80,7 @@ feature {}
                         error_handler.print_as_fatal_error
                      elseif s.is_empty then
                         empty_position := ms.start_position
+                        empty_index := i
                      end
                      wi1.set_expression_value(headers.count)
                      headers.add_last(s)
@@ -111,25 +117,29 @@ feature {}
       end
 
    empty_position: POSITION
+   empty_index: INTEGER
 
 feature {INSPECT_STATEMENT}
    simplify (type: TYPE; inspect_statement: INSPECT_STATEMENT): INSTRUCTION is
       local
          exp, count_call, local_expression: EXPRESSION; assign_expression, string_inspect: INSTRUCTION
-         item_call: FUNCTION_CALL_1; i, s, c: INTEGER; compound: COMPOUND; when_clause: WHEN_CLAUSE
-         state_inspect: OTHER_INSPECT_STATEMENT; state_local: INTERNAL_LOCAL2
+         item_call: FUNCTION_CALL_1; i, s, c: INTEGER; inspect_compound, compound: COMPOUND
+         when_clause: WHEN_CLAUSE; state_inspect: OTHER_INSPECT_STATEMENT; state_local: INTERNAL_LOCAL2
+         if_empty: IFTHENELSE; is_empty_call: FUNCTION_CALL_0
+         empty_string_compound: INSTRUCTION
       do
          exp := inspect_statement.expression.simplify(type)
          if exp.is_stored_in_some_local_variable then
             local_expression := exp
          else
-            local_expression := create {INTERNAL_LOCAL2}.make(exp.start_position, exp, once "inspectExpression", True)
+            local_expression := create {INTERNAL_LOCAL2}.make(exp.start_position, exp, once "inspectManifestStringExpression", True)
             create {ASSIGNMENT} assign_expression.inline_make(local_expression, exp)
          end
          create state_local.make(exp.start_position, create {INTEGER_CONSTANT}.make(32768, exp.start_position), once "state", False)
+         is_empty_call := inspect_statement.is_empty_call(type, local_expression)
          item_call := inspect_statement.item_call(type, local_expression)
          count_call := inspect_statement.count_call(type, local_expression)
-         string_inspect := inline_inspect(type, state_local, item_call, count_call,   once "", inspect_statement.start_position)
+         string_inspect := inline_inspect(type, state_local, item_call, count_call, once "", inspect_statement.start_position)
          create state_inspect.make(inspect_statement.start_position, state_local)
          from
             s := 1
@@ -137,7 +147,7 @@ feature {INSPECT_STATEMENT}
          until
             i > inspect_statement.when_list.upper
          loop
-            create when_clause.make(state_inspect,   inspect_statement.when_list.item(i).start_position, inspect_statement.when_list.item(i).header_comment)
+            create when_clause.make(state_inspect, inspect_statement.when_list.item(i).start_position, inspect_statement.when_list.item(i).header_comment)
             c := inspect_statement.when_list.item(i).list.count
             if c = 1 then
                when_clause.add_value(create {INTEGER_CONSTANT}.make(s, inspect_statement.when_list.item(i).start_position))
@@ -154,13 +164,20 @@ feature {INSPECT_STATEMENT}
             state_inspect.set_else_compound(inspect_statement.else_position, inspect_statement.else_compound)
          end
          state_inspect.force_internal_values(type)
-         if assign_expression = Void then
-            create compound.make_2(string_inspect, state_inspect)
+         create inspect_compound.make_2(string_inspect, state_inspect)
+         if has_empty then
+            empty_string_compound := inspect_statement.when_list.item(empty_index).compound
          else
-            create compound.make_3(assign_expression, string_inspect, state_inspect)
+            empty_string_compound := inspect_statement.else_compound
+         end
+         create if_empty.with_else(exp.start_position, is_empty_call, empty_string_compound, inspect_compound)
+         if assign_expression = Void then
+            Result := if_empty.simplify(type)
+         else
+            create compound.make_2(assign_expression, if_empty)
+            Result := compound.simplify(type)
          end
          smart_eiffel.magic_count_increment
-         Result := compound.simplify(type)
       end
 
 feature {}

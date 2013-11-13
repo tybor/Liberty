@@ -413,6 +413,16 @@ feature {FEATURE_CALL, WRITABLE_ATTRIBUTE_NAME, MANIFEST_STRING_POOL, CREATION_C
          tmp_fs := fs
 -- *** But we must now have two types... *** Dom march 16th 2006 ***
          af := tmp_fs.anonymous_feature(type)
+         if af = Void then
+            error_handler.add_position(fs.name.start_position)
+            error_handler.append("Cannot collect feature {")
+            error_handler.append(lt.name.to_string)
+            error_handler.append("}.`")
+            error_handler.append(fs.name.to_string)
+            error_handler.append("': anonymous feature not found")
+            error_handler.print_as_internal_error
+         end
+
          tm := af.result_type
          if tm /= Void then
             Result := tm.resolve_in(type)
@@ -645,6 +655,7 @@ feature {AGENT_POOL, CREATE_SUPPORT, ASSIGNMENT, ASSIGNMENT_ATTEMPT, CREATE_WRIT
          Result := type.live_type
          if Result = Void then
             create Result.make(type)
+            magic_count_increment
             check
                not type.is_expanded implies not Result.at_run_time
                type_dictionary.reference_at(type.long_name).live_type = Result
@@ -664,9 +675,12 @@ feature {AGENT_POOL, CREATE_SUPPORT, ASSIGNMENT, ASSIGNMENT_ATTEMPT, CREATE_WRIT
                end
             end
             Result.set_at_run_time
+            magic_count_increment
          end
       ensure
+         definition: Result = type.live_type
          is_alive: type.live_type /= Void
+         -- hence: Result /= Void
       end
 
 feature {ANONYMOUS_FEATURE, RUN_FEATURE, ARGUMENT_NAME2, LOCAL_NAME2, RESULT, E_OLD, INSPECT_STATEMENT}
@@ -1919,6 +1933,9 @@ feature {}
                   check
                      root_is_run_feature_3: root_procedure /= Void
                   end
+                  if nb_errors = 0 and then cecil_pool /= Void then
+                     cecil_pool.adapt
+                  end
                end
             end
          end
@@ -1932,7 +1949,7 @@ feature {}
 
    collect_from_root (root_type: TYPE; root_feature: FEATURE_STAMP) is
       local
-         string_type, tmp: TYPE; i, magic: INTEGER
+         tmp: TYPE; i, magic: INTEGER
       do
          status.set_collecting
          assignment_handler.reset
@@ -1956,8 +1973,7 @@ feature {}
          -- Collect all the live features:
          if ace.no_check then
             -- STRINGs are needed for runtime support:
-            string_type := type_string
-            manifest_string_pool.collect_string(string_type)
+            manifest_string_pool.collect_string(type_string)
          end
          from
             magic := -1 -- Iterate at least once

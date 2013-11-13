@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 MAXTOOLCOUNT=20
 
@@ -58,10 +58,10 @@ function bootstrap()
         cd ..
     fi
 
-    if [ ! -d serc ]; then
-        title "Preparing SmartEiffel environment"
-        mkdir serc
-        cd serc
+    if [ ! -d liberty-eiffel ]; then
+        title "Preparing Liberty environment"
+        mkdir liberty-eiffel
+        cd liberty-eiffel
         cat > liberty.se <<EOF
 [General]
 bin: $TARGET/bin
@@ -70,7 +70,7 @@ short: $LIBERTY_HOME/resources/short
 os: UNIX
 flavor: Linux
 tag: 3
-jobs: $((2 * $(grep '^processor' /proc/cpuinfo|wc -l)))
+jobs: $((1 + $(grep '^processor' /proc/cpuinfo|wc -l)))
 
 [Environment]
 path_liberty: $LIBERTY_HOME/
@@ -102,8 +102,6 @@ mock: mocker
 pretty: pretty
 short: short
 test: eiffeltest
-test_ng: eiffeltest_ng
-test_server: eiffeltest_server
 wrap: wrappers-generator
 x_int: extract_internals
 
@@ -210,12 +208,15 @@ EOF
         cd ..
     fi
 
-    if [ -L $HOME/.serc ]; then
-        rm $HOME/.serc
-    elif [ -e $HOME/.serc ]; then
-        mv $HOME/.serc $HOME/.serc~
+    export CONFIG_DIR=${HOME:-/home/$USER}/.config
+    test -d $CONFIG_DIR || mkdir -p $CONFIG_DIR
+
+    if [ -L $CONFIG_DIR/liberty-eiffel ]; then
+        rm $CONFIG_DIR/liberty-eiffel
+    elif [ -e $CONFIG_DIR/liberty-eiffel ]; then
+        mv $CONFIG_DIR/liberty-eiffel $CONFIG_DIR/liberty-eiffel~
     fi
-    ln -s $TARGET/serc $HOME/.serc
+    ln -s $TARGET/liberty-eiffel $CONFIG_DIR/
 
     title "Bootstrapping SmartEiffel tools"
     cd $LIBERTY_HOME/resources/smarteiffel-germ
@@ -302,8 +303,6 @@ EOF
 6  bdw clean
 7  bdw ace_check
 8  bdw eiffeltest
-9  yes eiffeltest_ng
-10 yes eiffeltest_server
 EOF
     while read i gc tool; do
         progress 30 $i $MAXTOOLCOUNT "$tool"
@@ -416,7 +415,7 @@ function do_pkg_tools()
 {
     PUBLIC=$DESTDIR/usr/bin
     PRIVATE=$DESTDIR/usr/lib/liberty-eiffel/bin
-    ETC=$DESTDIR/etc/serc
+    ETC=$DESTDIR/etc/xdg/liberty-eiffel
     SHORT=$DESTDIR/usr/share/liberty-eiffel/short
     SYS=$DESTDIR/usr/share/liberty-eiffel/sys
     SITE_LISP=$DESTDIR/usr/share/emacs/site-lisp/liberty-eiffel
@@ -465,8 +464,6 @@ mock: mocker
 pretty: pretty
 short: short
 test: eiffeltest
-test_ng: eiffeltest_ng
-test_server: eiffeltest_server
 wrap: wrappers-generator
 x_int: extract_internals
 
@@ -546,7 +543,7 @@ function _do_pkg_src()
     src=$2
 
     SRC=$DESTDIR/usr/share/liberty-eiffel/src
-    ETC=$DESTDIR/etc/serc
+    ETC=$DESTDIR/etc/xdg/liberty-eiffel
 
     install -d -m 0755 -o root -g root $SRC $ETC
 

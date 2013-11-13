@@ -15,15 +15,19 @@ insert
    GICALLABLEINFO_EXTERNALS
 
 feature {ANY}
-	wrapper: ABSTRACT_STRING is
+	eiffel_wrapper: ABSTRACT_STRING is
 		do
 			create {STRING} Result.with_capacity(512) -- half kilobytes is an euristic
-			Result.append(eiffel_name())
+			Result.append("foo")
 			if has_arguments then 
 				Result.append(once "(")
-				from 
 				Result.append(once ")") 
-				
+			end
+			Result.append(" is%N%
+			%		-- @(1)i%N%
+			%	do%N%
+			%	end%N%
+			%")
 		end
 
 feature {ANY}
@@ -37,8 +41,8 @@ feature {ANY}
    is_query: BOOLEAN is 
          -- Does Current callable return some values?
       do
-		  Result := boy return_type.tag.is_void
-		  DA_FINIRE
+		  Result := return_type.tag.is_void
+		  not_yet_implemented
 	  end
 
 

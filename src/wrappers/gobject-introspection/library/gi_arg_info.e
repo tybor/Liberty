@@ -16,8 +16,10 @@ create {ANY}
 feature 
 	wrapper: ABSTRACT_STRING is
 		do
-			Result:=""
+			if name/=Void then
+				Result:=name|": "|
 		end
+
 feature {ANY}
 
    direction: GIDIRECTION_ENUM is

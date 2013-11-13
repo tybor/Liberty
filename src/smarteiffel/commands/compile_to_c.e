@@ -100,9 +100,6 @@ feature {}
       local
          string_command_line: STRING_COMMAND_LINE; echo_redirect: STRING
       do
-         set_cecil_pool
-         system_tools.set_plugin_factory(create {C_PLUGIN_FACTORY}.make)
-         eiffel_parser.set_drop_comments
          string_command_line.set_command_line_name(command_line_name)
          if argument_count < 1 then
             system_tools.bad_use_exit(command_line_name, command_line_help_summary)
@@ -113,6 +110,9 @@ feature {}
          end
          search_for_verbose_flag
          search_for_cc_flag
+         set_cecil_pool
+         system_tools.set_plugin_factory(create {C_PLUGIN_FACTORY}.make)
+         eiffel_parser.set_drop_comments
          if ace_file_mode then
             system_tools.add_smarteiffel_c_mode_options
          else
@@ -152,6 +152,8 @@ feature {}
             elseif is_relax_flag(arg) then
                argi := argi + 1
             elseif is_case_insensitive_flag(arg) then
+               argi := argi + 1
+            elseif is_flymake_mode_flag(arg) then
                argi := argi + 1
             elseif is_style_warning_flag(arg) then
                argi := argi + 1
@@ -276,9 +278,12 @@ feature {}
 
    is_valid_argument_for_ace_mode (arg: STRING): BOOLEAN is
       do
-         if is_version_flag(arg) or else is_style_warning_flag(arg) or else is_no_warning_flag(arg) or else is_verbose_flag(arg) or else is_relax_flag(arg) then
-            Result := True
-         end
+         Result := is_version_flag(arg)
+            or else is_flymake_mode_flag(arg)
+            or else is_style_warning_flag(arg)
+            or else is_no_warning_flag(arg)
+            or else is_verbose_flag(arg)
+            or else is_relax_flag(arg)
       end
 
    valid_argument_for_ace_mode: STRING is "Only the flags -verbose, -version, -help and -relax are allowed in ACE%Nfile mode.%N"

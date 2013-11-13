@@ -16,7 +16,7 @@ default -- section of the system
    no_warning (no);
    verbose (no);
    manifest_string_trace (no); -- yes);
-   high_memory_compiler (yes);	
+   high_memory_compiler (yes);
    profile (no);
 
 cluster -- section
@@ -37,7 +37,6 @@ cluster -- section
       default
          assertion(boost)
       end
-
 external -- section for elements written in another language
 generate -- section
 

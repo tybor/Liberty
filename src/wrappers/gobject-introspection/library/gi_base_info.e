@@ -20,7 +20,7 @@ insert
 
 feature {ANY} -- Eiffel wrapper generation
 	wrapper: ABSTRACT_STRING is
-		-- The text of Eiffel source code that wraps Current object
+		-- The Eiffel source code that wraps Current object
 		deferred
 		ensure Result/=Void
 		end
@@ -39,7 +39,7 @@ feature {WRAPPER_HANDLER} -- Memory handling
       end
 
 feature {ANY}
-   type: GIINFO_TYPE_ENUM is
+   type_enum: GIINFO_TYPE_ENUM is
          -- The type of info
       do
          Result.set(g_base_info_get_type(handle))
