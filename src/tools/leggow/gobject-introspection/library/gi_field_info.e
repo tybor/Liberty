@@ -7,6 +7,18 @@ insert GIFIELDINFO_EXTERNALS
 
 creation {GI_INFO_FACTORY, GI_OBJECT_INFO, GI_STRUCT_INFO, GI_UNION_INFO} from_external_pointer
 
+feature {ANY} -- Wrapper
+	emit_wrapper is
+		do
+			("GI_field: #(1)%N" # name).print_on(std_output)
+		end
+
+	eiffel_wrapper: ABSTRACT_STRING is
+		do
+			not_yet_implemented
+		end
+
+
 feature {ANY} --
 	is_readable: BOOLEAN is
 		do

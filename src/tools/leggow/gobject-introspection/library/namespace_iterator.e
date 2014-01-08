@@ -14,7 +14,6 @@ creation {GI_INFO_FACTORY, WRAPPER} from_repository_and_namespace
 feature {} -- Creation
 	from_repository_and_namespace (a_repository: GI_REPOSITORY; a_namespace: ABSTRACT_STRING) is
 		do 
-			("Iterator over #(1) namespace%N" # a_namespace).print_on(std_output)
 			repo_ptr := a_repository.handle
 			-- Since the string `a_namespace' may be changed during lifetime of
 			-- the iterator we copy it into a STRING
@@ -22,6 +21,7 @@ feature {} -- Creation
 			-- Note: GI_ITERATOR is implemented using and wraps
 			-- g_irepository_get_n_infos and g_irepository_get_info
 			n_infos := g_irepository_get_n_infos(repo_ptr,namespace.to_external)
+			-- verbose information: ("Iterator over namespace %"#(1)\%" (#(2) elements)%N" # a_namespace # n_infos.out).print_on(std_output)
 			generation := 0 
 			iterable_generation := 0
 	end
@@ -34,12 +34,12 @@ feature {ANY}
 
 	is_off: BOOLEAN is
 		do
-			Result := index>n_infos
+			Result := index>=n_infos
 		end
 
 	item: GI_BASE_INFO is
 		do
-			("Iterator item #(1)%N" # &index).print_on(std_output)
+			-- Too much verbose("Iterator item #(1) of #(2)%N" # &index # &n_infos).print_on(std_output)
 			Result := wrapper(g_irepository_get_info(repo_ptr,namespace.to_external,index))
 		end
 

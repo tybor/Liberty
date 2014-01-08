@@ -41,8 +41,24 @@ deferred class GI_CLASS
 	-- TODO: the documentation og GIR is not consistent as it reads that an interface has fields and interfaces yet it hasn't.
 
 inherit GI_BASE_INFO
-	undefine out_in_tagged_out_memory end
+	undefine out_in_tagged_out_memory 
+	end
 
+feature {ANY}
+	emit_wrapper is
+		do
+			("Class: #(1)%N" # name).print_on(std_output)
+			methods_iter.do_all(agent (x: GI_FUNCTION_INFO) is 
+				do
+					x.emit_wrapper
+				end)
+		end
+
+	eiffel_wrapper: ABSTRACT_STRING is
+		do
+			not_yet_implemented
+		end
+		
 feature {ANY} -- Methods 
 	methods_lower: INTEGER is 0
 	methods_upper: INTEGER is do Result:=methods_count-1 end

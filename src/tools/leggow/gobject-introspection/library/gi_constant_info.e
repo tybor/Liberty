@@ -12,7 +12,18 @@ create {GI_INFO_FACTORY, WRAPPER}
    from_external_pointer
 
 feature {ANY}
-   constant_type: GI_TYPE_INFO is
+	emit_wrapper is
+		do
+			("GI_CONSTANT: #(1)%N" # name).print_on(std_output)
+		end
+
+	eiffel_wrapper: ABSTRACT_STRING is
+		do
+			not_yet_implemented
+		end
+	
+feature {ANY}
+	   constant_type: GI_TYPE_INFO is
          -- The type of the constant
       do
          create Result.from_external_pointer(g_constant_info_get_type(handle))

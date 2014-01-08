@@ -13,6 +13,17 @@ insert
 creation {GI_INFO_FACTORY, WRAPPER} from_external_pointer
 
 feature {ANY}
+	emit_wrapper is
+		do
+			("GI_vfunc: #(1)%N" # name).print_on(std_output)
+		end
+
+	eiffel_wrapper: ABSTRACT_STRING is
+		do
+			not_yet_implemented
+		end
+		
+feature {ANY}
 	flags: GIVFUNC_INFO_FLAGS_ENUM is
 		-- The flags for this virtual function info. Possible flag values are
 		

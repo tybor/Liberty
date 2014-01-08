@@ -34,6 +34,18 @@ insert
 
 creation {GI_INFO_FACTORY, WRAPPER} from_external_pointer
 
+feature {ANY} -- Wrapper
+	emit_wrapper is
+		do
+			("GI_struct: #(1)%N" # name).print_on(std_output)
+		end
+
+	eiffel_wrapper: ABSTRACT_STRING is
+		do
+			not_yet_implemented
+		end
+
+
 feature {ANY} -- Fields
 	fields_lower: INTEGER is 0
 	fields_upper: INTEGER is do Result := fields_count-1 end

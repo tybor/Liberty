@@ -15,22 +15,22 @@ insert
    GICALLABLEINFO_EXTERNALS
 
 feature {ANY}
-	eiffel_wrapper: ABSTRACT_STRING is
-		local s: STRING
-		do
-			create s.with_capacity(512) -- half kilobytes is an euristic
-			s.append("foo")
-			if has_arguments then 
-				s.append(once "(")
-				s.append(once ")") 
-			end
-			s.append(" is%N%
-			%		-- @(1)i%N%
-			%	do%N%
-			%	end%N%
-			%")
-			Result:=s
-		end
+--	eiffel_wrapper: ABSTRACT_STRING is
+--		local s: STRING
+--		do
+--			create s.with_capacity(512) -- half kilobytes is an euristic
+--			s.append("foo")
+--			if has_arguments then 
+--				s.append(once "(")
+--				s.append(once ")") 
+--			end
+--			s.append(" is%N%
+--			%		-- @(1)i%N%
+--			%	do%N%
+--			%	end%N%
+--			%")
+--			Result:=s
+--		end
 
 feature {ANY}
    return_type: GI_TYPE_INFO is

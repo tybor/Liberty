@@ -12,6 +12,8 @@ class GI_OBJECT_INFO
 
 inherit 
 	GI_CLASS -- providing properties access
+		redefine emit_wrapper, eiffel_wrapper end
+
 	GI_REGISTERED_TYPE_INFO
 		redefine 
 			type_name,
@@ -25,6 +27,36 @@ insert
 		end
 
 creation {GI_INFO_FACTORY, WRAPPER} from_external_pointer
+
+
+feature {ANY} -- Wrapper
+	emit_wrapper is
+		local pi: PROPERTIES_ITER; mi: METHODS_ITER
+		do
+			-- pi := properties_iter;
+			("Object #(1): #(2) properties %N" # name # properties_count.out).print_on(std_output);
+			-- pi.do_all(agent emit_property(?))
+			("%N#(1) methods:%N "# methods_count.out).print_on(std_output);
+			methods_iter.do_all(agent emit_method(?))
+		end
+
+	emit_property (a_property: GI_PROPERTY_INFO) is
+		do
+			("'#(1)', " # a_property.name).print_on(std_output)
+		end
+
+	emit_method (a_method: GI_FUNCTION_INFO) is 
+		do
+			("'").print_on(std_output); 
+			(a_method.name).print_on(std_output); 
+			(once "',").print_on(std_output)
+		end
+
+
+	eiffel_wrapper: ABSTRACT_STRING is
+		do
+			not_yet_implemented
+		end
 
 feature {ANY}
 	type_name: FIXED_STRING is

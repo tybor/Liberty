@@ -11,6 +11,17 @@ insert GIFUNCTIONINFO_EXTERNALS
 
 creation {GI_REPOSITORY, GI_INFO_FACTORY, WRAPPER} from_external_pointer
 
+feature {ANY} -- Wrapper
+	emit_wrapper is
+		do
+			("GI_CONSTANT: #(1)%N" # name).print_on(std_output)
+		end
+
+	eiffel_wrapper: ABSTRACT_STRING is
+		do
+			not_yet_implemented
+		end
+
 --   enum GInvokeError
 -- 
 --  typedef enum {

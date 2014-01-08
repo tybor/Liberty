@@ -13,11 +13,17 @@ insert
 create {ANY}
    from_external_pointer
 
-feature 
-	eiffel_wrapper: ABSTRACT_STRING is
+feature {ANY} -- Wrapper
+	emit_wrapper is
+		do
+			("GI_ARG_INFO: #(1)%N" # name).print_on(std_output)
+		end
+
+eiffel_wrapper: ABSTRACT_STRING is
 		do
 			if name/=Void then
 				Result:=name|": "|"FOOBAR"
+			end
 		end
 
 feature {ANY}

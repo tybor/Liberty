@@ -44,14 +44,13 @@ feature {} -- program entry point
 			"%NDependencies: ".print_on(std_output);
 			repository.dependencies(library_name).print_on(std_output);
 			"%N".print_on(std_output);
-			repository.namespace_iterator(library_name).do_all(agent emit)
+			repository.namespace_iterator(library_name).do_all(agent {GI_BASE_INFO}.emit_wrapper) --emit(?))
 		end
 
 	emit (an_info: GI_BASE_INFO) is
 		-- 
 	do
-		print("foo%N")
-		an_info.print_on(std_output)
+		an_info.emit_wrapper
 	end
 
    parse_arguments is

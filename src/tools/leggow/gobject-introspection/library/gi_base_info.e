@@ -19,6 +19,11 @@ insert
    GITYPEINFO_EXTERNALS
 
 feature {ANY} -- Eiffel wrapper generation
+	emit_wrapper is
+		-- Emit proper Eiffel wrapper for Current object
+		deferred
+		end
+
 	eiffel_wrapper: ABSTRACT_STRING is
 		-- The Eiffel source code that wraps Current object
 		deferred
@@ -49,14 +54,16 @@ feature {ANY}
    name: FIXED_STRING is
          -- The name of the info. What the name represents depends on the GIInfoType of the info. For instance forGIFunctionInfo it is the name of the function.
          -- May be void.
-      local
-         ptr: POINTER
-      do
-         ptr := g_base_info_get_name(handle)
-         if ptr.is_not_null then
-            create Result.from_external(ptr)
-         end
-      end
+	 local
+		 ptr: POINTER
+	 do
+		 ptr := g_base_info_get_name(handle)
+		 if ptr.is_not_null then
+			 create Result.from_external(ptr)
+		 else 
+			 Result := (once "horror vacui").intern
+		 end
+	 end
 
    namespace: FIXED_STRING is
          -- The namespace of info.

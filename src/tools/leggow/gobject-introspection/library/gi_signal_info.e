@@ -11,7 +11,18 @@ inherit GI_CALLABLE_INFO
 insert GISIGNALINFO_EXTERNALS
 
 creation {GI_INFO_FACTORY, WRAPPER} from_external_pointer
-	
+
+feature {ANY}
+	emit_wrapper is
+		do
+			("GI_CLASS: #(1)%N" # name).print_on(std_output)
+		end
+
+	eiffel_wrapper: ABSTRACT_STRING is
+		do
+			not_yet_implemented
+		end
+		
 feature {ANY} 
 	flags: GSIGNAL_FLAGS_ENUM is
 		-- the flags for this signal info.

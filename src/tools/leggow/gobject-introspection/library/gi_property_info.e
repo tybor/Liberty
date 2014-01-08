@@ -5,6 +5,17 @@ class GI_PROPERTY_INFO
 inherit GI_BASE_INFO
 insert GIPROPERTYINFO_EXTERNALS
 creation {GI_INFO_FACTORY, WRAPPER} from_external_pointer
+feature {ANY} -- Wrapper
+	emit_wrapper is
+		do
+			("GI_property #(1)%N" # name).print_on(std_output)
+		end
+	
+	eiffel_wrapper: ABSTRACT_STRING is
+		do
+			not_yet_implemented
+		end
+
 feature {ANY}
 	flags: GPARAM_FLAGS_ENUM is
 		-- The flags for this property info. See GParamFags for more information about possible flag values.
