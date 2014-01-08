@@ -50,7 +50,7 @@ feature {ANY}
 		do
 			debug 
 				print(once 
-				"C_PLUS_PLUS_CLASS.wrapper_type requires creation%
+				"C_PLUS_PLUS_CLASS.wrapper_type requires create%
 				% of external/expanded types.")
 			end
 			not_yet_implemented -- Result := class_name

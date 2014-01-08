@@ -198,7 +198,7 @@ feature {} -- Constants
 			-- related to classes
 		"indexing", "class", "deferred", "expanded", "separate", "end", "obsolete",
 		-- related to inheritance
-		"inherit", "insert", "creation", "feature", "rename", "redefine", "undefine", "select", "export", 
+		"inherit", "insert", "create", "feature", "rename", "redefine", "undefine", "select", "export", 
 		-- design by contract
 		"require", "ensure", "check", "debug", "invariant", "variant", "rescue", 
 		-- features body

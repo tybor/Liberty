@@ -43,7 +43,7 @@ feature {ANY}
 		do
 			debug 
 				print(once 
-				"C_STRUCT_NODE.wrapper_type requires creation%
+				"C_STRUCT_NODE.wrapper_type requires create%
 				% of external/expanded types; currently returning an empty string")
 			end
 			not_yet_implemented -- Result := eiffel_name
