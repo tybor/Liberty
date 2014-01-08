@@ -26,16 +26,14 @@ insert
 		redefine out_in_tagged_out_memory
 		end
 
-creation {GI_INFO_FACTORY, WRAPPER} from_external_pointer
+create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
 
 
 feature {ANY} -- Wrapper
 	emit_wrapper is
-		local pi: PROPERTIES_ITER; mi: METHODS_ITER
 		do
-			-- pi := properties_iter;
 			("Object #(1): #(2) properties %N" # name # properties_count.out).print_on(std_output);
-			-- pi.do_all(agent emit_property(?))
+			properties_iter.do_all(agent emit_property(?))
 			("%N#(1) methods:%N "# methods_count.out).print_on(std_output);
 			methods_iter.do_all(agent emit_method(?))
 		end

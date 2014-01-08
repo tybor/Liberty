@@ -31,7 +31,7 @@ insert
 	LOGGING
 	GTYPE_EXTERNALS 
 
-creation {} main
+create {} main
 
 feature {} -- program entry point
 	main is

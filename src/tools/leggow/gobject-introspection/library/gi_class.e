@@ -45,14 +45,14 @@ inherit GI_BASE_INFO
 	end
 
 feature {ANY}
-	emit_wrapper is
-		do
-			("Class: #(1)%N" # name).print_on(std_output)
-			methods_iter.do_all(agent (x: GI_FUNCTION_INFO) is 
-				do
-					x.emit_wrapper
-				end)
-		end
+--	emit_wrapper is
+--		do
+--			("Class: #(1)%N" # name).print_on(std_output)
+--			methods_iter.do_all(agent (x: GI_FUNCTION_INFO) is 
+--				do
+--					x.emit_wrapper
+--				end)
+--		end
 
 	eiffel_wrapper: ABSTRACT_STRING is
 		do
@@ -89,7 +89,7 @@ feature {ANY} -- Methods
 
 feature {ANY} -- Properties
 	properties_lower: INTEGER is 0
-	properties_upper: INTEGER is do Result := properties_upper-1 end
+	properties_upper: INTEGER is do Result := properties_count-1 end
 	properties_count: INTEGER is deferred end 
   
 	property (i: INTEGER): GI_PROPERTY_INFO is

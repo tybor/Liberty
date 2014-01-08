@@ -53,7 +53,7 @@ feature {ANY}
 
    name: FIXED_STRING is
          -- The name of the info. What the name represents depends on the GIInfoType of the info. For instance forGIFunctionInfo it is the name of the function.
-         -- May be void.
+		 -- As a temporary measure instead of being Void for nameless infos the empty string is returned ""
 	 local
 		 ptr: POINTER
 	 do
@@ -61,7 +61,7 @@ feature {ANY}
 		 if ptr.is_not_null then
 			 create Result.from_external(ptr)
 		 else 
-			 Result := (once "horror vacui").intern
+			 Result := (once "").intern
 		 end
 	 end
 
