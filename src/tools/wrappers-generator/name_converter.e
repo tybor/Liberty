@@ -151,7 +151,6 @@ feature  {ANY}-- Auxiliary features
 	ensure 
 		Result/=Void
 		is_valid_class_name(Result)
-		no_side_effects: a_string ~ old a_string and a_suffix ~ old a_suffix
 	end
 	
 	is_valid_class_name (a_name: STRING): BOOLEAN is
