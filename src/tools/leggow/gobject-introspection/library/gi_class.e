@@ -40,10 +40,8 @@ deferred class GI_CLASS
 
 	-- TODO: the documentation og GIR is not consistent as it reads that an interface has fields and interfaces yet it hasn't.
 
-inherit GI_BASE_INFO
-	undefine out_in_tagged_out_memory 
-	end
-
+inherit GI_BASE_INFO undefine out_in_tagged_out_memory end
+insert  NAME_CONVERTER undefine copy, is_equal end
 feature {ANY}
 --	emit_wrapper is
 --		do
@@ -186,6 +184,17 @@ feature {ANY} -- Constants
 		Result.set_class(Current)
 	end
 
+feature {ANY} 
+	class_name: STRING is
+		do
+			if stored_class_name=Void then
+				stored_class_name := eiffel_class_name(namespace+"_"+name, Void )
+			end
+			Result := stored_class_name
+		end
+
+feature {} -- Implementation
+	stored_class_name: STRING
 end
 
 -- Copyright (C) 2013 Paolo Redaelli <paolo.redaelli@gmail.com>

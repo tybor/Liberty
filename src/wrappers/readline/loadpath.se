@@ -1,2 +1,2 @@
-../common/loadpath.se
+${path_liberty_extra}/common/loadpath.se
 ./library/loadpath.se

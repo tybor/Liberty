@@ -10,7 +10,9 @@ inherit
 	GI_BASE_INFO
 	GI_INFO_FACTORY
 
-insert GITYPEINFO_EXTERNALS
+insert 
+	GITYPEINFO_EXTERNALS
+	EXCEPTIONS
 
 create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
 
@@ -22,40 +24,34 @@ feature {ANY} -- Wrapper
 
 	eiffel_wrapper: ABSTRACT_STRING is
 		do
-			not_yet_implemented
+			if is_pointer then Result := once "POINTER"
+			elseif tag.is_array then Result := once "POINTER"
+			elseif tag.is_boolean then Result := once "INTEGER"
+			elseif tag.is_double then Result := once "REAL"
+			elseif tag.is_error then Result := once ""; not_yet_implemented
+			elseif tag.is_filename then Result := once "POINTER"
+			elseif tag.is_float then Result := once "REAL_32"
+			elseif tag.is_ghash then Result := once "INTEGER_32"
+			elseif tag.is_glist then Result := once "POINTER"
+			elseif tag.is_gslist then Result := once "POINTER"
+			elseif tag.is_gtype then Result := once "POINTER"
+			elseif tag.is_int16 then Result := once "INTEGER_16"
+			elseif tag.is_int32 then Result := once "INTEGER_32"
+			elseif tag.is_int64 then Result := once "INTEGER_64"
+			elseif tag.is_int8 then Result := once "INTEGER_8"
+			elseif tag.is_interface then Result := once "POINTER"
+			elseif tag.is_uint16 then Result := once "NATURAL_16"
+			elseif tag.is_uint32 then Result := once "NATURAL_32"
+			elseif tag.is_uint64 then Result := once "NATURAL_64"
+			elseif tag.is_uint8 then Result := once "NATURAL_8"
+			elseif tag.is_unichar then Result := once "INTEGER_32"
+			elseif tag.is_utf8 then Result := once "POINTER"
+			-- elseif tag.is_void then Result := once "" 
+			else 
+				raise ("Liberty Eiffel Generator of GObject wrappers does not know how to handle type tag '"+tag_to_string(tag)+"'")
+			end
 		end
 
-feature {ANY}
-
--- 
---   enum GIArrayType
--- 
---  typedef enum {
---    GI_ARRAY_TYPE_C,
---    GI_ARRAY_TYPE_ARRAY,
---    GI_ARRAY_TYPE_PTR_ARRAY,
---    GI_ARRAY_TYPE_BYTE_ARRAY
---  } GIArrayType;
--- 
---    The type of array in a GITypeInfo.
--- 
---    GI_ARRAY_TYPE_C          a C array, char[] for instance
---    GI_ARRAY_TYPE_ARRAY      a GArray array
---    GI_ARRAY_TYPE_PTR_ARRAY  a GPtrArray array
---    GI_ARRAY_TYPE_BYTE_ARRAY a GByteArray array
--- 
---    -----------------------------------------------------------------------------------------------------------------------
--- 
---   GITypeInfo
--- 
---  typedef GIBaseInfo GITypeInfo;
--- 
---    Represents type information, direction, transfer etc.
--- 
---    -----------------------------------------------------------------------------------------------------------------------
--- 
---   enum GITypeTag
--- 
 --  typedef enum {
 --    /* Basic types */
 --    GI_TYPE_TAG_VOID      =  0,
@@ -110,7 +106,39 @@ feature {ANY}
 --    GI_TYPE_TAG_GHASH     a GHashTable
 --    GI_TYPE_TAG_ERROR     a GError
 --    GI_TYPE_TAG_UNICHAR   Unicode character
+
+feature {ANY}
+
 -- 
+--   enum GIArrayType
+-- 
+--  typedef enum {
+--    GI_ARRAY_TYPE_C,
+--    GI_ARRAY_TYPE_ARRAY,
+--    GI_ARRAY_TYPE_PTR_ARRAY,
+--    GI_ARRAY_TYPE_BYTE_ARRAY
+--  } GIArrayType;
+-- 
+--    The type of array in a GITypeInfo.
+-- 
+--    GI_ARRAY_TYPE_C          a C array, char[] for instance
+--    GI_ARRAY_TYPE_ARRAY      a GArray array
+--    GI_ARRAY_TYPE_PTR_ARRAY  a GPtrArray array
+--    GI_ARRAY_TYPE_BYTE_ARRAY a GByteArray array
+-- 
+--    -----------------------------------------------------------------------------------------------------------------------
+-- 
+--   GITypeInfo
+-- 
+--  typedef GIBaseInfo GITypeInfo;
+-- 
+--    Represents type information, direction, transfer etc.
+-- 
+--    -----------------------------------------------------------------------------------------------------------------------
+-- 
+--   enum GITypeTag
+-- 
+- 
 --    -----------------------------------------------------------------------------------------------------------------------
 -- 
 --   G_TYPE_TAG_IS_BASIC()

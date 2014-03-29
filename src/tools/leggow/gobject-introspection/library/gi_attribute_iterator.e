@@ -2,8 +2,41 @@ class GI_ATTRIBUTE_ITERATOR
    --    An opaque structure used to iterate over attributes in a GIBaseInfo struct.
 
 inherit
-   WRAPPER
+	ITERATOR[FIXED_STRING]
+	WRAPPER
 
+insert GIATTRIBUTE_ITER_STRUCT
+
+create {GI_BASE_INFO} from_base_info
+
+feature {} -- Implementation
+	base: GI_BASE_INFO 
+feature {} -- Creation
+	from_base_info (a_base: GI_BASE_INFO) is
+		do
+			base:=a_base
+			-- allocate 
+		end
+feature {ANY} -- Iterating
+	start is
+		do
+			not_yet_implemented -- allocate
+			next
+		end
+
+	next is
+		local np, vp: POINTER
+		do
+			
+		end
+
+	is_off: BOOLEAN is
+		do
+		end
+
+	name: FIXED_STRING
+
+	item: FIXED_STRING
 end -- class GI_ATTRIBUTE_ITERATOR
 
 -- Copyright (C) 2013 Paolo Redaelli <paolo.redaelli@gmail.com>

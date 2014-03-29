@@ -53,7 +53,7 @@ feature {ANY}
 
    name: FIXED_STRING is
          -- The name of the info. What the name represents depends on the GIInfoType of the info. For instance forGIFunctionInfo it is the name of the function.
-		 -- As a temporary measure instead of being Void for nameless infos the empty string is returned ""
+		 -- May be Void. yet as a temporary measure instead of being Void for nameless infos the empty string is returned ""
 	 local
 		 ptr: POINTER
 	 do
@@ -91,6 +91,11 @@ feature {ANY}
             create Result.from_external(ptr)
          end
       end
+
+	attributes_iterator: GI_ATTRIBUTE_ITERATOR is
+		-- A newly allocated iterator over attributes
+		do
+			create Result.from_base_info(Current)
       -- TODO: wrap g_base_info_iterate_attributes () may require turning GI_ATTRIBUTE_ITER into an expanded external type
       --
       --  gboolean            g_base_info_iterate_attributes      (GIBaseInfo *info,
@@ -123,6 +128,7 @@ feature {ANY}
       --    value :    Returned name, must not be freed. [out][transfer none]
       --    Returns :  TRUE if there are more attributes
       --
+	end
 
    container: GI_BASE_INFO is
          -- The container of the info. The container is the parent GIBaseInfo.

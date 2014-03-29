@@ -95,7 +95,7 @@ feature {ANY}
 
 feature {ANY}
    copy (other: like Current) is
-         -- In fact this feature can only be used at creation time (see `immutable').
+         -- In fact this feature can only be used at create time (see `immutable').
       do
          check
             not immutable

@@ -28,33 +28,91 @@ insert
 
 create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
 
-
 feature {ANY} -- Wrapper
-	emit_wrapper is
-		do
-			("Object #(1): #(2) properties %N" # name # properties_count.out).print_on(std_output);
-			properties_iter.do_all(agent emit_property(?))
-			("%N#(1) methods:%N "# methods_count.out).print_on(std_output);
-			methods_iter.do_all(agent emit_method(?))
-		end
-
-	emit_property (a_property: GI_PROPERTY_INFO) is
-		do
-			("'#(1)', " # a_property.name).print_on(std_output)
-		end
-
-	emit_method (a_method: GI_FUNCTION_INFO) is 
-		do
-			("'").print_on(std_output); 
-			(a_method.name).print_on(std_output); 
-			(once "',").print_on(std_output)
-		end
-
+	emit_wrapper is do eiffel_wrapper.print_on(std_output) end
 
 	eiffel_wrapper: ABSTRACT_STRING is
 		do
-			not_yet_implemented
+			create wrapper_header.with_capacity(1024)
+			create wrapper_inherits.with_capacity(1024)
+			create wrapper_features.with_capacity(65000)
+			create wrapper_externals.with_capacity(65000)
+			create wrapper_footer.with_capacity(1024)
+			-- TODO: provide reasonable euristics for the size of those strings
+
+			wrapper_header.append("class "+class_name+"%N%T-- "+name+"%N")
+			wrapper_inherits.append(once "inherit "|parent.class_name|"%N%T-- interfaces%N")
+			interfaces_iter.do_all(agent (an_interface: GI_INTERFACE_INFO) is
+				do
+					wrapper_inherits.append ("'#(1)', " # an_interface.name)
+				end)
+
+			wrapper_features.append(once "feature {ANY} -- Properties%N")
+			wrapper_externals.append(once "feature {} -- Externals%N")
+			
+			properties_iter.do_all(agent (a_property: GI_PROPERTY_INFO) is
+				do
+					wrapper_features.append("	#(1): #(2)%N		-- TODO provide high-level type whenever possible. Currently only low-levels are used " 
+						# eiffel_feature(a_property.name)
+						# a_property.
+						)
+					wrapper_externals.append("	#(1): #(2) is%N%
+					%		-- Property #(3)%N%
+					%	external %"plug_in%"%N%
+					%	alias %"{%N%
+					%		location: %".%"%N%
+					%		module_name: %"plugin%"%N%
+					%		feature_name: %"#(4)%"%N%
+					%	}%"%N%
+					%	end%N" # 
+
+
+	
+					%eiffel_feature(a_property.name)|":"|property_type.eiffel_wrapper|" is %N%
+						-- Property 
+				end)
+
+			wrapper_features.append(once "feature -- Methods%N")
+			methods_iter.do_all(agent  (a_method: GI_FUNCTION_INFO) is 
+				do
+					wrapper_features.append(once "'"|a_method.name|once "',")
+					wrapper_externals.append("external call for '"|a_method.name|"'%N")
+				end)
+
+			-- wrapper_features.append(once "feature -- Fields%N")
+			-- fields_iter.do_all(agent emit_field(?))
+
+			-- wrapper_features.append(once "feature -- Signals%N")
+			-- signals_iter.do_all(agent 	emit_field (a_field: GI_FIELD_INFO) is
+			-- 	do
+			-- 		("'").print_on(std_output); 
+			-- 		(a_field.name).print_on(std_output); 
+			-- 		(once "',").print_on(std_output)
+			-- 	end)
+
+			-- wrapper_features.append(once "feature -- Virtual functions%N")
+			-- vfuncs_iter.do_all(agent emit_vfunc(?))
+
+			-- wrapper_features.append(once "feature -- Constants:%N")
+			-- constants_iter.do_all(agent emit_constant(?)	emit_constant (a_constant: GI_CONSTANT_INFO) is
+			--	do
+			--		("'#(1)', " # a_constant.name).print_on(std_output)
+			--	end)
+
+			wrapper_footer.append(once "end -- class "|class_name)
+			Result := wrapper_header |
+				wrapper_inherits |
+				wrapper_features |
+				wrapper_externals |
+				wrapper_footer;			
 		end
+
+feature {} -- Wrapper implementation
+	wrapper_header: STRING
+	wrapper_inherits: STRING
+	wrapper_features: STRING
+	wrapper_externals: STRING
+	wrapper_footer: STRING
 
 feature {ANY}
 	type_name: FIXED_STRING is
