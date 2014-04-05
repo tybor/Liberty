@@ -107,12 +107,12 @@ feature {ANY}
 			-- the result code of the last call to sqlite3_-functions
 	
 feature {ANY} -- Prepared queries and commands
-	prepare_command (some_sql: ABSTRACT_STRING): SQLITE_PREPARED_COMMAND is
+	prepare_command (some_sql: STRING): SQLITE_PREPARED_COMMAND is
 		do
 			create Result.make (Current, some_sql)
 		end
 
-	prepare_query (some_sql: ABSTRACT_STRING): SQLITE_PREPARED_QUERY is
+	prepare_query (some_sql: STRING): SQLITE_PREPARED_QUERY is
 		do
 			create Result.make (Current, some_sql)
 		end
