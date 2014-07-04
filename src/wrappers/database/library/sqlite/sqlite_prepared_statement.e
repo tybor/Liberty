@@ -23,8 +23,18 @@ inherit
 
 insert
 	SQLITE3_EXTERNALS
+		undefine
+			copy,
+			is_equal
+		end
 
 	SQLITE_ERROR_CODES
+		undefine
+			copy,
+			is_equal
+		end
+	
+	SQLITE_TYPE_CODES
 		undefine
 			copy,
 			is_equal
@@ -52,9 +62,9 @@ feature {ANY} -- parameters validity
 			Result := sqlite3_bind_parameter_count (handle)
 		end
 
-	are_valid_parameters (some_parameters: TRAVERSABLE[ANY]): BOOLEAN is
+	are_valid_parameters (some_parameters: TRAVERSABLE[SQLITE_VALUE]): BOOLEAN is
 		local 
-			an_iter: ITERATOR[ANY]
+			an_iter: ITERATOR[SQLITE_VALUE]
 			j: INTEGER -- binded parameters index
 		do
 			Result := True
@@ -71,51 +81,20 @@ feature {ANY} -- parameters validity
 			end
 		end
 
-	is_valid_parameter (a_parameter: ANY; an_index: INTEGER): BOOLEAN is
-		local		
-			int_ref: REFERENCE[INTEGER]
-			real_ref: REFERENCE[REAL]
-			a_string: STRING
+	is_valid_parameter (a_parameter: SQLITE_VALUE; an_index: INTEGER): BOOLEAN is
+		local column_type: INTEGER
 		do
-			if int_ref ?:= a_parameter then
-				int_ref ::= a_parameter
-				res_code := sqlite3_bind_int (handle, an_index, int_ref.item )
-			elseif real_ref ?:= a_parameter then
-				real_ref ::= a_parameter
-				res_code := sqlite3_bind_double (handle, an_index, real_ref.item)
-			elseif a_string ?:= a_parameter then
-				a_string ::= a_parameter 
-				res_code := sqlite3_bind_text (handle, an_index, a_string.to_external, 
-														 a_string.count, sqlite_transient)
-			end
-							
-			Result := res_code = sqlite_ok
+			Result := (a_parameter.type = sqlite3_column_type(handle, an_index))
 		end
 
-	bind_parameter (a_parameter: ANY; an_index: INTEGER) is
+	bind_parameter (a_parameter: SQLITE_VALUE; an_index: INTEGER) is
 			-- Bind `a_parameter' to `an_index' placeholder in the statement.
 		require
 			parameter_not_void: a_parameter /= Void
 			valid_index: an_index.in_range (1, parameter_count)
-		local		
-			int_ref: REFERENCE[INTEGER]; real_ref: REFERENCE[REAL]; a_string: STRING
+			valid_parameter: is_valid_parameter(a_parameter, an_index)
 		do
-			if int_ref ?:= a_parameter then
-				int_ref ::= a_parameter
-				res_code := sqlite3_bind_int (handle, an_index, int_ref.item)
-			elseif real_ref ?:= a_parameter then
-				real_ref ::= a_parameter
-				res_code := sqlite3_bind_double (handle, an_index, real_ref.item)
-			elseif a_string ?:= a_parameter then
-				a_string ::= a_parameter 
-				res_code := sqlite3_bind_text (handle, an_index, a_string.to_external, 
-														 a_string.count, sqlite_transient)
-			else 
-				debug
-					print ("Warning! Unrecognized type in SQLITE_PREPARED_STATEMENT.%
-							 %bind_parameter ("+a_parameter.out+", "+an_index.out+")%N")
-				end
-			end
+			a_parameter.bind_in (Current,an_index)
 		end
 
 	clear_bindings is

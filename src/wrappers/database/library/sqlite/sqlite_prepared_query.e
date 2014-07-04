@@ -1,6 +1,6 @@
 indexing
 	description: "."
-	copyright: "(C) 2006 Paolo Redaelli "
+	copyright: "(C) 2006, 2014 Paolo Redaelli (C) 2007,2008 Raphael Mack"
 	license: "LGPL v2 or later"
 	date: "$Date$"
 	revision: "$Revision$"
@@ -30,7 +30,7 @@ create  {SQLITE_DATABASE} make
 feature {ANY}
 	last_result: SQLITE_RESULT_SET
 
-	execute (some_parameters: TRAVERSABLE[ANY]) is
+	execute (some_parameters: TRAVERSABLE[SQLITE_VALUE]) is
 			-- Execute the current query with `some_parameters'
 		local 
 			i: INTEGER -- the parameters index, 
@@ -51,7 +51,7 @@ feature {ANY}
 			fill_in_results
 		end
 
-   execute_callback (some_parameters: TRAVERSABLE[ANY]; callback: ROUTINE[TUPLE[RESULT_ROW]]) is
+   execute_callback (some_parameters: TRAVERSABLE[SQLITE_VALUE]; callback: ROUTINE[TUPLE[RESULT_ROW]]) is
 			-- Execute the current query with `some_parameters'
          -- call callback for every result_row
       require

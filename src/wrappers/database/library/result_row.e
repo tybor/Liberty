@@ -8,7 +8,7 @@ indexing
 deferred class RESULT_ROW
 
 inherit
-	TRAVERSABLE [ANY] 
+	TRAVERSABLE [VARIANT] 
 
 feature {ANY} -- Type queries
 	-- Note: these queries could be not useful with a proper usage of VARIANT or some of its specialized heirs

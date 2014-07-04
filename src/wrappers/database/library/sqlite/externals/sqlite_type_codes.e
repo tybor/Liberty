@@ -29,12 +29,12 @@ feature {ANY} -- Type codes
 		end
 
 	sqlite_text: INTEGER is
-			-- #define SQLITE_TEXT 3
+			-- #define SQLITE3_TEXT 
 		external "plug_in"
 		alias "{
 			location: "."
 			module_name: "plugin"
-			feature_name: "SQLITE_TEXT"
+			feature_name: "SQLITE3_TEXT"
 			}"
 		end
 

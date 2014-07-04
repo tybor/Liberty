@@ -14,7 +14,7 @@ inherit
 			out_in_tagged_out_memory
 		end
 
-	FAST_ARRAY [ANY]
+	FAST_ARRAY [SQLITE_VALUE]
 		undefine
 			copy,
 			is_equal

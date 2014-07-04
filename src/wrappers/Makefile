@@ -6,6 +6,7 @@
 ## while (Paolo 2013-04-09)
 
 LIBRARIES=common \
+	  database/sqlite \
 	  ffi \
 	  posix \
 	  posix/dynamic-linking \

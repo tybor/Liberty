@@ -16,11 +16,10 @@ inherit
 
 	SQLITE_PREPARED_STATEMENT
 
-create {ANY}
-	{SQLITE_DATABASE} make
+create {ANY, SQLITE_DATABASE} make
 
 feature {ANY}
-	execute (some_parameters: TRAVERSABLE[ANY]) is
+	execute (some_parameters: TRAVERSABLE[SQLITE_VALUE]) is
 			-- Execute the current query with `some_parameters'
 		local 
 			i: INTEGER
