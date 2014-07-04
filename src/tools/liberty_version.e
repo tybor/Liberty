@@ -1,5 +1,5 @@
 -- This file is part of Liberty Eiffel The GNU Eiffel Compiler Tools and Libraries.
--- See the Copyright notice at the end of this file.
+-- See the Copyright notice at the end of th file.
 --
 deferred class LIBERTY_VERSION
 
@@ -7,7 +7,7 @@ insert
    ARGUMENTS
 
 feature {ANY}
-   print_version is
+   print_version
       local
          sys: SYSTEM; bd: BASIC_DIRECTORY
       do
@@ -22,17 +22,17 @@ feature {ANY}
          end
       end
 
-   liberty_release: STRING is "2013.11 (Charles Adler, Jr.)"
+   liberty_release: STRING "2014.dev (Alexander Graham Bell)"
 
-   liberty_dates: ABSTRACT_STRING is
+   liberty_dates: ABSTRACT_STRING
       deferred
       end
 
-   liberty_authors: ABSTRACT_STRING is
+   liberty_authors: ABSTRACT_STRING
       deferred
       end
 
-   copyright: ABSTRACT_STRING is
+   copyright: ABSTRACT_STRING
       once
          Result := "[
 
@@ -45,7 +45,7 @@ feature {ANY}
                     ]" # liberty_release # liberty_dates # liberty_authors
       end
 
-   short_copyright: ABSTRACT_STRING is
+   short_copyright: ABSTRACT_STRING
       once
          Result := "(C) #(1) - #(2)" # liberty_dates # liberty_authors
       end
@@ -56,15 +56,15 @@ end -- class LIBERTY_VERSION
 -- Copyright notice below. Please read.
 --
 -- Liberty Eiffel is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License,
--- as published by the Free Software Foundation; either version 2, or (at your option) any later version.
+-- as publhed by the Free Software Foundation; either version 2, or (at your option) any later version.
 -- Liberty Eiffel is distributed in the hope that it will be useful but WITHOUT ANY WARRANTY; without even the implied warranty
 -- of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have
 -- received a copy of the GNU General Public License along with Liberty Eiffel; see the file COPYING. If not, write to the Free
 -- Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 --
--- Copyright(C) 2011-2012: Cyril ADRIAN, Paolo REDAELLI
+-- Copyright(C) 2011-2014: Cyril ADRIAN, Paolo REDAELLI, Raphael MACK
 --
--- http://liberty-eiffel.blogspot.com - https://github.com/LibertyEiffel/Liberty
+-- http://www.gnu.org/software/liberty-eiffel/
 --
 --
 -- Liberty Eiffel is based on SmartEiffel (Copyrights below)

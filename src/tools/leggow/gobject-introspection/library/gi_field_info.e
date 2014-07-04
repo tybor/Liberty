@@ -6,6 +6,7 @@ inherit GI_BASE_INFO
 insert GIFIELDINFO_EXTERNALS
 
 create {GI_INFO_FACTORY, GI_OBJECT_INFO, GI_STRUCT_INFO, GI_UNION_INFO} from_external_pointer
+<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_field_info.e
 
 feature {ANY} -- Wrapper
 	emit_wrapper is
@@ -18,31 +19,33 @@ feature {ANY} -- Wrapper
 			not_yet_implemented
 		end
 
+=======
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_field_info.e
 
 feature {ANY} --
-	is_readable: BOOLEAN is
+	is_readable: BOOLEAN
 		do
 			Result := flags.is_readable
 		end
 
-	is_writable: BOOLEAN is
+	is_writable: BOOLEAN
 		do
 			Result:= flags.is_writable
 		end
 
-	flags: GIFIELD_INFO_FLAGS_ENUM is 
+	flags: GIFIELD_INFO_FLAGS_ENUM 
 		do
 			Result.set(g_field_info_get_flags(handle))
 		end
 
-	size: INTEGER is
+	size: INTEGER
 		-- the size in bits of the field. this is how much space you need to allocate to store the field.
 	do
 		Result := g_field_info_get_size(handle)
 	ensure non_negative: Result>=0
 	end
 			
-	offset: INTEGER is
+	offset: INTEGER
 		-- the offset in bits of the field member, this is relative to the
 		-- beginning of the struct or union.
 	do
@@ -50,7 +53,7 @@ feature {ANY} --
 	ensure Result>=0
 	end 
 
-  	field_type: GI_TYPE_INFO is
+  	field_type: GI_TYPE_INFO
 		-- the type of a field as a GITypeInfo.
 	do
 		create Result.from_external_pointer(g_field_info_get_type(handle))

@@ -13,6 +13,7 @@ insert
 create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
 
 feature {ANY}
+<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_vfunc_info.e
 	emit_wrapper is
 		do
 			("GI_vfunc: #(1)%N" # name).print_on(std_output)
@@ -25,6 +26,9 @@ feature {ANY}
 		
 feature {ANY}
 	flags: GIVFUNC_INFO_FLAGS_ENUM is
+=======
+	flags: GIVFUNC_INFO_FLAGS_ENUM
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_vfunc_info.e
 		-- The flags for this virtual function info. Possible flag values are
 		
 		--   GI_VFUNC_MUST_CHAIN_UP     chains up to the parent type
@@ -35,13 +39,13 @@ feature {ANY}
 		Result.set(g_vfunc_info_get_flags (handle))
 	end
 
-	offset: INTEGER is
+	offset: INTEGER
 		-- Obtain the offset of the function pointer in the class struct. The value 0xFFFF indicates that the struct offset is unknown.
 	do
 		Result:=g_vfunc_info_get_offset(handle)
 	end 
 
- 	signal: GI_SIGNAL_INFO is
+ 	signal: GI_SIGNAL_INFO
 		-- the signal for the virtual function if one is set. The signal comes
 		-- from the object or interface to which this virtual function belongs.
 		-- Can be Void
@@ -54,7 +58,7 @@ feature {ANY}
 		end
 	end
    
-	invoker: GI_FUNCTION_INFO is
+	invoker: GI_FUNCTION_INFO
 		-- The invoker method associated to Current virtual function. Can be
 		-- Void as not all virtuals will have invokers.  An invoker method is a
 		-- C entry  point.

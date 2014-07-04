@@ -8,7 +8,7 @@ insert STANDARD_C_LIBRARY_TYPES
 	LIBXML2_TYPES
 feature {} -- Low-level setters
 
-	xml_enumeration_struct_set_next (a_structure: POINTER; a_value: POINTER) is
+	xml_enumeration_struct_set_next (a_structure: POINTER; a_value: POINTER)
 			-- Setter for next field of XML_ENUMERATION_STRUCT structure.
 			-- TODO: setter description
 
@@ -20,7 +20,7 @@ feature {} -- Low-level setters
 		}"
 		end
 
-	xml_enumeration_struct_set_name (a_structure: POINTER; a_value: POINTER) is
+	xml_enumeration_struct_set_name (a_structure: POINTER; a_value: POINTER)
 			-- Setter for name field of XML_ENUMERATION_STRUCT structure.
 			-- TODO: setter description
 
@@ -34,7 +34,7 @@ feature {} -- Low-level setters
 
 feature {} -- Low-level queries
 
-	xml_enumeration_struct_get_next (a_structure: POINTER): POINTER is
+	xml_enumeration_struct_get_next (a_structure: POINTER): POINTER
 			-- Query for next field of XML_ENUMERATION_STRUCT structure.
 			-- TODO: getter description
 
@@ -46,7 +46,7 @@ feature {} -- Low-level queries
 		}"
 		end
 
-	xml_enumeration_struct_get_name (a_structure: POINTER): POINTER is
+	xml_enumeration_struct_get_name (a_structure: POINTER): POINTER
 			-- Query for name field of XML_ENUMERATION_STRUCT structure.
 			-- TODO: getter description
 
@@ -58,8 +58,13 @@ feature {} -- Low-level queries
 		}"
 		end
 
+<<<<<<< HEAD
 feature {WRAPPER, WRAPPER_HANDLER} -- Structure size
 	struct_size: like size_t is
+=======
+feature -- Structure size
+	struct_size: like size_t
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 		external "plug_in"
 		alias "{
 			location: "."

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ****** Error: Forbidden call (i.e. exportation rules violated)
 when the type of Current is BAD_EXPORT3. (See the next error report
 for details.)
@@ -41,6 +42,8 @@ Line 7 column 15 in AUX_EXPORT3B (/home/persocad/Workspace/Dev/Liberty/test/lang
       export {NONE} all
               ^        
 ------
+=======
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 ****** Warning: The client list computed from the "export" clauses
 is narrower than the one from the conforming parent(s) for AUX_EXPORT3B.prefix
 "&". This can lead to catcalls! The final export list is {}.
@@ -164,7 +167,11 @@ This can lead to catcalls! The final export list is {}.
 
 The source lines involved by the message are the following:
 
+<<<<<<< HEAD
 Line 420 column 9 in ANY (/home/persocad/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+=======
+Line 420 column 9 in ANY (/home/cadrian/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 feature {ANY} -- The Guru section:
         ^                         
 Line 7 column 14 in AUX_EXPORT3B (/home/persocad/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3b.e):
@@ -216,7 +223,11 @@ This can lead to catcalls! The final export list is {}.
 
 The source lines involved by the message are the following:
 
+<<<<<<< HEAD
 Line 420 column 9 in ANY (/home/persocad/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+=======
+Line 420 column 9 in ANY (/home/cadrian/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 feature {ANY} -- The Guru section:
         ^                         
 Line 7 column 14 in AUX_EXPORT3B (/home/persocad/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3b.e):
@@ -294,7 +305,11 @@ This can lead to catcalls! The final export list is {}.
 
 The source lines involved by the message are the following:
 
+<<<<<<< HEAD
 Line 488 column 9 in ANY (/home/persocad/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+=======
+Line 488 column 9 in ANY (/home/cadrian/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 feature {INTERNALS_HANDLER}
         ^                  
 Line 7 column 14 in AUX_EXPORT3B (/home/persocad/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3b.e):
@@ -307,7 +322,11 @@ This can lead to catcalls! The final export list is {}.
 
 The source lines involved by the message are the following:
 
+<<<<<<< HEAD
 Line 420 column 9 in ANY (/home/persocad/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+=======
+Line 420 column 9 in ANY (/home/cadrian/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 feature {ANY} -- The Guru section:
         ^                         
 Line 7 column 14 in AUX_EXPORT3B (/home/persocad/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3b.e):
@@ -320,7 +339,11 @@ This can lead to catcalls! The final export list is {}.
 
 The source lines involved by the message are the following:
 
+<<<<<<< HEAD
 Line 495 column 9 in ANY (/home/persocad/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+=======
+Line 495 column 9 in ANY (/home/cadrian/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 feature {TYPED_INTERNALS}
         ^                
 Line 7 column 14 in AUX_EXPORT3B (/home/persocad/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3b.e):
@@ -392,14 +415,66 @@ Line 7 column 14 in AUX_EXPORT3B (/home/persocad/Workspace/Dev/Liberty/test/lang
       export {NONE} all
              ^         
 ------
+****** Error: Forbidden call (i.e. exportation rules violated)
+when the type of Current is AUX_EXPORT3B. (See the next error
+report for details.)
+
+Line 57 column 47 in ANY (/home/cadrian/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+         commutative: generating_type = other.generating_type implies Result = other.is_equal(Current)
+                                              ^                                                       
+------
+****** Warning: Since february 2006, for SmartEiffel release 2.3,
+the old legacy NONE type mark is obsolete. Keep in mind that an
+empty class name list like {} do indicate no exportation at all,
+hence making NONE unuseful and probably misleading for newcomers.
+So, just remove this NONE class name right now. Please update
+your code now.
+
+Line 7 column 15 in AUX_EXPORT3B (/home/cadrian/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3b.e):
+      export {NONE} all
+              ^        
+------
+****** Warning: Since february 2006, for SmartEiffel release 2.3,
+the old legacy NONE type mark is obsolete. Keep in mind that an
+empty class name list such as {} does indicate no exportation
+at all, hence making NONE useless and probably misleading for
+newcomers. So, just remove this NONE class name now. Please update
+your code now.
+
+Line 7 column 15 in AUX_EXPORT3B (/home/cadrian/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3b.e):
+      export {NONE} all
+              ^        
+------
+****** Warning: The client list computed from the "export" clauses
+is narrower than the one from the conforming parent(s) for AUX_EXPORT3B.`foo'.
+This can lead to catcalls! The final export list is {}.
+
+The source lines involved by the message are the following:
+
+Line 7 column 14 in AUX_EXPORT3B (/home/cadrian/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3b.e):
+      export {NONE} all
+             ^         
+Line 5 column 9 in AUX_EXPORT3A (/home/cadrian/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3a.e):
+feature {ANY}
+        ^    
+------
 ****** Fatal Error: This feature is only exported to {}.
 
 The source lines involved by the message are the following:
 
+<<<<<<< HEAD
 Line 7 column 14 in AUX_EXPORT3B (/home/persocad/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3b.e):
       export {NONE} all
              ^         
 Line 6 column 4 in AUX_EXPORT3A (/home/persocad/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3a.e):
    foo is do end
    ^            
+=======
+Line 30 column 4 in ANY (/home/cadrian/Workspace/Dev/Liberty/src/lib/kernel/any.e):
+   generating_type: STRING
+   ^                      
+Line 7 column 14 in AUX_EXPORT3B (/home/cadrian/Workspace/Dev/Liberty/test/language/error_warning_msg/aux_export3b.e):
+      export {NONE} all
+             ^         
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 ------

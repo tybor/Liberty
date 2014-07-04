@@ -12,7 +12,7 @@ create {ONCE_FUNCTION}
    for
 
 feature {ANY}
-   accept (visitor: RUN_FEATURE_6_VISITOR) is
+   accept (visitor: RUN_FEATURE_6_VISITOR)
       do
          visitor.visit_run_feature_6(Current)
       end
@@ -34,24 +34,29 @@ feature {ANY}
 
    ensure_assertion: ENSURE_ASSERTION
 
-   is_deferred: BOOLEAN is False
+   is_deferred: BOOLEAN False
 
-   is_once_procedure: BOOLEAN is False
+   is_once_procedure: BOOLEAN False
 
-   is_once_function: BOOLEAN is True
+   is_once_function: BOOLEAN True
 
-   is_precomputable_once: BOOLEAN is
+   has_closures: BOOLEAN
+      do
+         Result := base_feature.has_closures
+      end
+
+   is_precomputable_once: BOOLEAN
       do
          Result := once_routine_pool.is_precomputed(base_feature)
       end
 
-   side_effect_free: BOOLEAN is
+   side_effect_free: BOOLEAN
       do
          Result := is_precomputable_once
       end
 
 feature {}
-   do_adapt is
+   do_adapt
       local
          class_text: CLASS_TEXT
       do
@@ -89,7 +94,7 @@ feature {}
          once_routine_pool.register_function(Current)
       end
 
-   set_result_type is
+   set_result_type
       do
          -- Adapt the result type:
          result_type := base_feature.result_type.resolve_in(type_of_current).canonical_type_mark --|*** CAD: need of resolve_in?
@@ -98,7 +103,7 @@ feature {}
       end
 
 feature {}
-   compute_use_current is
+   compute_use_current
       do
          if type_of_current.is_reference then
             if ace.no_check then
@@ -123,9 +128,9 @@ end -- class RUN_FEATURE_6
 -- received a copy of the GNU General Public License along with Liberty Eiffel; see the file COPYING. If not, write to the Free
 -- Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 --
--- Copyright(C) 2011-2012: Cyril ADRIAN, Paolo REDAELLI
+-- Copyright(C) 2011-2014: Cyril ADRIAN, Paolo REDAELLI, Raphael MACK
 --
--- http://liberty-eiffel.blogspot.com - https://github.com/LibertyEiffel/Liberty
+-- http://www.gnu.org/software/liberty-eiffel/
 --
 --
 -- Liberty Eiffel is based on SmartEiffel (Copyrights below)

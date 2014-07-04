@@ -9,7 +9,7 @@ insert ANY undefine is_equal, copy end
 		STANDARD_C_LIBRARY_TYPES
 feature {} -- External calls
 
-	tilde_additional_prefixes: POINTER is
+	tilde_additional_prefixes: POINTER
  		-- tilde_additional_prefixes
 		external "plug_in"
 		alias "{
@@ -19,7 +19,7 @@ feature {} -- External calls
 		}"
 		end
 
-	address_of_tilde_additional_prefixes: POINTER is
+	address_of_tilde_additional_prefixes: POINTER
  		-- Address of tilde_additional_prefixes
 		external "plug_in"
 		alias "{
@@ -29,7 +29,7 @@ feature {} -- External calls
 		}"
 		end
 
-	set_tilde_additional_prefixes (a_value: POINTER) is
+	set_tilde_additional_prefixes (a_value: POINTER)
 		-- Set variable tilde_additional_prefixes value
 		external "plug_in"
 		alias "{
@@ -39,7 +39,7 @@ feature {} -- External calls
 		}"
 		end
 
-	tilde_additional_suffixes: POINTER is
+	tilde_additional_suffixes: POINTER
  		-- tilde_additional_suffixes
 		external "plug_in"
 		alias "{
@@ -49,7 +49,7 @@ feature {} -- External calls
 		}"
 		end
 
-	address_of_tilde_additional_suffixes: POINTER is
+	address_of_tilde_additional_suffixes: POINTER
  		-- Address of tilde_additional_suffixes
 		external "plug_in"
 		alias "{
@@ -59,7 +59,7 @@ feature {} -- External calls
 		}"
 		end
 
-	set_tilde_additional_suffixes (a_value: POINTER) is
+	set_tilde_additional_suffixes (a_value: POINTER)
 		-- Set variable tilde_additional_suffixes value
 		external "plug_in"
 		alias "{
@@ -69,7 +69,11 @@ feature {} -- External calls
 		}"
 		end
 
+<<<<<<< HEAD
 	tilde_expand (an_argument_l174_c7: POINTER): POINTER is
+=======
+	tilde_expand (an_argument_l185_c7: POINTER): POINTER
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
  		-- tilde_expand
 		external "plug_in"
 		alias "{
@@ -79,7 +83,11 @@ feature {} -- External calls
 		}"
 		end
 
+<<<<<<< HEAD
 	tilde_expand_word (an_argument_l2729_c7: POINTER): POINTER is
+=======
+	tilde_expand_word (an_argument_l2728_c7: POINTER): POINTER
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
  		-- tilde_expand_word
 		external "plug_in"
 		alias "{
@@ -89,7 +97,7 @@ feature {} -- External calls
 		}"
 		end
 
-	tilde_expansion_failure_hook: POINTER is
+	tilde_expansion_failure_hook: POINTER
  		-- tilde_expansion_failure_hook
 		external "plug_in"
 		alias "{
@@ -99,7 +107,7 @@ feature {} -- External calls
 		}"
 		end
 
-	address_of_tilde_expansion_failure_hook: POINTER is
+	address_of_tilde_expansion_failure_hook: POINTER
  		-- Address of tilde_expansion_failure_hook
 		external "plug_in"
 		alias "{
@@ -109,7 +117,7 @@ feature {} -- External calls
 		}"
 		end
 
-	set_tilde_expansion_failure_hook (a_value: POINTER) is
+	set_tilde_expansion_failure_hook (a_value: POINTER)
 		-- Set variable tilde_expansion_failure_hook value
 		external "plug_in"
 		alias "{
@@ -119,7 +127,7 @@ feature {} -- External calls
 		}"
 		end
 
-	tilde_expansion_preexpansion_hook: POINTER is
+	tilde_expansion_preexpansion_hook: POINTER
  		-- tilde_expansion_preexpansion_hook
 		external "plug_in"
 		alias "{
@@ -129,7 +137,7 @@ feature {} -- External calls
 		}"
 		end
 
-	address_of_tilde_expansion_preexpansion_hook: POINTER is
+	address_of_tilde_expansion_preexpansion_hook: POINTER
  		-- Address of tilde_expansion_preexpansion_hook
 		external "plug_in"
 		alias "{
@@ -139,7 +147,7 @@ feature {} -- External calls
 		}"
 		end
 
-	set_tilde_expansion_preexpansion_hook (a_value: POINTER) is
+	set_tilde_expansion_preexpansion_hook (a_value: POINTER)
 		-- Set variable tilde_expansion_preexpansion_hook value
 		external "plug_in"
 		alias "{
@@ -149,7 +157,11 @@ feature {} -- External calls
 		}"
 		end
 
+<<<<<<< HEAD
 	tilde_find_word (an_argument_l2560_c7: POINTER; an_argument_l2561_c7: INTEGER; an_argument_l2562_c7: POINTER): POINTER is
+=======
+	tilde_find_word (an_argument_l2554_c7: POINTER; an_argument_l2555_c7: INTEGER; an_argument_l2556_c7: POINTER): POINTER
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
  		-- tilde_find_word
 		external "plug_in"
 		alias "{

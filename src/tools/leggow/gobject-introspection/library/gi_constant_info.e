@@ -12,6 +12,7 @@ create {GI_INFO_FACTORY, WRAPPER}
    from_external_pointer
 
 feature {ANY}
+<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_constant_info.e
 	emit_wrapper is
 		do
 			("GI_CONSTANT: #(1)%N" # name).print_on(std_output)
@@ -24,6 +25,9 @@ feature {ANY}
 	
 feature {ANY}
 	   constant_type: GI_TYPE_INFO is
+=======
+   constant_type: GI_TYPE_INFO
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_constant_info.e
          -- The type of the constant
       do
          create Result.from_external_pointer(g_constant_info_get_type(handle))

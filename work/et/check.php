@@ -186,7 +186,35 @@ if (substage("eiffeldoc")) {
 
 //- debian packaging
 if (substage("debian packaging")) {
-   execute("$LibertyBase/work/packaging/build_debian.sh", $ulimit_time = 3600);
+   $pkg_result = 0;
+   if (substage("source")) {
+      $result = execute("export PKG_DATE='" . date($debuildDateFormat, $startTime) . "' ; $LibertyBase/work/packaging/build_debian.sh -debuild=-S", $ulimit_time = 3600);
+      $result += execute("mkdir -p $LibertyBase/work/packaging/debs_src && ln $LibertyBase/work/packaging/debs/* $LibertyBase/work/packaging/debs_src/");
+      file_put_contents($stagedir ."/result.txt", $result);
+      $pkg_result += $result;
+      endsubstage();
+   }
+   if (substage("amd64")) {
+      $result = execute("export PKG_DATE='" . date($debuildDateFormat, $startTime) . "' ; $LibertyBase/work/packaging/build_debian.sh -debuild=-b", $ulimit_time = 3600);
+      $result += execute("mkdir -p $LibertyBase/work/packaging/debs_amd64 && ln $LibertyBase/work/packaging/debs/* $LibertyBase/work/packaging/debs_amd64/");
+      file_put_contents($stagedir ."/result.txt", $result);
+      $pkg_result += $result;
+      endsubstage();
+   }
+   if (substage("i386")) {
+      $result = execute("ssh et32@et32 \"export PKG_DATE='" . date($debuildDateFormat, $startTime) . "' ; cd $LibertyBase && git fetch origin && git checkout $gitBranch && git merge --ff-only FETCH_HEAD && $LibertyBase/work/packaging/build_debian.sh -debuild=-b\"", $ulimit_time = 3600);
+      $result += execute("mkdir -p $LibertyBase/work/packaging/debs_i386 && scp -p et32@et32:$LibertyBase/work/packaging/debs/* $LibertyBase/work/packaging/debs_i386/");
+      file_put_contents($stagedir ."/result.txt", $result);
+      $pkg_result += $result;
+      endsubstage();
+   }
+   if (substage("deploy")) {
+      $result = execute("mkdir -p $LibertyBase/work/packaging/debs && ln $LibertyBase/work/packaging/debs_*/* $LibertyBase/work/packaging/debs/ && rm -rf $LibertyBase/work/packaging/debs_*");
+      $result = execute("export PKG_DATE='" . date($debuildDateFormat, $startTime) . "' ; $LibertyBase/work/packaging/build_debian.sh -deploy", $ulimit_time = 3600);
+      $pkg_result += $result;
+      endsubstage();
+   }
+   file_put_contents($stagedir ."/result.txt", $pkg_result);
    endsubstage();
 }
 

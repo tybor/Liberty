@@ -11,6 +11,7 @@ inherit GI_CALLABLE_INFO
 insert GISIGNALINFO_EXTERNALS
 
 create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
+<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_signal_info.e
 
 feature {ANY}
 	emit_wrapper is
@@ -23,14 +24,17 @@ feature {ANY}
 			not_yet_implemented
 		end
 		
+=======
+	
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_signal_info.e
 feature {ANY} 
-	flags: GSIGNAL_FLAGS_ENUM is
+	flags: GSIGNAL_FLAGS_ENUM
 		-- the flags for this signal info.
 		do
 			Result.set(g_signal_info_get_flags(handle))
 		end 
 		
-	closure: GI_VFUNC_INFO is
+	closure: GI_VFUNC_INFO
 		-- the class closure for this signal if one is set. The class closure
 		-- is a virtual function on the type that the signal belongs to. Void
 		-- if the signal lacks a closure.
@@ -43,7 +47,7 @@ feature {ANY}
 		end
 	end
 
-	true_stops_emit: BOOLEAN is
+	true_stops_emit: BOOLEAN
 		-- Will a signal's True result stop the signal emission? 
 		do
 			Result := g_signal_info_true_stops_emit(handle).to_boolean

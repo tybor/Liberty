@@ -31,27 +31,31 @@ feature {ANY} -- Eiffel wrapper generation
 		end
 
 feature {WRAPPER_HANDLER} -- Memory handling
-   ref is
+   ref
       local
          ptr: POINTER
       do
          ptr := g_base_info_ref(handle)
       end
 
-   unref is
+   unref
       do
          g_base_info_unref(handle)
       end
 
 feature {ANY}
+<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_base_info.e
    type_enum: GIINFO_TYPE_ENUM is
+=======
+   type: GIINFO_TYPE_ENUM
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_base_info.e
          -- The type of info
       do
          Result.set(g_base_info_get_type(handle))
          -- Remember that _ENUM types are usually expanded
       end
 
-   name: FIXED_STRING is
+   name: FIXED_STRING
          -- The name of the info. What the name represents depends on the GIInfoType of the info. For instance forGIFunctionInfo it is the name of the function.
 		 -- May be Void. yet as a temporary measure instead of being Void for nameless infos the empty string is returned ""
 	 local
@@ -65,7 +69,7 @@ feature {ANY}
 		 end
 	 end
 
-   namespace: FIXED_STRING is
+   namespace: FIXED_STRING
          -- The namespace of info.
       do
          create Result.from_external(g_base_info_get_namespace(handle))
@@ -73,13 +77,13 @@ feature {ANY}
          not_void: Result /= Void
       end
 
-   is_deprecated: BOOLEAN is
+   is_deprecated: BOOLEAN
          -- Does the info type represents a metadata which is deprecated?
       do
          Result := g_base_info_is_deprecated(handle).to_boolean
       end
 
-   attrib (a_name: ABSTRACT_STRING): FIXED_STRING is
+   attrib (a_name: ABSTRACT_STRING): FIXED_STRING
          -- An arbitrary attribute associated with this node identified by
          -- `a_name' a freeform string naming an attribute
          -- Void when no such attribute exists
@@ -130,7 +134,7 @@ feature {ANY}
       --
 	end
 
-   container: GI_BASE_INFO is
+   container: GI_BASE_INFO
          -- The container of the info. The container is the parent GIBaseInfo.
          -- For instance, the parent of a GIFunctionInfo is an GIObjectInfo or
          -- GIInterfaceInfo.
@@ -151,7 +155,7 @@ feature {}
    --
    --    info :    a GIBaseInfo
    --    Returns : the typelib. [transfer none]
-   -- is_equal (another: GI_BASE_INFO): BOOLEAN is
+   -- is_equal (another: GI_BASE_INFO): BOOLEAN
    -- 	--    Compare two GIBaseInfo.
    -- do
    -- 	-- Using pointer comparison is not practical since many functions

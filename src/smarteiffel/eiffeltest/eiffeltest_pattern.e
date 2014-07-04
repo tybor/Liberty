@@ -9,8 +9,13 @@ insert
 create {EIFFELTEST}
    make
 
+<<<<<<< HEAD
 feature {EIFFELTEST}
    match (string: ABSTRACT_STRING): BOOLEAN is
+=======
+feature {EIFFELTEST, EIFFELTEST_SERVER_RUN_TESTS}
+   match (string: ABSTRACT_STRING): BOOLEAN
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
       require
          string /= Void
       do
@@ -28,7 +33,7 @@ feature {EIFFELTEST}
 feature {}
    regex: REGULAR_EXPRESSION
 
-   make (a_text: ABSTRACT_STRING) is
+   make (a_text: ABSTRACT_STRING)
       require
          a_text /= Void
       local
@@ -81,9 +86,9 @@ end -- class EIFFELTEST_PATTERN
 -- received a copy of the GNU General Public License along with Liberty Eiffel; see the file COPYING. If not, write to the Free
 -- Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 --
--- Copyright(C) 2013: Cyril ADRIAN <cyril.adrian@gmail.com>
+-- Copyright(C) 2013-2014: Cyril ADRIAN <cyril.adrian@gmail.com>
 --
--- http://liberty-eiffel.blogspot.com - https://github.com/LibertyEiffel/Liberty
+-- http://www.gnu.org/software/liberty-eiffel/
 --
 --
 -- Liberty Eiffel is based on SmartEiffel (Copyrights below)

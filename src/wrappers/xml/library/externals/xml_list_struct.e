@@ -7,8 +7,13 @@ insert STANDARD_C_LIBRARY_TYPES
 
 	LIBXML2_TYPES
 	-- Fieldless structure
+<<<<<<< HEAD
 feature {WRAPPER, WRAPPER_HANDLER} -- Structure size
 	struct_size: like size_t is
+=======
+feature -- Structure size
+	struct_size: like size_t
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 		external "plug_in"
 		alias "{
 			location: "."

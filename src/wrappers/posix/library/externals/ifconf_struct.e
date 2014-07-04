@@ -8,7 +8,7 @@ insert STANDARD_C_LIBRARY_TYPES
 	POSIX_TYPES
 feature {} -- Low-level setters
 
-	ifconf_struct_set_ifc_len (a_structure: POINTER; a_value: INTEGER) is
+	ifconf_struct_set_ifc_len (a_structure: POINTER; a_value: INTEGER)
 			-- Setter for ifc_len field of IFCONF_STRUCT structure.
 			-- TODO: setter description
 
@@ -22,7 +22,7 @@ feature {} -- Low-level setters
 
 feature {} -- Low-level queries
 
-	ifconf_struct_get_ifc_len (a_structure: POINTER): INTEGER is
+	ifconf_struct_get_ifc_len (a_structure: POINTER): INTEGER
 			-- Query for ifc_len field of IFCONF_STRUCT structure.
 			-- TODO: getter description
 
@@ -35,8 +35,13 @@ feature {} -- Low-level queries
 		end
 
 	-- Unwrappable field ifc_ifcu.
+<<<<<<< HEAD
 feature {WRAPPER, WRAPPER_HANDLER} -- Structure size
 	struct_size: like size_t is
+=======
+feature -- Structure size
+	struct_size: like size_t
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 		external "plug_in"
 		alias "{
 			location: "."

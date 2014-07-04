@@ -16,7 +16,7 @@ create {ANY}
    make
 
 feature {ANY}
-   accept (visitor: FORMAL_GENERIC_ARG_VISITOR) is
+   accept (visitor: FORMAL_GENERIC_ARG_VISITOR)
       do
          visitor.visit_formal_generic_arg(Current)
       end
@@ -31,17 +31,17 @@ feature {ANY}
    rank: INTEGER
          -- In the corresponding declation list.
 
-   constrained: BOOLEAN is
+   constrained: BOOLEAN
       do
          Result := constraint /= Void
       end
 
-   start_position: POSITION is
+   start_position: POSITION
       do
          Result := name.start_position
       end
 
-   pretty is
+   pretty
       do
          name.pretty(1)
          if constraint /= Void then
@@ -50,7 +50,7 @@ feature {ANY}
          end
       end
 
-   short (type: TYPE) is
+   short (type: TYPE)
       do
          short_printer.put_class_name_without_link(name)
          if constrained then
@@ -59,12 +59,19 @@ feature {ANY}
          end
       end
 
+feature {}
+   class_name_cache: CLASS_NAME
+      once
+         create Result.unknown_position(string_aliaser.hashed_string(as_any), True)
+      end
+
 feature {FORMAL_GENERIC_LIST}
-   generic_formal_arguments_check is
+   generic_formal_arguments_check
       local
          class_text: CLASS_TEXT
       do
-         class_text := smart_eiffel.class_text(name, False)
+         class_name_cache.make(name.hashed_name, name.start_position, True)
+         class_text := smart_eiffel.class_text(class_name_cache)
          if class_text /= Void then
             error_handler.add_position(name.start_position)
             error_handler.add_position(class_text.name.start_position)
@@ -78,7 +85,7 @@ feature {FORMAL_GENERIC_LIST}
          end
       end
 
-   set_rank (r: like rank) is
+   set_rank (r: like rank)
       require
          r > 0
       do
@@ -87,7 +94,7 @@ feature {FORMAL_GENERIC_LIST}
          rank = r
       end
 
-   constraint_substitution (fga: like Current; r: INTEGER) is
+   constraint_substitution (fga: like Current; r: INTEGER)
          -- Substitute in the previously read `Current' `constraint'
          -- all occurrences of `fga' which will be added at rank `r'.
       local
@@ -108,7 +115,7 @@ feature {FORMAL_GENERIC_LIST}
       end
 
 feature {}
-   substitute (gl: ARRAY[TYPE_MARK]; fga: like Current; r: INTEGER; fgan: STRING) is
+   substitute (gl: ARRAY[TYPE_MARK]; fga: like Current; r: INTEGER; fgan: STRING)
          -- Substitute recursively all occurrences of `fgan' in `gl'.
       require
          gl /= Void
@@ -136,7 +143,7 @@ feature {}
          end
       end
 
-   make (n: like name; c: like constraint) is
+   make (n: like name; c: like constraint)
       require
          n /= Void
       do
@@ -162,9 +169,9 @@ end -- class FORMAL_GENERIC_ARG
 -- received a copy of the GNU General Public License along with Liberty Eiffel; see the file COPYING. If not, write to the Free
 -- Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 --
--- Copyright(C) 2011-2012: Cyril ADRIAN, Paolo REDAELLI
+-- Copyright(C) 2011-2014: Cyril ADRIAN, Paolo REDAELLI, Raphael MACK
 --
--- http://liberty-eiffel.blogspot.com - https://github.com/LibertyEiffel/Liberty
+-- http://www.gnu.org/software/liberty-eiffel/
 --
 --
 -- Liberty Eiffel is based on SmartEiffel (Copyrights below)

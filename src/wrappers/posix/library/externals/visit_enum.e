@@ -5,9 +5,15 @@ expanded class VISIT_ENUM
 
 insert ENUM
 
+<<<<<<< HEAD
 creation {ANY} default_create
 feature {ANY} -- Validity
     is_valid_value (a_value: INTEGER): BOOLEAN is
+=======
+create default_create
+feature -- Validity
+    is_valid_value (a_value: INTEGER): BOOLEAN
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
         do
             Result := ((a_value = endorder_low_level)  or else
 				(a_value = leaf_low_level)  or else
@@ -17,49 +23,54 @@ feature {ANY} -- Validity
 
 feature {ANY} -- Setters
 	default_create,
-	set_endorder is
+	set_endorder
 		do
 			value := endorder_low_level
 		end
 
-	set_leaf is
+	set_leaf
 		do
 			value := leaf_low_level
 		end
 
-	set_postorder is
+	set_postorder
 		do
 			value := postorder_low_level
 		end
 
-	set_preorder is
+	set_preorder
 		do
 			value := preorder_low_level
 		end
 
+<<<<<<< HEAD
 feature {ANY} -- Queries
 	is_endorder: BOOLEAN is
+=======
+feature -- Queries
+	is_endorder: BOOLEAN
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 		do
 			Result := (value=endorder_low_level)
 		end
 
-	is_leaf: BOOLEAN is
+	is_leaf: BOOLEAN
 		do
 			Result := (value=leaf_low_level)
 		end
 
-	is_postorder: BOOLEAN is
+	is_postorder: BOOLEAN
 		do
 			Result := (value=postorder_low_level)
 		end
 
-	is_preorder: BOOLEAN is
+	is_preorder: BOOLEAN
 		do
 			Result := (value=preorder_low_level)
 		end
 
 feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
-	endorder_low_level: INTEGER is
+	endorder_low_level: INTEGER
 		external "plug_in"
  		alias "{
  			location: "."
@@ -68,7 +79,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	leaf_low_level: INTEGER is
+	leaf_low_level: INTEGER
 		external "plug_in"
  		alias "{
  			location: "."
@@ -77,7 +88,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	postorder_low_level: INTEGER is
+	postorder_low_level: INTEGER
 		external "plug_in"
  		alias "{
  			location: "."
@@ -86,7 +97,7 @@ feature {WRAPPER, WRAPPER_HANDLER} -- Low level values
  			}"
  		end
 
-	preorder_low_level: INTEGER is
+	preorder_low_level: INTEGER
 		external "plug_in"
  		alias "{
  			location: "."

@@ -10,6 +10,7 @@ inherit GI_CALLABLE_INFO
 insert GIFUNCTIONINFO_EXTERNALS
 
 create {GI_REPOSITORY, GI_INFO_FACTORY, WRAPPER} from_external_pointer
+<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_function_info.e
 
 feature {ANY} -- Wrapper
 	emit_wrapper is
@@ -21,6 +22,8 @@ feature {ANY} -- Wrapper
 		do
 			not_yet_implemented
 		end
+=======
+>>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_function_info.e
 
 --   enum GInvokeError
 -- 
@@ -42,14 +45,14 @@ feature {ANY} -- Wrapper
 -- 
 -- 
 feature {ANY}
-	symbol: FIXED_STRING is
+	symbol: FIXED_STRING
 		-- The symbol of the function; the symbol is the name of the exported function, suitable to be used as an argument to g_module_symbol().
 	do
 		create Result.from_external(g_function_info_get_symbol(handle))
 	ensure not_void: Result/=Void
 	end
    
-  	flags: GIFUNCTION_INFO_FLAGS_ENUM is
+  	flags: GIFUNCTION_INFO_FLAGS_ENUM
 		-- The flags of Current function. It may be:
 		-- GI_FUNCTION_IS_METHOD      is a method.
 		-- GI_FUNCTION_IS_CONSTRUCTOR is a constructor.
@@ -61,7 +64,7 @@ feature {ANY}
 		Result.set(g_function_info_get_flags(handle))
 	end
 
-	property: GI_PROPERTY_INFO is
+	property: GI_PROPERTY_INFO
 		-- The property associated with this GIFunctionInfo. Only
 		-- GIFunctionInfo with the flag GI_FUNCTION_IS_GETTER or
 		-- GI_FUNCTION_IS_SETTER have a property set. For other cases, NULL
@@ -75,7 +78,7 @@ feature {ANY}
 		end
 	end
 
-	vfunc: GI_VFUNC_INFO is
+	vfunc: GI_VFUNC_INFO
 		-- The virtual function associated with this GIFunctionInfo.
 		-- Only GIFunctionInfo with the flag GI_FUNCTION_WRAPS_VFUNC has a
 		-- virtual function set. For other cases, NULL will be returned.

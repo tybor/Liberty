@@ -17,25 +17,25 @@ insert
    SINGLETON
 
 feature {C_PRETTY_PRINTER}
-   compile is
+   compile
       do
          out_h.copy(header_comment)
          flush_out_h
          pre_compile
-         smart_eiffel.live_type_map.do_all(agent compile_live_type)
+         smart_eiffel.live_type_map.for_each(agent compile_live_type)
       end
 
 feature {}
-   header_comment: STRING is
+   header_comment: STRING
       deferred
       end
 
-   pre_compile is
+   pre_compile
       deferred
       end
 
 feature {}
-   standard_c_struct (type_mark: TYPE_MARK) is
+   standard_c_struct (type_mark: TYPE_MARK)
          -- Produce C code for the standard C struct (for user's
          -- expanded or reference as well).
       require
@@ -113,7 +113,7 @@ feature {}
          end
       end
 
-   standard_c_object_model (type_mark: TYPE_MARK) is
+   standard_c_object_model (type_mark: TYPE_MARK)
          -- Produce C code to define the model object.
       require
          type_mark.is_static
@@ -132,7 +132,7 @@ feature {}
          cpp.write_extern_2(out_h, out_c)
       end
 
-   frozen standard_c_typedef (type_mark: TYPE_MARK) is
+   frozen standard_c_typedef (type_mark: TYPE_MARK)
       require
          type_mark.type.live_type.at_run_time
       local
@@ -158,7 +158,7 @@ feature {}
          flush_out_h
       end
 
-   c_object_model_in (live_type: LIVE_TYPE) is
+   c_object_model_in (live_type: LIVE_TYPE)
       local
          wa: ARRAY[RUN_FEATURE_2]; i: INTEGER; rf2: RUN_FEATURE_2; t: TYPE_MARK
       do
@@ -197,7 +197,7 @@ feature {}
       end
 
 feature {CLIENT_TYPE_MARK}
-   visit_client_type_mark (visited: CLIENT_TYPE_MARK) is
+   visit_client_type_mark (visited: CLIENT_TYPE_MARK)
       do
          check False end
       end
@@ -217,9 +217,9 @@ end -- class C_HEADER_PASS
 -- received a copy of the GNU General Public License along with Liberty Eiffel; see the file COPYING. If not, write to the Free
 -- Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 --
--- Copyright(C) 2011-2012: Cyril ADRIAN, Paolo REDAELLI
+-- Copyright(C) 2011-2014: Cyril ADRIAN, Paolo REDAELLI, Raphael MACK
 --
--- http://liberty-eiffel.blogspot.com - https://github.com/LibertyEiffel/Liberty
+-- http://www.gnu.org/software/liberty-eiffel/
 --
 --
 -- Liberty Eiffel is based on SmartEiffel (Copyrights below)
