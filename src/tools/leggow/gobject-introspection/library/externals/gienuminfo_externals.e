@@ -69,11 +69,7 @@ feature {} -- External calls
 		}"
 		end
 
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/externals/gienuminfo_externals.e
-	g_value_info_get_value (an_info: POINTER): like long is
-=======
-	g_value_info_get_value (an_info: POINTER): INTEGER_64
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/externals/gienuminfo_externals.e
+	g_value_info_get_value (an_info: POINTER): like long 
  		-- g_value_info_get_value
 		external "plug_in"
 		alias "{

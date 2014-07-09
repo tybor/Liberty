@@ -209,8 +209,7 @@ feature {} -- External calls
 		}"
 		end
 
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/externals/girepository_externals.e
-	g_irepository_prepend_library_path (a_directory: POINTER) is
+	g_irepository_prepend_library_path (a_directory: POINTER) 
  		-- g_irepository_prepend_library_path
 		external "plug_in"
 		alias "{
@@ -220,10 +219,7 @@ feature {} -- External calls
 		}"
 		end
 
-	g_irepository_prepend_search_path (a_directory: POINTER) is
-=======
 	g_irepository_prepend_search_path (a_directory: POINTER)
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/externals/girepository_externals.e
  		-- g_irepository_prepend_search_path
 		external "plug_in"
 		alias "{

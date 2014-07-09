@@ -29,11 +29,7 @@ feature {} -- External calls
 		}"
 		end
 
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/externals/gitypelib_externals.e
-	g_typelib_new_from_const_memory (a_memory: POINTER; a_len: like long_unsigned; an_error: POINTER): POINTER is
-=======
-	g_typelib_new_from_const_memory (a_memory: POINTER; a_len: NATURAL; an_error: POINTER): POINTER
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/externals/gitypelib_externals.e
+	g_typelib_new_from_const_memory (a_memory: POINTER; a_len: like long_unsigned; an_error: POINTER): POINTER 
  		-- g_typelib_new_from_const_memory
 		external "plug_in"
 		alias "{
@@ -53,11 +49,7 @@ feature {} -- External calls
 		}"
 		end
 
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/externals/gitypelib_externals.e
-	g_typelib_new_from_memory (a_memory: POINTER; a_len: like long_unsigned; an_error: POINTER): POINTER is
-=======
-	g_typelib_new_from_memory (a_memory: POINTER; a_len: NATURAL; an_error: POINTER): POINTER
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/externals/gitypelib_externals.e
+	g_typelib_new_from_memory (a_memory: POINTER; a_len: like long_unsigned; an_error: POINTER): POINTER 
  		-- g_typelib_new_from_memory
 		external "plug_in"
 		alias "{

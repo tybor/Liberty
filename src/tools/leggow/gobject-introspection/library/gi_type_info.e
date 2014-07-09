@@ -10,7 +10,6 @@ inherit
 	GI_BASE_INFO
 	GI_INFO_FACTORY
 
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_type_info.e
 insert 
 	GITYPEINFO_EXTERNALS
 	EXCEPTIONS
@@ -52,11 +51,6 @@ feature {ANY} -- Wrapper
 				raise ("Liberty Eiffel Generator of GObject wrappers does not know how to handle type tag '"+tag_to_string(tag)+"'")
 			end
 		end
-=======
-insert GITYPEINFO_EXTERNALS
-create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
-feature {ANY}
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_type_info.e
 
 --  typedef enum {
 --    /* Basic types */

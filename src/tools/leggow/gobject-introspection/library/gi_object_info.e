@@ -10,18 +10,6 @@ class GI_OBJECT_INFO
    -- full heir of TRAVERSABLE but it indeed provides iterating and accessing
    -- facilities without full inheritance.
 
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_object_info.e
-inherit 
-	GI_CLASS -- providing properties access
-		redefine emit_wrapper, eiffel_wrapper end
-
-	GI_REGISTERED_TYPE_INFO
-		redefine 
-			type_name,
-			type_init,
-			out_in_tagged_out_memory
-		end
-=======
 inherit
         GI_CLASS -- providing properties access
         GI_REGISTERED_TYPE_INFO
@@ -30,7 +18,6 @@ inherit
                         type_init,
                         out_in_tagged_out_memory
                 end
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_object_info.e
 
 insert
         GIOBJECTINFO_EXTERNALS
@@ -38,12 +25,14 @@ insert
                 end
 
 create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_object_info.e
 
 feature {ANY} -- Wrapper
-	emit_wrapper is do eiffel_wrapper.print_on(std_output) end
+	emit_wrapper 
+		do 
+				eiffel_wrapper.print_on(std_output) 
+		end
 
-	eiffel_wrapper: ABSTRACT_STRING is
+	eiffel_wrapper: ABSTRACT_STRING 
 		do
 			create wrapper_header.with_capacity(1024)
 			create wrapper_inherits.with_capacity(1024)
@@ -125,8 +114,6 @@ feature {} -- Wrapper implementation
 	wrapper_features: STRING
 	wrapper_externals: STRING
 	wrapper_footer: STRING
-=======
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_object_info.e
 
 feature {ANY}
         type_name: FIXED_STRING

@@ -165,11 +165,7 @@ feature {ANY}
 		end
  
  	
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_repository.e
-	loaded_namespaces: TRAVERSABLE[FIXED_STRING] is
-=======
-	loaded_namespaces: STRING_ARRAY
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_repository.e
+	loaded_namespaces: TRAVERSABLE[FIXED_STRING] 
 		-- The list of currently loaded namespaces (in UTF8).
 	do
 		Result := strings_array_from(g_irepository_get_loaded_namespaces (handle))

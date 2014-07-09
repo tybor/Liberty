@@ -1,5 +1,4 @@
 class GI_UNION_INFO
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_union_info.e
 	-- A GObject metadata object representing a union.
 
 	-- A union has methods and fields. Unions can optionally have a
@@ -42,58 +41,15 @@ insert
 create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
 
 feature {ANY} -- Wrapper
-	emit_wrapper is
+	emit_wrapper 
 		do
 			("GI_Union: #(1)%N" # name).print_on(std_output)
 		end
 
-	eiffel_wrapper: ABSTRACT_STRING is
+	eiffel_wrapper: ABSTRACT_STRING 
 		do
 			not_yet_implemented
 		end
-=======
-        -- A GObject metadata object representing a union.
-
-        -- A union has methods and fields. Unions can optionally have a
-        -- discriminator, which is a field deciding what type of real union
-        -- fields
-
-        -- As unions in the C language has fields but not methods this wrapper
-        -- made indexable over its fields throught proper inheritance of INDEXABLE,
-        -- while providing indexable-like features over the functions provided.
-
-        -- GI_UNION_INFO could have been made a proper multiple heir of INDEXABLE
-        -- but the added complexity of the resulting code would not have brought
-        -- any appreciable benefits.
-
-inherit
-        GI_REGISTERED_TYPE_INFO
-                redefine out_in_tagged_out_memory end
-
-        INDEXABLE[GI_FIELD_INFO]
-                rename
-                        lower as fields_lower
-                        upper as fields_upper
-                        count as fields_count
-                        is_empty as has_no_fields
-                        valid_index as valid_field_index
-                        item as field
-                        first as first_field
-                        last as last_field
-                        for_each as for_each _field
-                        for_all as for_all_fields
-                        exists as exists_field
-                        aggregate as aggregate_fields
-                        undefine copy, is_equal
-                redefine out_in_tagged_out_memory
-                end
-
-insert
-        GIUNIONINFO_EXTERNALS
-                redefine out_in_tagged_out_memory end
-create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_union_info.e
-
 feature {ANY} -- Fields
         fields_lower: INTEGER 0
         fields_upper: INTEGER do Result := fields_count-1 end

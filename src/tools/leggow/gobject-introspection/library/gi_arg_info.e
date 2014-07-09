@@ -27,12 +27,7 @@ eiffel_wrapper: ABSTRACT_STRING is
 		end
 
 feature {ANY}
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_arg_info.e
-
-   direction: GIDIRECTION_ENUM is
-=======
-   direction: GIDIRECTION_ENUM
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_arg_info.e
+   direction: GIDIRECTION_ENUM 
          --  the direction of the argument. Can be in, out and inout
       do
          Result.set(g_arg_info_get_direction(handle))

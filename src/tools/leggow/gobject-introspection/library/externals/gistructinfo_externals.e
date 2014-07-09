@@ -19,11 +19,7 @@ feature {} -- External calls
 		}"
 		end
 
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/externals/gistructinfo_externals.e
-	g_struct_info_get_alignment (an_info: POINTER): like long_unsigned is
-=======
-	g_struct_info_get_alignment (an_info: POINTER): NATURAL
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/externals/gistructinfo_externals.e
+	g_struct_info_get_alignment (an_info: POINTER): like long_unsigned 
  		-- g_struct_info_get_alignment
 		external "plug_in"
 		alias "{
@@ -73,11 +69,7 @@ feature {} -- External calls
 		}"
 		end
 
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/externals/gistructinfo_externals.e
-	g_struct_info_get_size (an_info: POINTER): like long_unsigned is
-=======
-	g_struct_info_get_size (an_info: POINTER): NATURAL
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/externals/gistructinfo_externals.e
+	g_struct_info_get_size (an_info: POINTER): like long_unsigned 
  		-- g_struct_info_get_size
 		external "plug_in"
 		alias "{

@@ -13,13 +13,12 @@ insert
 create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
 
 feature {ANY}
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_vfunc_info.e
-	emit_wrapper is
+	emit_wrapper 
 		do
 			("GI_vfunc: #(1)%N" # name).print_on(std_output)
 		end
 
-	eiffel_wrapper: ABSTRACT_STRING is
+	eiffel_wrapper: ABSTRACT_STRING 
 		do
 			not_yet_implemented
 		end

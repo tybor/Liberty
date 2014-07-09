@@ -9,13 +9,8 @@ insert
 create {EIFFELTEST}
    make
 
-<<<<<<< HEAD
-feature {EIFFELTEST}
-   match (string: ABSTRACT_STRING): BOOLEAN is
-=======
 feature {EIFFELTEST, EIFFELTEST_SERVER_RUN_TESTS}
    match (string: ABSTRACT_STRING): BOOLEAN
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
       require
          string /= Void
       do

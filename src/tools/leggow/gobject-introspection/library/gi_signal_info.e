@@ -11,22 +11,7 @@ inherit GI_CALLABLE_INFO
 insert GISIGNALINFO_EXTERNALS
 
 create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_signal_info.e
 
-feature {ANY}
-	emit_wrapper is
-		do
-			("GI_CLASS: #(1)%N" # name).print_on(std_output)
-		end
-
-	eiffel_wrapper: ABSTRACT_STRING is
-		do
-			not_yet_implemented
-		end
-		
-=======
-	
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_signal_info.e
 feature {ANY} 
 	flags: GSIGNAL_FLAGS_ENUM
 		-- the flags for this signal info.

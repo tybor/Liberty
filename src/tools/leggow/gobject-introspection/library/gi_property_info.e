@@ -5,7 +5,7 @@ class GI_PROPERTY_INFO
 inherit GI_BASE_INFO
 insert GIPROPERTYINFO_EXTERNALS
 create {GI_INFO_FACTORY, WRAPPER} from_external_pointer
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_property_info.e
+
 feature {ANY} -- Wrapper
 	emit_wrapper is
 		do
@@ -17,8 +17,6 @@ feature {ANY} -- Wrapper
 			not_yet_implemented
 		end
 
-=======
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_property_info.e
 feature {ANY}
 	flags: GPARAM_FLAGS_ENUM
 		-- The flags for this property info. See GParamFags for more information about possible flag values.
