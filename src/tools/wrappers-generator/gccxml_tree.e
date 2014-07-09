@@ -44,7 +44,7 @@ feature {ANY}
             create {C_QUALIFIED_TYPE} Result.make(node_name, line, column)
          when "Destructor" then
             create {XML_COMPOSITE_NODE} Result.make(node_name, line, column)
-         when "Ellips" then
+         when "Ellipsis" then
             create {C_ELLIPSIS} Result.make(node_name, line, column)
          when "Enumeration" then
             create {C_ENUM} Result.make(node_name, line, column)

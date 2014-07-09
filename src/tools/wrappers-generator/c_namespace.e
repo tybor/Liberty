@@ -48,25 +48,6 @@ feature {ANY}
    are_members_wrapped: BOOLEAN
       -- Shall the members of th namespace be wrapped?
 
-<<<<<<< HEAD
-	emit_wrapper is
-		-- The wrapper of a namespace actually is not any Liberty code but only
-		-- a directory that will be the cluster representing that namespace.
-	do
-		-- local cwd: STRING; bd: BASIC_DIRECTORY;
-		-- Create a directory named like Current namespace that will contain everything defined in that namespace.
-		-- Try to create the directory and forget about the result
-		log_string("Faking create of «"+path.to_string+"»directory%N")
-		-- 	outcome :=  bd.create_new_directory(path.to_string);
-		-- 	if path.is_directory then
-		-- 		are_members_wrapped:=True 
-		-- 		-- Each gccxml node will query its containing namespace to see if it shall be wrapped.
-		-- 	else -- directory still doesn't exists, we cannot wrap its content. 
-		-- 		log("Namespace `@(1)' would be wrapped into `@(2)', but it is not a directory or could not be created: its contents shall not be wrapped.%N",
-		-- 		<<c_string_name, path.to_string>>)
-		-- 	end
-	end
-=======
    compute_eiffel_name
          -- Compute cluster name as basename of path (its last part).
       do
@@ -90,7 +71,6 @@ feature {ANY}
          --              <<c_string_name, path.to_string>>)
          --      end
       end
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
 
 feature {STORABLE_NODE} -- Contained nodes
    

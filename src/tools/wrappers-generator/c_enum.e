@@ -22,74 +22,6 @@ create {ANY}
    make
 
 feature {ANY}
-<<<<<<< HEAD
-    store is
-        do
-            if is_named then
-                symbols.put(Current,c_string_name)
-            end
-            types.put(Current,id)
-        end
-
-    has_wrapper: BOOLEAN is True
-    wrapper_type: STRING is "INTEGER"
-    is_fundamental: BOOLEAN is False
-    is_void: BOOLEAN is False
-
-    is_to_be_emitted: BOOLEAN is
-        local fn: STRING
-        do
-            fn := c_file.c_string_name
-            Result := file_exists(fn) and (global or else headers.has(fn))
-        end
-    
-    emit_wrapper is
-        local 
-            filename: STRING; path: POSIX_PATH_NAME
-        do
-            if is_public then
-                create path.make_from_string(directory)
-                path.add_last(eiffel_name.as_lower+once ".e")
-                filename := path.to_string
-                log(once "Wrapping enum @(1) as @(2) on @(3)",
-                <<c_name.to_utf8, eiffel_name, filename>>)
-                create {TEXT_FILE_WRITE} output.connect_to(filename)
-
-                emit_header
-                emit_items
-                emit_footer
-                output.flush
-                output.disconnect
-            else log(once "Skipping enum `@(1)'.%N",<<c_name.as_utf8>>)
-            end
-        end
-
-    emit_header is
-        do
-            buffer.reset_with(automatically_generated_header)
-            buffer.append(expanded_class)
-            buffer.append(eiffel_name)
-            buffer.append_new_line
-            emit_description_on(class_descriptions.reference_at(c_string_name),buffer)
-            buffer.append(once "%Ninsert ENUM%N%Ncreate {ANY} default_create%N")
-            buffer.print_on(output)
-        end
-            
-    emit_items is
-        do
-            if children_count>0 then
-                if flags.has(eiffel_name) then 
-                    log_string(once ", forcefully wrapped as flag.%N")
-                    append_flag_items
-                elseif have_flags_values then 
-                    log_string(once ", as flag.%N")
-                    append_flag_items
-                else 
-                    log_string(once ", as an enumeration.%N")
-                    append_enumeration_items
-                end
-            else log_string(once "... fieldless.%N")
-=======
    store
       do
          if is_named then
@@ -161,7 +93,6 @@ feature {ANY}
             else
                log_string(once ", as an enumeration.%N")
                append_enumeration_items
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757
             end
          else
             log_string(once "... fieldless.%N")
