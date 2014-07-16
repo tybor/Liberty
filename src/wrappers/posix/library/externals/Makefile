@@ -6,8 +6,8 @@ XML=posix.gcc-xml
 HEADER=plugin/c/liberty-posix.h
 HEADERS=/usr/include/fcntl.h \
 	/usr/include/sys/mman.h \
-	/usr/include/unistd.h \
-    /usr/include/*/*
+	/usr/include/unistd.h 
+## Including everything with /usr/include/*/* is too much. For example it recreate wrappers for idtype_t_enum which is already wrapped in common
 
 wrappers: $(XML)
 	wrappers-generator --local $(XML) $(HEADERS)
