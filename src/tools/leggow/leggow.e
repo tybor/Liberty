@@ -1,5 +1,5 @@
 class LEGGOW
-	-- Liberty Eiffel Generator of GObjects Wrappers build fully
+	-- Liberty Eiffel Generator of GObjects Wrappers builds fully
 	-- usable high-level wrappers from the data provided by the
 	-- GObject-Introspection infrastructure
 	-- https://developer.gnome.org/gi/stable/gi-overview.html
@@ -34,7 +34,7 @@ insert
 create {} main
 
 feature {} -- program entry point
-	main is
+	main 
 		do
 			parse_arguments
 			g_type_init
@@ -47,13 +47,13 @@ feature {} -- program entry point
 			repository.namespace_iterator(library_name).do_all(agent {GI_BASE_INFO}.emit_wrapper) --emit(?))
 		end
 
-	emit (an_info: GI_BASE_INFO) is
+	emit (an_info: GI_BASE_INFO) 
 		-- 
 	do
 		an_info.emit_wrapper
 	end
 
-   parse_arguments is
+   parse_arguments 
       -- local
       --   i: INTEGER; arg: STRING
       do
@@ -80,7 +80,7 @@ feature {} -- program entry point
       end
 
 feature {ANY} -- Program wide enviroment
-	repository: GI_REPOSITORY is
+	repository: GI_REPOSITORY
 		-- The Glib-Object Introspection repository of known libraries/namespaces.
 		once
 			create Result
@@ -93,12 +93,12 @@ feature {ANY} -- Program wide enviroment
 
 
 feature {ANY}
-   command_line_name: STRING is "leggow"
+   command_line_name: STRING "leggow"
    -- Please note that the query `command_name' contains the name actually used to invoke the current command
 
-   version: STRING is "2013-04-02"
+   version: STRING "2013-04-02"
 
-   command_line_help_summary: STRING is "[
+   command_line_help_summary: STRING "[
       Usage: leggow options 
 
       Option summary:
