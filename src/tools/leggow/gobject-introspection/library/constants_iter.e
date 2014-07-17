@@ -1,5 +1,5 @@
 expanded class CONSTANTS_ITER
-	-- An expanded iterator over constants of a GI_CLASS
+	-- An expanded iterator over the constants of a GI_CLASS
 insert GI_ITERATOR[GI_CONSTANT_INFO]
 feature {ANY}
 	start

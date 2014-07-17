@@ -1,5 +1,7 @@
 expanded class ENUM_VALUES_ITERATOR
-	-- An iterator over the values of an enumeration implemented as an expanded class.
+	-- An iterator over the values of an enumeration.
+	
+	-- It himplemented as an expanded class.
 insert 
 	ITERATOR[GI_VALUE_INFO]
 		redefine default_create end
@@ -10,7 +12,7 @@ feature {ANY}
 			-- Setting generation and iterable_generation to different values
 			-- so that any invocation of the queries and commands requiring
 			-- is_valid will fail. 
-			-- set_class will make sure that is_valid is set.
+			-- set_enum will make sure that is_valid is set.
 			iterable_generation := -1
 			generation := 0
 		end

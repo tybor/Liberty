@@ -19,12 +19,12 @@ insert
    GITYPEINFO_EXTERNALS
 
 feature {ANY} -- Eiffel wrapper generation
-	emit_wrapper is
+	emit_wrapper
 		-- Emit proper Eiffel wrapper for Current object
 		deferred
 		end
 
-	eiffel_wrapper: ABSTRACT_STRING is
+	eiffel_wrapper: ABSTRACT_STRING
 		-- The Eiffel source code that wraps Current object
 		deferred
 		ensure Result/=Void
@@ -44,11 +44,7 @@ feature {WRAPPER_HANDLER} -- Memory handling
       end
 
 feature {ANY}
-<<<<<<< HEAD:src/tools/leggow/gobject-introspection/library/gi_base_info.e
-   type_enum: GIINFO_TYPE_ENUM is
-=======
    type: GIINFO_TYPE_ENUM
->>>>>>> 9fbc0077bcd1bd24a6475b7b701254f9c0c83757:src/wrappers/gobject-introspection/library/gi_base_info.e
          -- The type of info
       do
          Result.set(g_base_info_get_type(handle))
@@ -96,7 +92,7 @@ feature {ANY}
          end
       end
 
-	attributes_iterator: GI_ATTRIBUTE_ITERATOR is
+	attributes_iterator: GI_ATTRIBUTE_ITERATOR 
 		-- A newly allocated iterator over attributes
 		do
 			create Result.from_base_info(Current)
