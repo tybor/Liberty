@@ -178,6 +178,19 @@
 #define gflags_value_struct_set_value_nick(a_structure,a_value) do {(((struct _GFlagsValue*)(a_structure)))->value_nick = (a_value);}while(0)
 
 #define sizeof__GFlagsValue (sizeof(struct _GFlagsValue))
+#define gparam_spec_variant_struct_get_type(a_structure) (((struct _GParamSpecVariant*) (a_structure))->type)
+
+#define gparam_spec_variant_struct_set_type(a_structure,a_value) do {(((struct _GParamSpecVariant*)(a_structure)))->type = (a_value);}while(0)
+
+#define gparam_spec_variant_struct_get_default_value(a_structure) (((struct _GParamSpecVariant*) (a_structure))->default_value)
+
+#define gparam_spec_variant_struct_set_default_value(a_structure,a_value) do {(((struct _GParamSpecVariant*)(a_structure)))->default_value = (a_value);}while(0)
+
+#define gparam_spec_variant_struct_get_padding(a_structure) (((struct _GParamSpecVariant*) (a_structure))->padding)
+
+#define gparam_spec_variant_struct_set_padding(a_structure,a_value) do {(((struct _GParamSpecVariant*)(a_structure)))->padding = (a_value);}while(0)
+
+#define sizeof__GParamSpecVariant (sizeof(struct _GParamSpecVariant))
 #define gtype_module_struct_get_use_count(a_structure) (((struct _GTypeModule*) (a_structure))->use_count)
 
 #define gtype_module_struct_set_use_count(a_structure,a_value) do {(((struct _GTypeModule*)(a_structure)))->use_count = (a_value);}while(0)
@@ -205,7 +218,6 @@
 
 #define sizeof__GClosureNotifyData (sizeof(struct _GClosureNotifyData))
 #define sizeof__GIRepositoryPrivate (sizeof(struct _GIRepositoryPrivate))
-#define sizeof__GBinding (sizeof(struct _GBinding))
 #define gparam_spec_ulong_struct_get_minimum(a_structure) (((struct _GParamSpecULong*) (a_structure))->minimum)
 
 #define gparam_spec_ulong_struct_set_minimum(a_structure,a_value) do {(((struct _GParamSpecULong*)(a_structure)))->minimum = (a_value);}while(0)
@@ -355,6 +367,7 @@
 #define gparam_spec_type_info_struct_set_values_cmp(a_structure,a_value) do {(((struct _GParamSpecTypeInfo*)(a_structure)))->values_cmp = (a_value);}while(0)
 
 #define sizeof__GParamSpecTypeInfo (sizeof(struct _GParamSpecTypeInfo))
+#define sizeof_GWeakRef (sizeof( GWeakRef))
 #define sizeof__GParamSpecBoxed (sizeof(struct _GParamSpecBoxed))
 #define gparam_spec_struct_get_name(a_structure) (((struct _GParamSpec*) (a_structure))->name)
 
@@ -530,19 +543,6 @@
 
 #define sizeof__GSignalQuery (sizeof(struct _GSignalQuery))
 #define sizeof__GITypelib (sizeof(struct _GITypelib))
-#define gparam_spec_variant_struct_get_type(a_structure) (((struct _GParamSpecVariant*) (a_structure))->type)
-
-#define gparam_spec_variant_struct_set_type(a_structure,a_value) do {(((struct _GParamSpecVariant*)(a_structure)))->type = (a_value);}while(0)
-
-#define gparam_spec_variant_struct_get_default_value(a_structure) (((struct _GParamSpecVariant*) (a_structure))->default_value)
-
-#define gparam_spec_variant_struct_set_default_value(a_structure,a_value) do {(((struct _GParamSpecVariant*)(a_structure)))->default_value = (a_value);}while(0)
-
-#define gparam_spec_variant_struct_get_padding(a_structure) (((struct _GParamSpecVariant*) (a_structure))->padding)
-
-#define gparam_spec_variant_struct_set_padding(a_structure,a_value) do {(((struct _GParamSpecVariant*)(a_structure)))->padding = (a_value);}while(0)
-
-#define sizeof__GParamSpecVariant (sizeof(struct _GParamSpecVariant))
 #define gtype_instance_struct_get_g_class(a_structure) (((struct _GTypeInstance*) (a_structure))->g_class)
 
 #define gtype_instance_struct_set_g_class(a_structure,a_value) do {(((struct _GTypeInstance*)(a_structure)))->g_class = (a_value);}while(0)
@@ -695,6 +695,7 @@
 #define gvalue_array_struct_set_n_prealloced(a_structure,a_value) do {(((struct _GValueArray*)(a_structure)))->n_prealloced = (a_value);}while(0)
 
 #define sizeof__GValueArray (sizeof(struct _GValueArray))
+#define sizeof__GBinding (sizeof(struct _GBinding))
 #define sizeof__GParamSpecParam (sizeof(struct _GParamSpecParam))
 #define gparam_spec_uint_struct_get_minimum(a_structure) (((struct _GParamSpecUInt*) (a_structure))->minimum)
 
@@ -797,7 +798,6 @@
 #define gparam_spec_long_struct_set_default_value(a_structure,a_value) do {(((struct _GParamSpecLong*)(a_structure)))->default_value = (a_value);}while(0)
 
 #define sizeof__GParamSpecLong (sizeof(struct _GParamSpecLong))
-#define sizeof_GWeakRef (sizeof( GWeakRef))
 #define gtype_plugin_class_struct_get_use_plugin(a_structure) (((struct _GTypePluginClass*) (a_structure))->use_plugin)
 
 #define gtype_plugin_class_struct_set_use_plugin(a_structure,a_value) do {(((struct _GTypePluginClass*)(a_structure)))->use_plugin = (a_value);}while(0)
