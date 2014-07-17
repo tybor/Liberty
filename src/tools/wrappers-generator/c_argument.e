@@ -28,13 +28,21 @@ feature {ANY}
    has_wrapper: BOOLEAN
       do
          Result := types.at(dequalify(type)).has_wrapper
+	  rescue
+	  	log_string("has_wrapper failed. Known typesi:%N")
+		types.do_all_items(agent (a_type: TYPED_NODE) 
+			do
+				io.put_unicode_string(a_type.type+U", a "+a_type.attribute_at(U"name")+U"%N") 
+			end)
+		print_run_time_stack
+		die_with_code(5)
       end
 
    wrapper_type: STRING
       do
          Result := types.at(dequalify(type)).wrapper_type
       end
-
+   
    placeholder: STRING
          -- The placeholder name of Current, suitable for Liberty as a newly created string.
       do
