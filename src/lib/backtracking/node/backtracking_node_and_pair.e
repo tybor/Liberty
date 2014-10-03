@@ -21,6 +21,16 @@ feature {ANY}
          explorer.push_and(second)
       end
 
+feature {}
+   do_fill_tagged_out_memory
+      do
+         tagged_out_memory.append(once "(")
+         first.fill_tagged_out_memory
+         tagged_out_memory.append(once ") and (")
+         second.fill_tagged_out_memory
+         tagged_out_memory.append(once ")")
+      end
+
 end -- class BACKTRACKING_NODE_AND_PAIR
 --
 -- Copyright (c) 2009-2014 by all the people cited in the AUTHORS file.

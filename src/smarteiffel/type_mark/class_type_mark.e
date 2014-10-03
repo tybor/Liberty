@@ -49,13 +49,6 @@ feature {ANY}
          Result := is_expanded
       end
 
-   is_empty_expanded: BOOLEAN
-      do
-         if is_expanded and then not type.has_external_type then
-            Result := type.live_type.writable_attributes = Void
-         end
-      end
-
    generic_list: ARRAY[TYPE_MARK]
       do
          check
@@ -76,6 +69,12 @@ feature {ANY}
    start_position: POSITION
       do
          Result := class_text_name.start_position
+      end
+
+feature {LIVE_TYPE, TYPE_MARK}
+   is_empty_expanded: BOOLEAN
+      do
+          Result := is_user_empty_expanded
       end
 
 feature {TYPE, TYPE_MARK, SMART_EIFFEL}

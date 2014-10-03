@@ -6,7 +6,6 @@ setlocale(LC_ALL, 'en_US.utf8');
 
 // store active commits for stage history
 // grep warnings (eiffel and C compiler) from eiffeltest output
-// add a cleaning phase: e. g. remove all LOCK files from eiffeltest
 // add email notification
 // todo: add IRC handling: http://oreilly.com/pub/h/1963
 // todo: add -Wall compiler option
@@ -342,6 +341,9 @@ function testDir($dir) {
    if ($tests > 0) {
       $hasEiffelTest = is_dir("$dir/eiffeltest");
       if ($hasEiffelTest) {
+         if(file_exists("$dir/eiffeltest/LOCK")){
+            unlink("$dir/eiffeltest/LOCK");
+         }
          $res = execute("se test -flat $dir");
          if ($res == 0) {
             $warnCnt = exec("grep " . escapeshellarg("Warning:") . " " . escapeshellarg("$stagedir/err.txt") . " | wc -l");

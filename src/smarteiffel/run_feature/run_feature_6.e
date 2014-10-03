@@ -30,6 +30,8 @@ feature {ANY}
 
    routine_body: INSTRUCTION
 
+   routine_then: EXPRESSION
+
    rescue_compound: INSTRUCTION
 
    ensure_assertion: ENSURE_ASSERTION
@@ -76,6 +78,10 @@ feature {}
          if routine_body /= Void then
             routine_body := routine_body.adapt_for(type_of_current)
          end
+         routine_then := base_feature.routine_then
+         if routine_then /= Void then
+            routine_then := routine_then.adapt_for(type_of_current)
+         end
          -- Adapt the assertions:
          if class_text.require_check and then base_feature.require_assertion /= Void then
             require_assertion := base_feature.require_assertion.adapt_for(type_of_current)
@@ -116,6 +122,8 @@ feature {}
          end
       end
 
+invariant
+   has_result_type: result_type /= Void
 end -- class RUN_FEATURE_6
 --
 -- ------------------------------------------------------------------------------------------------------------------------------

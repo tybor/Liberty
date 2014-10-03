@@ -714,10 +714,18 @@ feature {ANY}
          is_user_expanded
          smart_eiffel.status.collecting_done
       local
-         i: INTEGER
+         i: INTEGER; wa: WRITABLE_ATTRIBUTE
       do
          if writable_attributes_mem /= Void then
-            Result := False
+            Result := True
+            from
+               i := writable_attributes_mem.lower
+            until
+               i > writable_attributes_mem.upper or else not Result
+            loop
+               Result := writable_attributes_mem.item(i).result_type.is_empty_expanded
+               i := i + 1
+            end
          elseif type.has_external_type then
             Result := False
          else
@@ -730,7 +738,10 @@ feature {ANY}
                check
                   live_features.item(i) /= Void
                end
-               Result := not ({WRITABLE_ATTRIBUTE} ?:= live_features.item(i))
+               if wa ?:= live_features.item(i) then
+                  wa ::= live_features.item(i)
+                  Result := wa.result_type.is_empty_expanded
+               end
                i := i + 1
             end
          end
@@ -821,6 +832,7 @@ feature {LOCAL_VAR_LIST, LOCAL_NAME_DEF}
          e_procedure ?= af
          check
             e_procedure.arguments = Void
+            e_procedure.routine_then = Void
          end
          if e_procedure.routine_body = Void then
             Result := e_procedure.local_vars = Void
@@ -865,7 +877,7 @@ feature {SMART_EIFFEL}
       require
          for_boost_mode_only_or_asked_for: ace.boost or else ace.safety_check
       local
-         rf: RUN_FEATURE; i: INTEGER; c: INSTRUCTION
+         rf: RUN_FEATURE; i: INTEGER; rb: INSTRUCTION; rt: EXPRESSION
       do
          from
             i := live_features.lower
@@ -873,9 +885,13 @@ feature {SMART_EIFFEL}
             i > live_features.upper
          loop
             rf := live_features.key(i).run_feature_for(type)
-            c := rf.routine_body
-            if c /= Void then
-               c.safety_check(type)
+            rb := rf.routine_body
+            if rb /= Void then
+               rb.safety_check(type)
+            end
+            rt := rf.routine_then
+            if rt /= Void then
+               rt.safety_check(type)
             end
             i := i + 1
          end
@@ -1253,12 +1269,17 @@ feature {CREATE_EXPRESSION}
          -- Register that there is a live create expression which creates `Current' type objects at
          -- run-time using `fs' as the creation procedure. Also not that `fs' can be Void in the case of
          -- a create expression with no call.
+      require
+         smart_eiffel.status.is_adapting
       do
          if fs = Void then
             create_function_list := empty_create_function_list
          else
             if create_function_list = Void then
                create create_function_list.with_capacity(2)
+            end
+            check
+               create_function_list /= empty_create_function_list
             end
             if not create_function_list.fast_has(fs) then
                create_function_list.add_last(fs)

@@ -336,7 +336,7 @@ feature {SMART_EIFFEL, TYPE}
          Result.inserts(constraint)
       end
 
-feature {OLD_MANIFEST_ARRAY}
+feature {OLD_MANIFEST_ARRAY, IFTHENELSE_EXP}
    has_only_one_conformant_parent: like Current
          -- The `Result' is non Void if and only if `Current' has only one conforming parent.
          -- When `Result' is not Void `Result' is the unique parent of `Current'.
@@ -370,7 +370,7 @@ feature {EFFECTIVE_ROUTINE}
                   effective_routine ?= af_current
                   -- Because the `default_rescue' itself can be deferred:
                   if effective_routine /= Void then
-                     default_rescue_compound := effective_routine.routine_body
+                     default_rescue_compound := effective_routine.routine_body --| **** TODO: what about effective_routine.routine_then ???
                      af_current.collect(Current)
                   end
                end
@@ -894,6 +894,8 @@ feature {ANY} -- some property similar to TYPE_MARK *without* start_position and
          if is_user_expanded then
             Result := live_type.is_empty_expanded
          end
+      ensure
+         Result implies is_user_expanded
       end
 
    is_user_expanded: BOOLEAN
@@ -1275,7 +1277,7 @@ feature {}
    temporary_simple_feature_name: FEATURE_NAME
          -- Used only as a temporary in `feature_stamp_of' and `has_simple_feature_name'.
 
-   inheritance_cycle_check 
+   inheritance_cycle_check
       local
          i: INTEGER
       do
