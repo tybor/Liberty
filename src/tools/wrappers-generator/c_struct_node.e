@@ -2,21 +2,26 @@ class C_STRUCT_NODE
    -- A "Struct" node of an XML file made by gccxml.
 
 inherit
+   C_TYPE
+   IDENTIFIED_NODE
+   CONTEXTED_NODE
    COMPOSED_NODE
-      -- hence also STORABLE_NODE  and a NAMED_NODE
+      -- hence also a STORABLE_NODE and a NAMED_NODE
       -- using the definition made in WRAPPER_CLASS
       undefine compute_eiffel_name
       end
-   CONTEXTED_NODE
+   NAMED_NODE
+      -- using the definition made in WRAPPER_CLASS
+      undefine compute_eiffel_name
+      end
    FILED_NODE
-   IDENTIFIED_NODE
-   TYPED_NODE
+      -- TODO: since it's both named and filed it could also be a MOVABLE_NODE
    WRAPPER_CLASS
 
 insert
    NAME_CONVERTER
 
-create {ANY}
+create {GCCXML_TREE}
    make
 
 feature {ANY}
@@ -83,7 +88,7 @@ feature {ANY}
             output.disconnect
          else
             if is_anonymous then
-               log_string(once "Skipping anonymous structure at line " + line.out + ".%N")
+               log(once "Skipping anonymous structure at line " + line.out + ".%N")
             else
                log(once "Struct @(1) skipped%N",
                <<c_string_name>>)
@@ -101,6 +106,7 @@ feature {ANY}
          buffer.append(struct_inherits)
          buffer.put_message(once "%T@(1)%N",
          <<settings.typedefs>>)
+
          buffer.print_on(output)
       end
 

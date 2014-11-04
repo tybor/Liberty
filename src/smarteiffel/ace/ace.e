@@ -597,6 +597,16 @@ feature {}
          create Result.make(0)
       end
 
+   clusters_all_: FAST_ARRAY[CLUSTER]
+      once
+         create Result.make(0)
+      end
+
+   distances_all_: FAST_ARRAY[INTEGER]
+      once
+         create Result.make(0)
+      end
+
 feature {SMART_EIFFEL} -- Class loading
    cluster_named (cluster_name: STRING): CLUSTER
       require
@@ -662,10 +672,10 @@ feature {SMART_EIFFEL} -- Class loading
 
    all_class_texts (class_name: CLASS_NAME): FAST_ARRAY[CLASS_TEXT]
       local
-         i: INTEGER; cluster: CLUSTER; c: like clusters_; d: like distances_
+         i: INTEGER; cluster: CLUSTER; c: like clusters_all_; d: like distances_all_
       do
-         c := clusters_
-         d := distances_
+         c := clusters_all_
+         d := distances_all_
          c.clear_count
          d.clear_count
          universe.clusters_of(class_name, Void, c, d, 0)
@@ -743,9 +753,11 @@ feature {}
             end
          else
             pov := no_pov_classes
-            echo.put_string(once "*** Looking for ")
-            echo.put_string(class_name.to_string)
-            echo.put_string(once " without point of view!%N")
+            debug
+               echo.put_string(once "*** Looking for ")
+               echo.put_string(class_name.to_string)
+               echo.put_string(once " without point of view!%N")
+            end
             Result := pov.reference_at(class_name.hashed_name)
          end
          if Result = Void then
@@ -930,8 +942,8 @@ feature {SYSTEM_TOOLS, CLUSTER}
          msg.append(" items):%N")
          universe.view_in(msg)
          system_tools.system_name_in(msg)
-         msg.append("The value of the environment variable %"SmartEiffel%" is:%N%"")
-         sed := echo.getenv(fz_smarteiffel, Void)
+         msg.append("The value of the environment variable %"LibertyEiffel%" is:%N%"")
+         sed := echo.getenv(fz_libertyeiffel, Void)
          if sed /= Void then
             msg.append(sed)
          end
@@ -1078,6 +1090,11 @@ feature {ANY}
    for_all (action: PROCEDURE[TUPLE[CLASS_TEXT]])
       do
          universe.for_all(action)
+      end
+
+   for_all_filtered (name_guard: PREDICATE[TUPLE[CLASS_NAME]]; action: PROCEDURE[TUPLE[CLASS_TEXT]])
+      do
+         universe.for_all_filtered(name_guard, action)
       end
 
    for_all_clusters (action: PROCEDURE[TUPLE[CLUSTER]])

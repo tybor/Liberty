@@ -61,9 +61,11 @@ feature {ANY} -- Collection-like command
             if wrapper /= Void then
                wrapper.emit_wrapper
             end
+
             if node /= Void then
                node.emit_wrappers
             end
+
             i := i + 1
          end
       end

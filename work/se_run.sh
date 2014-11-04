@@ -5,24 +5,54 @@ e=$(basename $1)
 exe=${e%.e}.exe
 in=${e%.e}.in
 sh=${e%.e}.sh
-travis_fold=tutorial.$(echo ${1%.e} | sed 's!.*/tutorial/!!;s!/!.!g')
+cmd=${e%.e}.cmd
+out=${e%.e}.out
+arg=${e%.e}.arg
 
-echo travis_fold:start:$travis_fold
-echo $1
-se c -boost -no_split -o $exe $e || {
-    echo travis_fold:end:$travis_fold
+shift
+
+status=0
+if [ -x $cmd ]; then
+    ./$cmd >$out 2>&1 || status=$?
+    if [ -x $exe ]; then
+        true
+    elif [ -x ${e%.e} ]; then
+        mv ${e%.e} $exe
+    elif [ -x a.out ]; then
+        mv a.out $exe
+    else
+        echo "**** $exe not found!" >> $out
+        status=1
+    fi
+elif [[ $# > 0 ]]; then
+    se c -no_split -O1 -clean -o $exe -g -no_strip "$@" $e >$out 2>&1 || status=$?
+else
+    se c -boost -no_split -O1 -clean -o $exe $e >$out 2>&1 || status=$?
+fi
+
+test $status -ne 0 && {
+    echo -n "**** FAILED: compile $exe"
+    test -x $cmd && echo -n " cmd"
+    echo " status=$status"
+    cat $out
     exit 1
 }
+
+echo >>$out
 
 export PIDFILE=$(mktemp)
 
 (
     ulimit -t 60 2>/dev/null
-    test -r $in&& {
-        echo '**** Using input:' $in
-        exec <$in
-    }
-    ./$exe
+    test -e $in || touch $in
+    if [ -r $arg ]; then
+        ./$exe $(< $arg) <$in >>$out 2>&1 &
+    else
+        ./$exe <$in >>$out 2>&1 &
+    fi
+    pid=$!
+    trap "kill -9 $pid" TERM
+    wait
     ret=$?
     rm -f $PIDFILE
     exit $ret
@@ -33,7 +63,6 @@ echo $exe_pid > $PIDFILE
 
 ssh_pid=""
 test -x $sh && {
-    echo '**** Calling shell script:' $sh
     ./$sh $exe_pid &
     sh_pid=$!
 }
@@ -61,7 +90,13 @@ status=$?
 
 rm -f $PIDFILE
 
-test $status -ne 0 && echo 'status='$status
-echo travis_fold:end:$travis_fold
+test $status -ne 0 && {
+    echo -n "**** FAILED: run $exe"
+    test -r $in && echo -n " in"
+    test -x $sh && echo -n " sh"
+    echo " status=$status"
+    cat $out
+    exit 1
+}
 
-exit $status
+exit 0

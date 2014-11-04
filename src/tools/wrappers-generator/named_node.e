@@ -1,5 +1,5 @@
 deferred class NAMED_NODE
-   -- A GCC_XML node that may have a "name" attribute.
+   -- A GCC_XML node that MAY have a "name" attribute.
    -- It is made comparable using the `eiffel_name' feature as sorting value to get a more stable output.
 
 inherit
@@ -76,13 +76,24 @@ feature {} -- Implementation
    cached_eiffel_name: STRING
 
    compute_eiffel_name
-      require
-         is_named
       do
-         cached_eiffel_name := eiffel_feature(c_string_name)
-         check
-            is_public: cached_eiffel_name.first /= '_'
-            not cached_eiffel_name.has_substring("__")
+         if is_named then
+            cached_eiffel_name := eiffel_feature(c_string_name)
+            check
+               is_public: cached_eiffel_name.first /= '_'
+               not cached_eiffel_name.has_substring("__")
+            end
+         else
+            -- Actually trying to wrap a nameless element that is not
+            -- identified by its position in a file is quite hopeless. We
+            -- neverethells may assign a unique name, using the line of the
+            -- gccxml file as unique id. Quite a shameless trick, but I guess
+            -- that such elements are quite esoteric and unreachable and
+            -- unusable also on C level.
+            create cached_eiffel_name.make_from_string(once "anonymous_gccxml_element_at_l@(1)_r@(2)" # &line # &column)
+            -- TODO once we have convert this create will be mimicked by a simple assignment.
+            -- It could also be written like this:
+            -- cached_eiffel_name := (once "anonymous_gccxml_element_at_l@(1)_r@(2)" # &line # &column).string
          end
       ensure
          cached_eiffel_name /= Void

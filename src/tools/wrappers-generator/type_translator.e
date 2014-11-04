@@ -114,6 +114,7 @@ feature {ANY} -- Type-system translations
                   -- "complex long double"
                   log("Unhandled complex type found at line @(1): @(2)%N",
                   <<an_argument.line.out, name>>)
+
                   last_error := unhandled_complex_type
                elseif name.has_substring(once "unsigned") then
                   -- check name.has_substring(once "int") end
@@ -166,7 +167,7 @@ feature {ANY} -- Type-system translations
                   inspect
                      size
                   when 32 then
-                     log_string(once "What a pretty strange thing: a 32 bit double! They are usually called float.")
+                     log(once "What a pretty strange thing: a 32 bit double! They are usually called float.")
                      Result := once "REAL_32"
                   when 64 then
                      Result := once "REAL_64"
@@ -232,7 +233,7 @@ feature {ANY} -- Type-system translations
          when "Struct" then
             last_error := unhandled_structure_type
          when "Function" then
-            log_string(once "C functions does not have a valid Eiffel wrapper type (a function pointer does have it).")
+            log(once "C functions does not have a valid Eiffel wrapper type (a function pointer does have it).")
             last_error := unhandled_type
          when "Union" then
             last_error := unhandled_union_type

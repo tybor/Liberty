@@ -253,10 +253,10 @@ feature {RUNNER_FACET}
       ensure
          all_added: instructions_list.count = old instructions_list.count + a_instructions.count
          added_last_in_reverse_order: (create {ZIP[INSTRUCTION, INTEGER]}.make(a_instructions,
-                                                                               1 |..| a_instructions.count)
-                                       ).for_all(agent (inst: INSTRUCTION; i: INTEGER): BOOLEAN
+                                                                               {INTEGER_32 1} |..| a_instructions.count)
+                                       ).for_all(agent (inst: INSTRUCTION; j: INTEGER): BOOLEAN
                                                  do
-                                                    Result := inst = instructions_list.item(instructions_list.upper - i + 1)
+                                                    Result := inst = instructions_list.item(instructions_list.upper - j + 1)
                                                  end)
       end
 
