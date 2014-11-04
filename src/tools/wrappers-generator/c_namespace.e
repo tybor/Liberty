@@ -13,7 +13,7 @@ inherit
    IDENTIFIED_NODE
    STORABLE_NODE
 
-create {ANY}
+create {GCCXML_TREE}
    make
 
 feature {ANY}
@@ -46,7 +46,6 @@ feature {ANY}
       end
 
    are_members_wrapped: BOOLEAN
-      -- Shall the members of th namespace be wrapped?
 
    compute_eiffel_name
          -- Compute cluster name as basename of path (its last part).
@@ -61,7 +60,7 @@ feature {ANY}
          -- local cwd: STRING; bd: BASIC_DIRECTORY;
          -- Create a directory named like Current namespace that will contain everything defined in that namespace.
          -- Try to create the directory and forget about the result
-         log_string("Faking creation of «" + path.to_string + "»directory%N")
+         log("Faking creation of «" + path.to_string + "»directory%N")
          --      outcome :=  bd.create_new_directory(path.to_string);
          --      if path.is_directory then
          --              are_members_wrapped:=True

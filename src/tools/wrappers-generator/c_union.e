@@ -1,18 +1,22 @@
 class C_UNION
 
 inherit
-   COMPOSED_NODE
-      -- hence also a STORABLE_NODE and a NAMED_NODE
+   C_TYPE
+   IDENTIFIED_NODE
+   NAMED_NODE
+      -- using the definition made in WRAPPER_CLASS
       undefine compute_eiffel_name
       end
    CONTEXTED_NODE
-      -- therefore also a NAMED_NODE
    FILED_NODE
-   IDENTIFIED_NODE
-   TYPED_NODE
+      -- TODO: since it's both named and filed it could also be a MOVABLE_NODE
+   COMPOSED_NODE
+      -- using the definition made in WRAPPER_CLASS
+      undefine compute_eiffel_name
+      end
    WRAPPER_CLASS
 
-create {ANY}
+create {GCCXML_TREE}
    make
 
 feature {ANY}
@@ -47,7 +51,7 @@ feature {ANY}
 
    emit_wrapper
       do
-         log_string(once "C_UNION.emit_wrapper not yet implemented.%N")
+         log(once "C_UNION.emit_wrapper not yet implemented.%N")
       end
 
    suffix: STRING "_UNION"

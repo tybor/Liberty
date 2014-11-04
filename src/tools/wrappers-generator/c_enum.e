@@ -8,6 +8,7 @@ class C_ENUM
    -- As far as I know th condition shall apply on all architectures.
 
 inherit
+   C_TYPE
    CONTEXTED_NODE
    IDENTIFIED_NODE
    FILED_NODE
@@ -18,7 +19,7 @@ inherit
 insert
    COLLECTION_SORTER[C_ENUM_VALUE]
 
-create {ANY}
+create {GCCXML_TREE}
    make
 
 feature {ANY}
@@ -54,8 +55,7 @@ feature {ANY}
             create path.make_from_string(directory)
             path.add_last(eiffel_name.as_lower + once ".e")
             filename := path.to_string
-            log(once "Wrapping enum @(1) as @(2) on @(3)",
-            <<c_name.to_utf8, eiffel_name, filename>>)
+            log(once "Wrapping enum #(1) as #(2) on #(3)" # c_name.to_utf8 # eiffel_name # filename)
 
             create {TEXT_FILE_WRITE} output.connect_to(filename)
 
@@ -84,18 +84,18 @@ feature {ANY}
    emit_items
       do
          if children_count > 0 then
-            if flags.has(eiffel_name) then
-               log_string(once ", forcefully wrapped as flag.%N")
+            if flag_enums.has(eiffel_name) then
+               log(once ", forcefully wrapped as flag.%N")
                append_flag_items
             elseif have_flags_values then
-               log_string(once ", as flag.%N")
+               log(once ", as flag.%N")
                append_flag_items
             else
-               log_string(once ", as an enumeration.%N")
+               log(once ", as an enumeration.%N")
                append_enumeration_items
             end
          else
-            log_string(once "... fieldless.%N")
+            log(once "... fieldless.%N")
          end
          output.put_line(once "feature {ANY} -- Validity")
          validity_query.print_on(output)
@@ -141,8 +141,7 @@ feature {ANY}
                   Result := False
                end
             else
-               log(once "Warning: Enum node (line @(1)) has at least a value that  not an EnumValue!",
-               <<line.out>>)
+				log(once "Warning: enum at line #(1) has at least a value that is not an EnumValue!"#line.out)
             end
 
             i := i + 1

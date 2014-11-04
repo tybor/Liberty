@@ -4,11 +4,12 @@ inherit
    CONTEXTED_NODE
    IDENTIFIED_NODE
    MOVABLE_NODE
-   STORABLE_NODE
+      -- hence a NAMED_NODE and a FILED_NODE
    TYPED_NODE
+   STORABLE_NODE
    WRAPPER_FEATURE
 
-create {ANY}
+create {GCCXML_TREE}
    make
 
 feature {ANY}

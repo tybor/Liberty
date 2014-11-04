@@ -57,7 +57,7 @@ feature {ANY}
          file.put_string(footer)
          file.disconnect
          file := Void
-         log_string(once " done.%N")
+         log(once " done.%N")
       end
 
    emit_variable_sized_typedefs

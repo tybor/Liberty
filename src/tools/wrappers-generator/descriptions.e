@@ -34,7 +34,7 @@ feature {ANY} -- Descriptions reading
                line.right_adjust
                if line.has_prefix(once "--") then
                   debug
-                     log_string(once ".")
+                     log(once ".")
                   end
                else
                   create words.make
@@ -44,7 +44,7 @@ feature {ANY} -- Descriptions reading
                      words.remove_first
                      read_description(described, words)
                      debug
-                        log_string(once ".")
+                        log(once ".")
                      end
                   end
                end
@@ -84,15 +84,12 @@ feature {ANY} -- Descriptions reading
                -- could be a class
                if is_valid_class_name(a_described) then
                   debug
-                     log(once "Description for class @(1)  %"",
-                     <<a_described>>)
-                     a_description.for_each(agent log_word)
-                     log_string(once "%".%N")
+                     log(once "Description for class #(1): %"#(2)%".%N" # a_described # & a_description)
+                     -- a_description.for_each(agent log) log(once "%".%N")
                   end
                   class_descriptions.put(a_description, a_described)
                else
-                  log(once "Comment file: invalid class name `@(1)'.%N",
-                  <<a_described>>)
+                  log(once "Comment file: invalid class name `#(1)'.%N" # a_described)
                end
             when 1 then
                -- could be a feature (i.e. CLASS.feature)
@@ -102,10 +99,9 @@ feature {ANY} -- Descriptions reading
                   described_class := a_described.substring(1, dot - 1)
                   described_feature := a_described.substring(dot + 1, a_described.count)
                   debug
-                     log(once "Description for feature @(1) of @(2)  %"",
-                     <<described_feature, described_class>>)
-                     a_description.for_each(agent log_word)
-                     log_string(once "%".%N")
+                     log(once "Description for feature #(1) of #(2) #(3)%".%N" #
+					 	described_feature # described_class # &a_description )
+                     -- a_description.for_each(agent log) log(once "%".%N")
                   end
                   subdictionary := feature_descriptions.reference_at(described_class)
                   if subdictionary = Void then
@@ -115,17 +111,17 @@ feature {ANY} -- Descriptions reading
 
                   subdictionary.put(a_description, described_feature)
                else
-                  log_string(once "Comment file: empty class or feature name %"" | a_described | once "%".%N")
+                  log(once "Comment file: empty class or feature name %"" | a_described | once "%".%N")
                end
             else
-               log_string(once "Comment file: feature name %"" | a_described | once "%" has too many dots.%N")
+               log(once "Comment file: feature name %"" | a_described | once "%" has too many dots.%N")
             end
             -- inspect
          end
          -- if has "--" prefix
       end
 
-feature {ANY} -- Outputting descriptions
+feature {ANY} -- Outputting description
    emit_description_on (a_description: COLLECTION[STRING]; a_formatter: FORMATTER)
          -- Put 'a_description' on 'a_formatter' formatting it as an Eiffel
          -- comment with lines shorter that 'description_lenght' characters.
@@ -178,7 +174,7 @@ feature {ANY} -- Queries
          end
       end
 
-feature {ANY} -- Descriptions
+feature {} -- Descriptions
    description_lenght: INTEGER 70
 
    class_descriptions: HASHED_DICTIONARY[COLLECTION[STRING], STRING]
@@ -197,7 +193,7 @@ feature {ANY} -- Descriptions
       end
 
 end -- class DESCRIPTIONS
--- Copyright 2008,2009,2010 Paolo Redaelli
+-- Copyright 2008,2009,2010i,2014 Paolo Redaelli
 -- wrappers-generator  is free software: you can redistribute it and/or modify it
 -- under the terms of the GNU General Public License as publhed by the Free
 -- Software Foundation, either version 2 of the License, or (at your option)

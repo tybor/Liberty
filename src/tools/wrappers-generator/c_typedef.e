@@ -1,14 +1,18 @@
 class C_TYPEDEF
 
 inherit
-   CONTEXTED_NODE
    IDENTIFIED_NODE
    MOVABLE_NODE
-   STORABLE_NODE
+      -- Hence a NAMED_NODE and FILED_NODE
+      -- using the definition made in WRAPPER_CLASS
+      undefine compute_eiffel_name
+      end
    TYPED_NODE
-   WRAPPABLE_NODE
+   CONTEXTED_NODE
+   STORABLE_NODE
+   WRAPPER_CLASS
 
-create {ANY}
+create {GCCXML_TREE}
    make
 
 feature {ANY}
@@ -45,8 +49,15 @@ feature {ANY}
       end
 
    is_fundamental: BOOLEAN
+      local
+         a_type: C_TYPE
       do
-         Result := types.at(type).is_fundamental
+         a_type := types.at(type)
+         if a_type /= Void then
+            Result := a_type.is_fundamental
+         else
+            raise("unknown type")
+         end
       end
 
    is_void: BOOLEAN False
@@ -72,6 +83,7 @@ feature {ANY}
                   query_name := eiffel_feature(c_string_name)
                   log(once "Anchored query @(2) for typedef @(1)%N",
                   <<c_string_name, query_name>>)
+
                   buffer.put_message(once "       @(1): @(2)%N%
                                         %               -- typedef @(3)%N%
                                         %               -- Empty by design, used for anchored declarations.%N%
@@ -93,8 +105,16 @@ feature {ANY}
          end
       end -- invariant name.is_equal(once U"Typedef")
 
+feature {ANY}
+   emit_wrapper
+      do
+         not_yet_implemented
+      end
+
+   suffix: STRING ""
+
 end -- class C_TYPEDEF
--- Copyright 2008,2009,2010 Paolo Redaelli
+-- Copyright 2008,2009,2010,2014 Paolo Redaelli
 -- wrappers-generator  is free software: you can redistribute it and/or modify it
 -- under the terms of the GNU General Public License as publhed by the Free
 -- Software Foundation, either version 2 of the License, or (at your option)

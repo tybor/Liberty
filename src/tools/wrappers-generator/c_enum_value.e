@@ -10,7 +10,7 @@ insert
    SHARED_COLLECTIONS
    NAME_CONVERTER
 
-create {ANY}
+create {GCCXML_TREE}
    make
 
 feature {ANY}
@@ -33,14 +33,13 @@ feature {ANY}
             enum ?= parent
             if enum /= Void then
                if enum.longest_prefix > 0 then
-                  -- th further test may be buggy and enum.prefix_length < c_string_name.count then
+                  -- this further test may be buggy and enum.prefix_length < c_string_name.count then
                   stored_eiffel_name.remove_head(enum.longest_prefix)
                else
-                  log("(1) enumeration values: value '@(2)' (at line @(3))  the longest prefix: keeping name to avoid problems%N",
-                  <<enum.values.count.to_string, c_string_name, line.out>>)
+                  log("#(1) enumeration values: value '#(2)' (at line #(3))  the longest prefix: keeping name to avoid problems%N"
+	                  # enum.values.count.to_string # c_string_name # line.out)
                end
-            else
-               print("The parent of C_ENUM_VALUE at line " + line.out + "  not a C_ENUM!%N")
+            else log("The parent of C_ENUM_VALUE at line #(1) not a C_ENUM!%N" # line.out)
             end
 
             stored_eiffel_name := eiffel_feature(stored_eiffel_name)
@@ -62,19 +61,16 @@ feature {ANY} -- Plain enumeration
          -- Append in `queries' the text of a query for an enumeration value
          -- with `a_name' with a low level value `a_value'.
       do
-         log(once "enum item @(1) wrapped as @(2)%N",
-         <<c_string_name, eiffel_name>>)
+         log(once "enum item #(1) wrapped as #(2)%N" # c_string_name # eiffel_name)
          -- Append to `validity_query' the part of the comparon dealing with
          -- Current value, i.e. "(a_value = FooBarOne)"....
 
-         validity_query.put_message(once "(a_value = @(1)_low_level) ",
-         <<eiffel_name>>)
+         validity_query.put_string (once "(a_value = #(1)_low_level) " # eiffel_name)
          -- append_enum setter
-         setters.put_message(once "%Tset_@(1)%N%
+         setters.put_string(once "%Tset_@(1)%N%
                 %               do%N%
                 %                       value := @(1)_low_level%N%
-                %               end%N%N",
-         <<eiffel_name>>)
+                %               end%N%N" # eiffel_name)
          -- TODO: formatted_description(feature_description(class_name,setter_name))
          -- Append enum query
 

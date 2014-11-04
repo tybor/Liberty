@@ -1,22 +1,36 @@
-deferred class WRAPPER_FEATURE
-   -- A node of an XML file produced by gccxml that will be wrapped by a Liberty feature, part of wider wrapper class.
+deferred class C_TYPE
+   -- A type in the C language as represented in the output of GccXml
+   -- TODO: perhaps this name is not wisely chosen.
 
 inherit
-   WRAPPABLE_NODE
-   FILED_NODE
+   GCCXML_NODE
 
 feature {ANY}
-   wrap_on (a_stream: OUTPUT_STREAM)
-         -- Put the wrapper on `a_stream'
-      require
-         a_stream /= Void
+   is_fundamental: BOOLEAN
+         -- Does current node refers to a fundamental C type?
       deferred
-      ensure
-         buffer.is_empty
       end
 
-end -- class WRAPPER_FEATURE
--- Copyright 2008,2009,2010 Paolo Redaelli
+   is_void: BOOLEAN
+         -- Is Current node of type void?
+      deferred
+      end
+
+   has_wrapper: BOOLEAN
+         -- Does Current actually have a wrapper type in Liberty?
+      deferred
+      end
+
+   wrapper_type: STRING
+         -- The name of the class of Liberty that wraps Current fundamental type.
+      require
+         not is_void
+         has_wrapper
+      deferred
+      end
+
+end -- class C_TYPE
+-- Copyright 2014 Paolo Redaelli
 -- wrappers-generator  is free software: you can redistribute it and/or modify it
 -- under the terms of the GNU General Public License as publhed by the Free
 -- Software Foundation, either version 2 of the License, or (at your option)
