@@ -68,7 +68,11 @@ feature {ANY}
     local ptr: POINTER
 	do
         ptr:=g_function_info_get_symbol(handle)
-		create Result.from_external(ptr)
+        if ptr.is_not_null then
+            create Result.from_external(ptr)
+        else
+            create Result.make_from_string(once "nameless_symbol")
+        end
 	ensure not_void: Result/=Void
 	end
    

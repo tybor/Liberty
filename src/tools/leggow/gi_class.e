@@ -38,7 +38,8 @@ deferred class GI_CLASS
 	-- efficience of an old-school loop over indexes without bothering about
 	-- indexes and off-by-one bugs.
 
-	-- TODO: the documentation og GIR is not consistent as it reads that an interface has fields and interfaces yet it hasn't.
+    -- TODO: the documentation og GIR is not consistent as it reads that an
+    -- interface has fields and interfaces yet it hasn't.
 
 inherit GI_BASE_INFO
 	undefine out_in_tagged_out_memory 

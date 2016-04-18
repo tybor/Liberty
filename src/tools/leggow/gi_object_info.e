@@ -87,6 +87,9 @@ feature {ANY} -- Wrapper
                 -- Methods includes plain methods, constructors, getters and setters. Setters and getters are already wrapped as properties
                 if a_method.flags.is_is_method or a_method.flags.is_is_constructor then
                     res.append(a_method.eiffel_wrapper)
+                else
+                    res.append(a_method.eiffel_wrapper)
+                    res.append(once "-- not a methodi%N")
                 end
             end)
 
