@@ -2,7 +2,7 @@ expanded class PREREQUISITES_ITERATOR
 insert 
 	ITERATOR[GI_BASE_INFO]
 		redefine default_create end
-create{GI_INTERFACE_INFO} default_create
+create {GI_INTERFACE_INFO} default_create
 
 feature {ANY}
 	default_create is
@@ -20,6 +20,7 @@ feature {GI_INTERFACE_INFO}
 	do
 		interface:=an_interface
 		iterable_generation:=generation
+        start
 	end
 
 feature {ANY}

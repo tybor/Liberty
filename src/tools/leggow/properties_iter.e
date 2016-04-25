@@ -14,6 +14,7 @@ feature {ANY}
 
 	item: GI_PROPERTY_INFO is 
 	do 
+        std_error.put_line("PROPERTIES_ITER.item("+i.out+")")
 		Result:=gi_class.property(i)
 	end
 

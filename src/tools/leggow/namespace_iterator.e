@@ -45,7 +45,8 @@ feature {ANY}
 		do
 			-- Too much verbose
             debug 
-                log.trace.put_line("Iterator item #(1) of #(2)" # &index # & n_infos)
+                -- log.trace.put_line("Iterator item #(1) of #(2)" # &index # & n_infos)
+                std_error.put_line("Iterator item #(1) of #(2)" # &index # & n_infos)
             end
 			Result := wrapper(g_irepository_get_info(repo_ptr,namespace.to_external,index))
             debug 

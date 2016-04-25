@@ -1,4 +1,5 @@
 .
 ./externals/
-../wrappers-generator/loadpath.se
+../wrappers-generator/
+../../wrappers/common/loadpath.se
 

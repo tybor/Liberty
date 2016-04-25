@@ -70,7 +70,14 @@ feature	{} -- Command line arguments
 
 	parse_arguments  is
 	do
-		create arguments.make (all_dependecies_option or directory_option or help_option or verbose_option or library_argument)
+		create arguments.make (
+            library_argument or
+            all_dependecies_option or
+            directory_option or
+            location_option or
+            module_name_option or
+            help_option or
+            verbose_option)
 		if not arguments.parse_command_line then
 			arguments.usage(std_error)
 			die_with_code(1)

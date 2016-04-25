@@ -27,48 +27,80 @@ feature {ANY} -- Wrapper
             -- create {STRING} Result.with_capacity(2048) 
             -- Or we could just issue Result:="" and let string manage all the additions.
             -- Actually since most -- it would be interesting to benchmark it
-            Result := once "deferred class " 
-            | class_name
-            | once "%N -- Wrapper for " | name 
-            | once "%N -- Automatically made by Liberty Eiffel Generator of GObject Wrappers%N"
-            | prerequisites_wrapper 
-            | properties_wrapper
-            | methods_wrapper
-            | signals_wrapper
-            | virtual_functions_wrapper
-            | constants_wrapper
-            | once "end -- class " | class_name
-		end
+            std_error.put_line("Eiffel wrapper for "+out)
+            Result := once "deferred class " | class_name
+            std_error.put_line("#");
+            Result := Result | once "%N -- Wrapper for "
+            std_error.put_line("#");
+            Result := Result | name 
+            std_error.put_line("#");
+            Result := Result | once "%N -- Automatically made by Liberty Eiffel Generator of GObject Wrappers%N"
+            std_error.put_line("#");
+            Result := Result | prerequisites_wrapper 
+            std_error.put_line("#");
+            Result := Result | properties_wrapper
+            std_error.put_line("#");
+            Result := Result | methods_wrapper
+            std_error.put_line("#");
+            Result := Result | signals_wrapper
+            std_error.put_line("#");
+            Result := Result | virtual_functions_wrapper
+            std_error.put_line("#");
+            Result := Result | constants_wrapper
+            std_error.put_line("#");
+            Result := Result | once "end -- class "
+            std_error.put_line("#");
+            Result := Result | class_name
+        end
 
     suffix: STRING is "_INTERFACE"
 
     prerequisites_wrapper: STRING 
-    local pi: PREREQUISITES_ITERATOR
+    local pi: PREREQUISITES_ITERATOR; i: INTEGER
     do
+        std_error.put_line("prerequisite wrapper")
         -- Any GObject prerequisite is turned into a proper parent-heir relation in Eiffel
         Result := once "inherit %N"
-        from pi:=prerequisites_iter; pi.start until pi.is_off loop
+        from i:=prerequisites_lower until i>prerequisites_upper
+        loop
             Result.append(once "%T")
-            Result.append(pi.item.class_name) 
-            pi.next
+            Result.append(prerequisite(i).class_name)
+            i:=i+1
         end
+        -- from pi:=prerequisites_iter; pi.start until pi.is_off loop
+        --     Result.append(once "%T")
+        --     Result.append(pi.item.class_name) 
+        --     pi.next
+        -- end
         Result.append(once "%N")
     end
 
     properties_wrapper: STRING 
-    local a_partial_result: STRING -- In order to ease some pressure from the compiler a differently named reference to the accumulator result of this query is passed to the agent.
+    local 
+        a_partial_result: STRING -- In order to ease some pressure from the compiler a differently named reference to the accumulator result of this query is passed to the agent.
+
+        pi: PROPERTIES_ITER; i:INTEGER
     do
-        a_partial_result := once "feature {ANY} -- Properties"
-        properties_iter.for_each (agent (a_property: GI_PROPERTY_INFO) do
-            a_partial_result.append(a_property.eiffel_wrapper)
-        end)
-        Result := a_partial_result
+        -- a_partial_result := once "feature {ANY} -- Properties"
+        -- This happes to trigger a SIGSEGV
+        -- properties_iter.for_each (agent (a_property: GI_PROPERTY_INFO) do
+        --     a_partial_result.append(a_property.eiffel_wrapper)
+        -- end)
+        -- Result := a_partial_result            
         -- could also be implemented like:
+        std_error.put_line("properties wrapper")
+        Result := once "feature {ANY} -- Properties%N"
+        -- 2016-04-21 looks like PROPERTIES_ITER triggers a sigsegv, perhaps because it is an expanded object
         -- from pi:=properties_iter; pi.start until pi.is_off loop
-        --  Result.append(pi.item.eiffel_wrapper)
-        --  pi.next
+        --    Result.append(pi.item.eiffel_wrapper)
+        --    pi.next
         -- end
-            
+        from i:=properties_lower; until i>properties_upper 
+        loop    
+            std_error.put_line("property n. "+i.out)
+            Result.append(property(i).eiffel_wrapper)
+            i:=i+1
+        end
     end
 
     methods_wrapper: STRING 
@@ -113,10 +145,12 @@ feature {ANY} -- Interface prerequisites
 		-- The interface type prerequisites at index `i'.
 	require valid_index: i.in_range(prerequisites_lower,prerequisites_upper)
 	do
+        std_error.put_line("Prerequisite n:"+i.out)
 		Result := wrapper(g_interface_info_get_prerequisite( handle,i))
 		-- g_interface_info_get_prerequisite Returns : the prerequisites as a
 		-- GIBaseInfo. Free the struct by calling g_base_info_unref() when
 		-- done. [transfer full]
+        std_error.put_line(Result.out)
 	ensure Result /=Void
 	end
 
@@ -135,6 +169,7 @@ feature {ANY} -- Properties
 	property (i: INTEGER): GI_PROPERTY_INFO is
 		-- the interface type property at index `i'. 
 	do
+        std_error.put_line("GI_INTERFACE_INFO.property("+i.out+")")
 		create Result.from_external_pointer(g_interface_info_get_property(handle,i))
 		-- g_interface_info_get_property Returns : the GIPropertyInfo. Free the struct by calling g_base_info_unref() when done. [transfer full]
 	end
