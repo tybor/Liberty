@@ -192,37 +192,38 @@ feature {STRING_HANDLER}
          actual_capacity, new_capacity: like capacity
       do
          storage_signature_count := 0
-         check
-            check_can_have_storage_signature
+         debug 
+            storage_signature_count := 4 
          end
          actual_capacity := capacity + storage_signature_count
          if storage.is_null then -- implies actual_capacity = 0
-            check
-               not has_storage_signature
-            end
             new_capacity := needed_capacity
             if new_capacity + storage_signature_count > 0 then
                storage := storage.calloc(new_capacity + storage_signature_count)
             end
             capacity := new_capacity
-            check
-               check_set_storage_signature
-               has_storage_signature implies check_valid_storage_signature
+            debug
+               set_storage_signature
+               check
+                  has_storage_signature implies is_storage_signature_valid
+               end
             end
          elseif capacity < needed_capacity then
             check
-               has_storage_signature implies check_valid_storage_signature
+               has_storage_signature implies is_storage_signature_valid
             end
             new_capacity := needed_capacity.max((capacity #* 2).max(32 - storage_signature_count))
             storage := storage.realloc(actual_capacity, new_capacity + storage_signature_count)
             capacity := new_capacity
-            check
-               check_set_storage_signature
-               has_storage_signature implies check_valid_storage_signature
+            debug
+               set_storage_signature
+               check
+                  has_storage_signature implies is_storage_signature_valid
+               end
             end
          else
             check
-               has_storage_signature implies check_valid_storage_signature
+               has_storage_signature implies is_storage_signature_valid
             end
          end
       ensure
@@ -234,13 +235,13 @@ feature {STRING_HANDLER}
          count <= new_capacity
       do
          storage_signature_count := 0
-         check
-            check_can_have_storage_signature
+         debug
+            storage_signature_count := 4
          end
          storage := new_storage
          capacity := new_capacity
-         check
-            check_set_storage_signature
+         debug 
+            set_storage_signature
          end
       ensure
          storage = new_storage
@@ -254,25 +255,14 @@ feature {STRING_HANDLER}
       end
 
 feature {} -- storage signature: only in all_check mode
-   check_set_storage_signature: BOOLEAN
-      require
-         storage.is_not_null
-         storage_signature_count = 4
-      do
-         storage.put('%/0/' , capacity    )
-         storage.put('%/3/' , capacity + 1)
-         storage.put('%/9/' , capacity + 2)
-         storage.put('%/27/', capacity + 3)
-         has_storage_signature := True
-         Result := True
-      ensure
-         has_storage_signature
-      end
 
-feature {STRING_HANDLER}
+feature {STRING_HANDLER} -- Storage signature queries
    has_storage_signature: BOOLEAN
+   do
+      Result := storage_signature_count = 4
+   end
 
-   check_valid_storage_signature: BOOLEAN
+   is_storage_signature_valid: BOOLEAN
       require
          has_storage_signature
       do
@@ -284,25 +274,40 @@ feature {STRING_HANDLER}
             sedb_breakpoint
          end
       end
+   
+   storage_signature_count: INTEGER
+
+feature {STRING_HANDLER} -- Storage signature commands
+   set_storage_signature
+      require
+         storage.is_not_null
+         storage_signature_count = 4
+      do
+         storage.put('%/0/' , capacity    )
+         storage.put('%/3/' , capacity + 1)
+         storage.put('%/9/' , capacity + 2)
+         storage.put('%/27/', capacity + 3)
+      ensure
+         has_storage_signature
+         is_storage_signature_valid
+      end
 
    check_can_have_storage_signature: BOOLEAN
       do
          if storage_signature_count = 0 then
             storage_signature_count := 4
-            check
-               storage.is_not_null implies check_set_storage_signature
-            end
+            -- check
+            --    storage.is_not_null implies check_set_storage_signature
+            -- end
          end
          Result := True
       end
-
-   storage_signature_count: INTEGER
 
 invariant
    capacity > 0 implies storage.is_not_null
    count <= capacity
    storage_lower >= 0
-   storage_signature_count > 0 implies (has_storage_signature implies check_valid_storage_signature)
+   storage_signature_count > 0 implies (has_storage_signature implies is_storage_signature_valid)
    storage_signature_count = 0 or storage_signature_count = 4
 
 end -- class NATIVELY_STORED_STRING

@@ -914,8 +914,10 @@ feature {ANY} -- Interfacing with C string:
             count := count + 1
          end
          capacity := count + 1
-         if storage_signature_count > 0 then
-            has_storage_signature := False
+         debug
+            if storage_signature_count > 0 then
+               set_storage_signature
+            end
          end
          next_generation
       ensure
@@ -961,8 +963,10 @@ feature {ANY} -- Interfacing with C string:
          storage := storage.from_pointer(p)
          count := size
          capacity := size
-         if storage_signature_count > 0 then
-            has_storage_signature := False
+         debug 
+            if storage_signature_count > 0 then
+               set_storage_signature
+            end
          end
          next_generation
       ensure
