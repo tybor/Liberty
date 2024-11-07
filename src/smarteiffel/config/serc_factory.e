@@ -27,25 +27,18 @@ feature {ANY}
             if file_tools.is_readable("/etc/issue") then
                def.set_flavor("Linux")
             end
-            add_to_chain(chain, "/etc/serc", "    ")
             add_to_chain(chain, "/etc/xdg/liberty-eiffel", "    ")
             add_to_chain(chain, "/etc/liberty-eiffel", "    ")
             add_to_chain(chain, "/usr/local/etc/liberty-eiffel", "    ")
             add_to_chain(chain, xdg.config_home, "    ")
             s := home_env
             if s /= Void then
-               s.append("/.serc")
-               add_to_chain(chain, s, "    ")
-               s.remove_suffix("/.serc")
                s.append("/.liberty-eiffel")
                add_to_chain(chain, s, "    ")
             end
          elseif basic_directory.windows_notation then
             s := userprofile_env
             if s /= Void then
-               s.append("\\SE.CFG")
-               add_to_chain(chain, s, "    ")
-               s.remove_suffix("\\SE.CFG")
                s.append("\\LIBERTY.CFG")
                add_to_chain(chain, s, "    ")
                s.remove_suffix("\\LIBERTY.CFG")
